@@ -1,42 +1,70 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <title>Sweet Bakery - Home</title>
+    <title>Sweet Bakery - Promotions</title>
 </head>
 <body>
-    <header>
-        <nav class="Menu">
-            <a href="index.html">Home</a>
-            <a href="promotions.html">Promotions</a>
-            <a href="cakes-catalog.html">Cakes Catalog</a>
-            <a href="desserts-menu.html">Desserts Menu</a>
-            <a href="about.html">About Us</a>
-            <a href="order-contact.html">Order & Contact</a>
-        </nav>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="brand">Sweet<span>Bakery</span></a>
+            <nav class="site-nav">
+                <a href="index.html">Home</a>
+                <a href="promotions.html" class="active">Promotions</a>
+                <a href="cakes-catalog.html">Cakes Catalog</a>
+                <a href="desserts-menu.html">Desserts Menu</a>
+                <a href="about.html">About Us</a>
+                <a href="order-contact.html">Order &amp; Contact</a>
+            </nav>
+        </div>
     </header>
+
+    <section class="page-hero">
+        <div class="page-hero-inner">
+            <h1>Special promotions &amp; gift sets</h1>
+            <p>Check out our latest special offers and gift sets for any occasion.</p>
+        </div>
+    </section>
+
     <main>
-        <h1>Special Promotions & Gift Sets</h1>
-        <p>Check out our latest special offers and gift sets for any occasion!</p>
         <section id="promo-container">
             <article class="promo-card">
-                <h2>Weekend Cupcake Set</h2>
-                <img src="images/cupcakess.jpg" alt="Cupcakes Set">
-                <p>Get 20% off on any box of 6 cupcakes every weekend.</p>
-                <p><strong>Price:</strong> $12 (was $15)</p>
-                <button type="button" class="btn">Order Now</button>
+                <div class="card-img-wrap">
+                    <img src="images/cupcakess.jpg" alt="Cupcakes Set">
+                </div>
+                <div class="card-body">
+                    <h2>Weekend Cupcake Set</h2>
+                    <p>Get 20% off on any box of 6 cupcakes every weekend.</p>
+                    <div class="price-row">
+                        <span class="price">$12</span>
+                        <span class="price-was">$15</span>
+                    </div>
+                    <button type="button" class="btn">Order Now</button>
+                </div>
             </article>
 
             <article class="promo-card">
-                <h2>Birthday Cake Special</h2>
-                <img src="images/birthdaycake.jpg" alt="Birthday Cake">
-                <p>Order a birthday cake and receive a free set of candles.</p>
-                <p><strong>Price:</strong> $27 (was $30)</p>
-                <button type="button" class="btn">Order Now</button>
+                <div class="card-img-wrap">
+                    <img src="images/birthdaycake.jpg" alt="Birthday Cake">
+                </div>
+                <div class="card-body">
+                    <h2>Birthday Cake Special</h2>
+                    <p>Order a birthday cake and receive a free set of candles.</p>
+                    <div class="price-row">
+                        <span class="price">$27</span>
+                        <span class="price-was">$30</span>
+                    </div>
+                    <button type="button" class="btn">Order Now</button>
+                </div>
             </article>
         </section>
     </main>
+
     <footer>
         <p>Created by: Shamelova Dilara, Yessendos Diana, Shyntemir Zhanbota</p>
     </footer>
