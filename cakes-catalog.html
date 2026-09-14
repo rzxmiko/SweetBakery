@@ -2,91 +2,108 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Sweet Bakery - Cakes Catalog</title>
 </head>
 <body>
-    <header>
-        <nav class="Menu">
-            <a href="index.html">Home</a>
-            <a href="promotions.html">Promotions</a>
-            <a href="cakes-catalog.html">Cakes Catalog</a>
-            <a href="desserts-menu.html">Desserts Menu</a>
-            <a href="about.html">About Us</a>
-            <a href="order-contact.html">Order & Contact</a>
-        </nav>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="brand">Sweet<span>Bakery</span></a>
+            <nav class="site-nav">
+                <a href="index.html">Home</a>
+                <a href="promotions.html">Promotions</a>
+                <a href="cakes-catalog.html" class="active">Cakes Catalog</a>
+                <a href="desserts-menu.html">Desserts Menu</a>
+                <a href="about.html">About Us</a>
+                <a href="order-contact.html">Order &amp; Contact</a>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <section id="cakes-hero">
-            <h1>Our Cakes Catalog</h1>
-            <p>Choose from our signature designs or customize your own cake!</p>
+        <section id="cakes-hero" class="page-hero">
+            <div class="page-hero-inner">
+                <h1>Our cakes catalog</h1>
+                <p>Choose from our signature designs or customize your own cake.</p>
+            </div>
         </section>
 
-        <!-- Карточки тортов -->
+        <!-- Cake cards -->
         <section id="cake-cards">
-            <h2>Popular Cake Designs</h2>
+            <h2>Popular cake designs</h2>
             <div class="card-container">
                 <article class="card">
-                    <img src="images/chocolate-delight.jpg" alt="Chocolate Delight Cake">
+                    <div class="card-img-wrap">
+                        <img src="images/chocolate-delight.jpg" alt="Chocolate Delight Cake">
+                    </div>
                     <h3>Chocolate Delight</h3>
                     <p>Rich chocolate sponge with Belgian dark chocolate ganache.</p>
                 </article>
                 <article class="card">
-                    <img src="images/berry-bliss.jpg" alt="Berry Bliss Cake">
+                    <div class="card-img-wrap">
+                        <img src="images/berry-bliss.jpg" alt="Berry Bliss Cake">
+                    </div>
                     <h3>Berry Bliss</h3>
                     <p>Light vanilla sponge layered with fresh seasonal berries and cream.</p>
                 </article>
                 <article class="card">
-                    <img src="images/red-velvet.jpg" alt="Red Velvet Cake">
+                    <div class="card-img-wrap">
+                        <img src="images/red-velvet.jpg" alt="Red Velvet Cake">
+                    </div>
                     <h3>Classic Red Velvet</h3>
                     <p>Traditional velvet cake with smooth cream cheese frosting.</p>
                 </article>
             </div>
         </section>
 
-        <!-- Список начинок -->
+        <!-- Fillings -->
         <section id="fillings">
-            <h2>Available Fillings & Flavors</h2>
-            <ul>
-                <li><strong>Classic Fillings:</strong>
+            <h2>Available fillings &amp; flavors</h2>
+            <div class="fillings-grid">
+                <div class="fillings-group">
+                    <h3>Classic fillings</h3>
                     <ol>
                         <li>Vanilla Bean Custard</li>
                         <li>Chocolate Fudge</li>
                         <li>Salted Caramel</li>
                     </ol>
-                </li>
-                <li><strong>Fruit & Berry Fillings:</strong>
+                </div>
+                <div class="fillings-group">
+                    <h3>Fruit &amp; berry fillings</h3>
                     <ol>
                         <li>Raspberry Confit</li>
-                        <li>Strawberry & Cream</li>
+                        <li>Strawberry &amp; Cream</li>
                         <li>Mango-Passionfruit Crisp</li>
                     </ol>
-                </li>
-            </ul>
+                </div>
+            </div>
         </section>
 
-        <!-- Таблица вариантов оформления -->
+        <!-- Decor options table -->
         <section id="decor-options">
-            <h2>Custom Design & Decor Options</h2>
-            <table border="1">
+            <h2>Custom design &amp; decor options</h2>
+            <table>
                 <thead>
                     <tr>
-                        <th>Decor Style</th>
+                        <th>Decor style</th>
                         <th>Description</th>
-                        <th>Preparation Time</th>
+                        <th>Preparation time</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Minimalist / Cream Coating</td>
                         <td>Smooth frosting with simple lettering or fresh berries</td>
-                        <td>1-2 days</td>
+                        <td>1–2 days</td>
                     </tr>
                     <tr>
                         <td>Sugar Paste / Fondant Figurine</td>
                         <td>Custom hand-sculpted figures and detailed themed designs</td>
-                        <td>3-5 days</td>
+                        <td>3–5 days</td>
                     </tr>
                     <tr>
                         <td>Tiered Event Cake</td>

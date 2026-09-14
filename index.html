@@ -1,44 +1,67 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Sweet Bakery - Home</title>
 </head>
 <body>
-    <header>
-        <nav class="Menu">
-            <a href="index.html">Home</a>
-            <a href="promotions.html">Promotions</a>
-            <a href="cakes-catalog.html">Cakes Catalog</a>
-            <a href="desserts-menu.html">Desserts Menu</a>
-            <a href="about.html">About Us</a>
-            <a href="order-contact.html">Order & Contact</a>
-        </nav>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="brand">Sweet<span>Bakery</span></a>
+            <nav class="site-nav">
+                <a href="index.html" class="active">Home</a>
+                <a href="promotions.html">Promotions</a>
+                <a href="cakes-catalog.html">Cakes Catalog</a>
+                <a href="desserts-menu.html">Desserts Menu</a>
+                <a href="about.html">About Us</a>
+                <a href="order-contact.html">Order &amp; Contact</a>
+            </nav>
+        </div>
     </header>
+
     <section id="hero">
-        <h1>Welcome to SweetBakery</h1>
-        <p>Delicious handcrafted pastries and custom cakes for your sweet moments.</p>
+        <div class="hero-inner">
+            <h1>Handcrafted cakes for Astana's sweetest moments</h1>
+            <p>Delicious handcrafted pastries and custom cakes, baked fresh every day and made to order.</p>
+            <a href="cakes-catalog.html" class="btn">Browse the catalog</a>
+        </div>
     </section>
+
     <main>
-        <section id ="features">
-            <h2>Why Choose Us?</h2>
-            <ul>
-                <li>Freshly baked goods made with love and quality ingredients.</li>
-                <li>Custom cakes for all occasions.</li>
-                <li>Friendly and personalized service.</li>
+        <section id="features">
+            <h2>Why choose us</h2>
+            <ul class="feature-grid">
+                <li>
+                    <h3>Baked fresh daily</h3>
+                    <p>Freshly baked goods made with love and quality ingredients, every single morning.</p>
+                </li>
+                <li>
+                    <h3>Made to order</h3>
+                    <p>Custom cakes for birthdays, weddings and every occasion in between.</p>
+                </li>
+                <li>
+                    <h3>Personal service</h3>
+                    <p>A friendly team that helps you plan the cake that fits your moment.</p>
+                </li>
             </ul>
         </section>
+
         <section id="team-info">
-            <h2>About the Development Team</h2>
+            <h2>About the development team</h2>
             <p>This project was created by our team for Assignment 1:</p>
-            <ul>
-                <li>Shamelova Dilara: Home & Promotions </li>
-                <li>Yessendos Diana: Cakes Catalog & Desserts Menu pages</li>
-                <li>Shyntemir Zhanbota: About Us & Order and Contact pages</li>
+            <ul class="team-list">
+                <li><strong>Shamelova Dilara</strong> — Home &amp; Promotions</li>
+                <li><strong>Yessendos Diana</strong> — Cakes Catalog &amp; Desserts Menu pages</li>
+                <li><strong>Shyntemir Zhanbota</strong> — About Us &amp; Order and Contact pages</li>
             </ul>
         </section>
     </main>
+
     <footer>
         <p>Created by: Shamelova Dilara, Yessendos Diana, Shyntemir Zhanbota</p>
     </footer>

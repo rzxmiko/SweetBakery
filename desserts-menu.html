@@ -2,46 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Sweet Bakery - Desserts Menu</title>
 </head>
 <body>
-    <header>
-        <nav class="Menu">
-            <a href="index.html">Home</a>
-            <a href="promotions.html">Promotions</a>
-            <a href="cakes-catalog.html">Cakes Catalog</a>
-            <a href="desserts-menu.html">Desserts Menu</a>
-            <a href="about.html">About Us</a>
-            <a href="order-contact.html">Order & Contact</a>
-        </nav>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="brand">Sweet<span>Bakery</span></a>
+            <nav class="site-nav">
+                <a href="index.html">Home</a>
+                <a href="promotions.html">Promotions</a>
+                <a href="cakes-catalog.html">Cakes Catalog</a>
+                <a href="desserts-menu.html" class="active">Desserts Menu</a>
+                <a href="about.html">About Us</a>
+                <a href="order-contact.html">Order &amp; Contact</a>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <section id="desserts-hero">
-            <h1>Pastries & Desserts Menu</h1>
-            <p>Freshly baked cupcakes, macarons, and French croissants every morning.</p>
+        <section id="desserts-hero" class="page-hero">
+            <div class="page-hero-inner">
+                <h1>Pastries &amp; desserts menu</h1>
+                <p>Freshly baked cupcakes, macarons, and French croissants every morning.</p>
+            </div>
         </section>
 
-        <!-- Меню категорий -->
+        <!-- Category menu -->
         <section id="dessert-categories">
-            <h2>Our Selection</h2>
-            <ul>
+            <h2>Our selection</h2>
+            <ul class="dessert-list">
                 <li><strong>Cupcakes:</strong> Fluffy mini-cakes with rich cream swirls and toppings.</li>
                 <li><strong>Macarons:</strong> Delicate French almond meringue cookies with ganache filling.</li>
                 <li><strong>Croissants:</strong> Buttery, flaky pastries baked fresh daily.</li>
             </ul>
         </section>
 
-        <!-- Таблица цен и состава по категориям -->
+        <!-- Prices & ingredients table -->
         <section id="menu-table">
-            <h2>Prices & Ingredients Overview</h2>
-            <table border="1">
+            <h2>Prices &amp; ingredients overview</h2>
+            <table>
                 <thead>
                     <tr>
                         <th>Category</th>
-                        <th>Item Name</th>
-                        <th>Main Ingredients</th>
+                        <th>Item name</th>
+                        <th>Main ingredients</th>
                         <th>Price ($)</th>
                     </tr>
                 </thead>
