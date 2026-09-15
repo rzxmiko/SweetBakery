@@ -2,44 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SweetBakery — About Us</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Sweet Bakery - About Us</title>
 </head>
 <body>
-    <header id="main-header">
-        <nav class="nav-menu">
-            <a href="index.html">Home</a> |
-            <a href="promotions.html">Promotions</a> |
-            <a href="cakes-catalog.html">Cakes</a> |
-            <a href="desserts-menu.html">Pastries</a> |
-            <a href="about.html">About Us</a> |
-            <a href="order-contact.html">Order</a>
-        </nav>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="brand">Sweet<span>Bakery</span></a>
+            <nav class="site-nav">
+                <a href="index.html">Home</a>
+                <a href="promotions.html">Promotions</a>
+                <a href="cakes-catalog.html">Cakes Catalog</a>
+                <a href="desserts-menu.html">Desserts Menu</a>
+                <a href="about.html" class="active">About Us</a>
+                <a href="order-contact.html">Order &amp; Contact</a>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <h1>About SweetBakery</h1>
-        <p>We have been making fresh signature cakes and desserts using natural ingredients since 2020.</p>
+        <section id="about-hero" class="page-hero">
+            <div class="page-hero-inner">
+                <h1>About SweetBakery</h1>
+                <p>We have been making fresh signature cakes and desserts using natural ingredients since 2020.</p>
+            </div>
+        </section>
 
-        <section>
+        <section id="pastry-chef">
             <h2>Our Pastry Chef</h2>
             <img src="images/chef.jpg" alt="Chef Anna" class="profile-img">
             <p><strong>Anna Petrova</strong> — Head Pastry Chef with 10 years of experience.</p>
         </section>
 
-        <section>
+        <section id="team-info">
             <h2>About Our Team</h2>
-            <ul>
-                <li><strong>Shamelova Dilara</strong> — Home & Promotions</li>
-                <li><strong>Yessendos Diana</strong> — Cakes & Menu</li>
-                <li><strong>Shyntemir Zhanbota</strong> — About Us & Order</li>
+            <ul class="team-list">
+                <li><strong>Shamelova Dilara</strong> — Home &amp; Promotions</li>
+                <li><strong>Yessendos Diana</strong> — Cakes Catalog &amp; Desserts Menu pages</li>
+                <li><strong>Shyntemir Zhanbota</strong> — About Us &amp; Order and Contact pages</li>
             </ul>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 SweetBakery. Authors: Shamelova Dilara, Yessendos Diana, Shyntemir Zhanbota (SE-2506)</p>
+        <p>Created by: Shamelova Dilara, Yessendos Diana, Shyntemir Zhanbota (SE-2506)</p>
     </footer>
 </body>
 </html>
