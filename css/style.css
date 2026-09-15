@@ -548,10 +548,14 @@ tbody tr:nth-child(even) {
 
 footer {
     background: var(--plum-950);
-    color: #f1e6f0;
+    color: #fff8e7;
     text-align: center;
     padding: 26px 24px;
     font-size: 0.9rem;
+}
+
+footer p {
+    color: #fff8e7;
 }
 
 /* ---------- Responsive ---------- */
