@@ -180,17 +180,39 @@ button.btn:hover {
     border-bottom: 1px solid var(--border-soft);
 }
 
-.hero-inner {
+#hero .hero-inner-wrap {
     max-width: var(--container);
     margin: 0 auto;
-    padding: 96px 24px 88px;
-    max-width: 640px;
+    padding: 80px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+}
+
+.hero-inner {
+    flex: 1;
+    max-width: 580px;
 }
 
 .hero-inner p {
     color: var(--text-muted);
     font-size: 1.1rem;
     margin-bottom: 1.75em;
+}
+
+.hero-img-wrap {
+    flex: 1;
+    max-width: 460px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+}
+
+.hero-img-wrap img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 /* ---------- Page hero (inner pages) ---------- */
@@ -549,6 +571,16 @@ footer {
         grid-template-columns: 1fr;
         text-align: center;
         justify-items: center;
+    }
+    #hero .hero-inner-wrap {
+        flex-direction: column;
+        text-align: center;
+        padding: 56px 20px;
+    }
+
+    .hero-img-wrap {
+        width: 100%;
+        max-width: 360px;
     }
 }
 
