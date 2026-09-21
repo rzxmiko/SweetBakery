@@ -235,22 +235,38 @@ button.btn:hover {
     margin: 0;
 }
 
-/* ---------- Feature grid (home) ---------- */
+/* ---------- Dilara: Feature cards (home) - Flexbox ---------- */
 
 .feature-grid {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 28px;
 }
 
 .feature-grid li {
-    background: var(--lavender-50);
-    border: 1px solid var(--border-soft);
+    flex: 1 1 240px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 28px 26px;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.feature-grid li:hover {
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-4px);
+}
+
+.feature-grid .card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 22px 24px 26px;
 }
 
 .feature-grid h3 {
@@ -259,7 +275,12 @@ button.btn:hover {
 
 .feature-grid p {
     color: var(--text-muted);
-    margin: 0;
+    margin: 0 0 20px;
+}
+
+.feature-grid .btn {
+    margin-top: auto;
+    align-self: flex-start;
 }
 
 /* ---------- Team list ---------- */
@@ -282,12 +303,15 @@ button.btn:hover {
 /* ---------- Promo cards ---------- */
 
 #promo-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 28px;
 }
 
 .promo-card {
+    flex: 1 1 260px;
+    display: flex;
+    flex-direction: column;
     background: #fff;
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
@@ -313,13 +337,21 @@ button.btn:hover {
 }
 
 .promo-card .card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     padding: 22px 24px 26px;
+}
+
+.promo-card .btn {
+    align-self: flex-start;
 }
 
 .price-row {
     display: flex;
     align-items: baseline;
     gap: 10px;
+    margin-top: auto;
     margin-bottom: 16px;
 }
 
@@ -544,6 +576,82 @@ tbody tr:nth-child(even) {
     width: 100%;
 }
 
+/* ---------- Dilara: Page layout (Home & Promotions) - Grid areas ---------- */
+
+.page-layout {
+    display: grid;
+    grid-template-columns: minmax(24px, 1fr) 240px minmax(0, 920px) minmax(24px, 1fr);
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header header  header header"
+        ".      sidebar main   ."
+        "footer footer  footer footer";
+    min-height: 100vh;
+}
+
+/* sticky does not work for a grid item inside its own row, so the header scrolls normally here */
+.page-layout > .site-header {
+    grid-area: header;
+    position: relative;
+}
+
+.page-layout > .page-sidebar {
+    grid-area: sidebar;
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    margin: 32px 32px 0 0;
+    padding: 22px;
+    background: var(--lavender-50);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+}
+
+.page-layout > main {
+    grid-area: main;
+    max-width: none;
+    margin: 0;
+    padding: 32px 0 80px;
+}
+
+.page-layout > footer {
+    grid-area: footer;
+}
+
+.page-layout #hero,
+.page-layout .page-hero {
+    padding: 0;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.page-sidebar h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.6em;
+}
+
+.page-sidebar ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.page-sidebar a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.page-sidebar a:hover {
+    background: var(--lavender-100);
+    color: var(--plum-800);
+}
+
 /* ---------- Footer ---------- */
 
 footer {
@@ -561,12 +669,34 @@ footer p {
 /* ---------- Responsive ---------- */
 
 @media (max-width: 860px) {
-    .feature-grid,
+    .page-layout {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas:
+            "header"
+            "sidebar"
+            "main"
+            "footer";
+    }
+
+    .page-layout > .page-sidebar {
+        position: static;
+        margin: 20px 24px 0;
+    }
+
+    .page-sidebar ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .page-layout > main {
+        padding: 24px 24px 60px;
+    }
+
     .card-container {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    #promo-container,
     .fillings-grid {
         grid-template-columns: 1fr;
     }
@@ -604,7 +734,6 @@ footer p {
         font-size: 0.88rem;
     }
 
-    .feature-grid,
     .card-container {
         grid-template-columns: 1fr;
     }
