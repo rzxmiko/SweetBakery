@@ -27,148 +27,76 @@
     <aside class="page-sidebar">
         <h3>Quick Navigation</h3>
         <ul>
-            <li><a href="#cake-cards">Popular Cakes</a></li>
-            <li><a href="#fillings">Fillings &amp; Flavors</a></li>
-            <li><a href="#decor-options">Decor Options</a></li>
-            <li><a href="#gallery">Cake Gallery</a></li>
+            <li><a href="#dessert-categories">Our Selection</a></li>
+            <li><a href="#menu-table">Prices &amp; Ingredients</a></li>
         </ul>
     </aside>
 
     <main>
-        <section id="cakes-hero" class="page-hero">
+        <section id="desserts-hero" class="page-hero">
             <div class="page-hero-inner">
-                <h1>Our cakes catalog</h1>
-                <p>Choose from our signature designs or customize your own cake.</p>
+                <h1>Pastries &amp; desserts menu</h1>
+                <p>Freshly baked cupcakes, macarons, and French croissants every morning.</p>
             </div>
         </section>
 
-        <!-- Cake cards (Flexbox) -->
-        <section id="cake-cards">
-            <h2>Popular cake designs</h2>
-            <div class="card-container">
-                <article class="card">
-                    <div class="card-img-wrap">
-                        <img src="images/chocolate-delight.jpg" alt="Chocolate Delight Cake">
-                    </div>
-                    <h3>Chocolate Delight</h3>
-                    <p>Rich chocolate sponge with Belgian dark chocolate ganache.</p>
-                    <a href="order-contact.html" class="btn">Order this cake</a>
-                </article>
-                <article class="card">
-                    <div class="card-img-wrap">
-                        <img src="images/berry-bliss.jpg" alt="Berry Bliss Cake">
-                    </div>
-                    <h3>Berry Bliss</h3>
-                    <p>Light vanilla sponge layered with fresh seasonal berries and cream.</p>
-                    <a href="order-contact.html" class="btn">Order this cake</a>
-                </article>
-                <article class="card">
-                    <div class="card-img-wrap">
-                        <img src="images/red-velvet.jpg" alt="Red Velvet Cake">
-                    </div>
-                    <h3>Classic Red Velvet</h3>
-                    <p>Traditional velvet cake with smooth cream cheese frosting.</p>
-                    <a href="order-contact.html" class="btn">Order this cake</a>
-                </article>
-            </div>
+        <!-- Category menu (Flexbox) -->
+        <section id="dessert-categories">
+            <h2>Our selection</h2>
+            <ul class="dessert-list">
+                <li><strong>Cupcakes</strong> Fluffy mini-cakes with rich cream swirls and toppings.</li>
+                <li><strong>Macarons</strong> Delicate French almond meringue cookies with ganache filling.</li>
+                <li><strong>Croissants</strong> Buttery, flaky pastries baked fresh daily.</li>
+            </ul>
         </section>
-
-        <!-- Fillings -->
-        <section id="fillings">
-            <h2>Available fillings &amp; flavors</h2>
-            <div class="fillings-grid">
-                <div class="fillings-group">
-                    <h3>Classic fillings</h3>
-                    <ol>
-                        <li>Vanilla Bean Custard</li>
-                        <li>Chocolate Fudge</li>
-                        <li>Salted Caramel</li>
-                    </ol>
-                </div>
-                <div class="fillings-group">
-                    <h3>Fruit &amp; berry fillings</h3>
-                    <ol>
-                        <li>Raspberry Confit</li>
-                        <li>Strawberry &amp; Cream</li>
-                        <li>Mango-Passionfruit Crisp</li>
-                    </ol>
-                </div>
-            </div>
-        </section>
-
-        <!-- Decor options table -->
-        <section id="decor-options">
-            <h2>Custom design &amp; decor options</h2>
+        <section id="menu-table">
+            <h2>Prices &amp; ingredients overview</h2>
             <div class="table-wrap">
                 <table>
                     <thead>
                         <tr>
-                            <th>Decor style</th>
-                            <th>Description</th>
-                            <th>Preparation time</th>
+                            <th>Category</th>
+                            <th>Item name</th>
+                            <th>Main ingredients</th>
+                            <th>Price ($)</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Minimalist / Cream Coating</td>
-                            <td>Smooth frosting with simple lettering or fresh berries</td>
-                            <td>1–2 days</td>
+                            <td rowspan="2">Cupcakes</td>
+                            <td>Salted Caramel Cupcake</td>
+                            <td>Flour, butter, salted caramel, buttercream frosting</td>
+                            <td>3.50</td>
                         </tr>
                         <tr>
-                            <td>Sugar Paste / Fondant Figurine</td>
-                            <td>Custom hand-sculpted figures and detailed themed designs</td>
-                            <td>3–5 days</td>
+                            <td>Double Chocolate Cupcake</td>
+                            <td>Cocoa, dark chocolate chips, chocolate cream</td>
+                            <td>3.80</td>
                         </tr>
                         <tr>
-                            <td>Tiered Event Cake</td>
-                            <td>Multi-layer celebration cakes for weddings and large parties</td>
-                            <td>5+ days</td>
+                            <td rowspan="2">Macarons</td>
+                            <td>Pistachio Macaron</td>
+                            <td>Almond flour, egg whites, pistachio paste, white chocolate</td>
+                            <td>2.50</td>
+                        </tr>
+                        <tr>
+                            <td>Raspberry Macaron</td>
+                            <td>Almond flour, fresh raspberry puree, dark chocolate ganache</td>
+                            <td>2.50</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2">Croissants</td>
+                            <td>Classic Butter Croissant</td>
+                            <td>French butter, wheat flour, yeast, milk</td>
+                            <td>3.00</td>
+                        </tr>
+                        <tr>
+                            <td>Almond Croissant</td>
+                            <td>Butter croissant, frangipane (almond cream), flaked almonds</td>
+                            <td>4.20</td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
-        </section>
-
-        <!-- Image gallery (Grid): put your 9 photos in images/gallery-1.jpg ... gallery-9.jpg -->
-        <section id="gallery">
-            <h2>Cake gallery</h2>
-            <div class="gallery">
-                <figure class="gallery-item" tabindex="0">
-                    <img src="images/gallery-1.jpg" alt="Chocolate cake with ganache">
-                    <figcaption>Chocolate ganache cake</figcaption>
-                </figure>
-                <figure class="gallery-item" tabindex="0">
-                    <img src="images/gallery-2.jpg" alt="Cake with fresh berries">
-                    <figcaption>Fresh berry cake</figcaption>
-                </figure>
-                <figure class="gallery-item" tabindex="0">
-                    <img src="images/gallery-3.jpg" alt="Red velvet cake slice">
-                    <figcaption>Red velvet slice</figcaption>
-                </figure>
-                <figure class="gallery-item" tabindex="0">
-                    <img src="images/gallery-4.jpg" alt="Birthday cake with candles">
-                    <figcaption>Birthday cake</figcaption>
-                </figure>
-                <figure class="gallery-item" tabindex="0">
-                    <img src="images/gallery-5.jpg" alt="Three-tier wedding cake">
-                    <figcaption>Three-tier wedding cake</figcaption>
-                </figure>
-                <figure class="gallery-item" tabindex="0">
-                    <img src="images/gallery-6.jpg" alt="Fondant figurine cake">
-                    <figcaption>Fondant figurine cake</figcaption>
-                </figure>
-                <figure class="gallery-item" tabindex="0">
-                    <img src="images/gallery-7.jpg" alt="Minimalist cream cake">
-                    <figcaption>Minimalist cream cake</figcaption>
-                </figure>
-                <figure class="gallery-item" tabindex="0">
-                    <img src="images/gallery-8.jpg" alt="Salted caramel cake">
-                    <figcaption>Salted caramel cake</figcaption>
-                </figure>
-                <figure class="gallery-item" tabindex="0">
-                    <img src="images/gallery-9.jpg" alt="Mango passionfruit cake">
-                    <figcaption>Mango-passionfruit cake</figcaption>
-                </figure>
             </div>
         </section>
     </main>
