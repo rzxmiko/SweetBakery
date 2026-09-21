@@ -24,82 +24,87 @@
         </div>
     </header>
 
-    <aside class="page-sidebar">
-        <h3>Quick Navigation</h3>
-        <ul>
-            <li><a href="#dessert-categories">Our Selection</a></li>
-            <li><a href="#menu-table">Prices &amp; Ingredients</a></li>
-        </ul>
-    </aside>
+    <div class="content-wrapper">
+        <aside class="page-sidebar">
+            <h3>Quick Navigation</h3>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#dessert-categories">Our Selection</a></li>
+                    <li><a href="#menu-table">Prices &amp; Ingredients</a></li>
+                </ul>
+            </nav>
+        </aside>
 
-    <main>
-        <section id="desserts-hero" class="page-hero">
-            <div class="page-hero-inner">
-                <h1>Pastries &amp; desserts menu</h1>
-                <p>Freshly baked cupcakes, macarons, and French croissants every morning.</p>
-            </div>
-        </section>
+        <main>
+            <section id="desserts-hero" class="page-hero">
+                <div class="page-hero-inner">
+                    <h1>Pastries &amp; desserts menu</h1>
+                    <p>Freshly baked cupcakes, macarons, and French croissants every morning.</p>
+                </div>
+            </section>
 
-        <!-- Category menu (Flexbox) -->
-        <section id="dessert-categories">
-            <h2>Our selection</h2>
-            <ul class="dessert-list">
-                <li><strong>Cupcakes</strong> Fluffy mini-cakes with rich cream swirls and toppings.</li>
-                <li><strong>Macarons</strong> Delicate French almond meringue cookies with ganache filling.</li>
-                <li><strong>Croissants</strong> Buttery, flaky pastries baked fresh daily.</li>
-            </ul>
-        </section>
-        <section id="menu-table">
-            <h2>Prices &amp; ingredients overview</h2>
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Category</th>
-                            <th>Item name</th>
-                            <th>Main ingredients</th>
-                            <th>Price ($)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td rowspan="2">Cupcakes</td>
-                            <td>Salted Caramel Cupcake</td>
-                            <td>Flour, butter, salted caramel, buttercream frosting</td>
-                            <td>3.50</td>
-                        </tr>
-                        <tr>
-                            <td>Double Chocolate Cupcake</td>
-                            <td>Cocoa, dark chocolate chips, chocolate cream</td>
-                            <td>3.80</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="2">Macarons</td>
-                            <td>Pistachio Macaron</td>
-                            <td>Almond flour, egg whites, pistachio paste, white chocolate</td>
-                            <td>2.50</td>
-                        </tr>
-                        <tr>
-                            <td>Raspberry Macaron</td>
-                            <td>Almond flour, fresh raspberry puree, dark chocolate ganache</td>
-                            <td>2.50</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="2">Croissants</td>
-                            <td>Classic Butter Croissant</td>
-                            <td>French butter, wheat flour, yeast, milk</td>
-                            <td>3.00</td>
-                        </tr>
-                        <tr>
-                            <td>Almond Croissant</td>
-                            <td>Butter croissant, frangipane (almond cream), flaked almonds</td>
-                            <td>4.20</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    </main>
+            <!-- Category menu -->
+            <section id="dessert-categories">
+                <h2>Our selection</h2>
+                <ul class="dessert-list">
+                    <li><strong>Cupcakes</strong> Fluffy mini-cakes with rich cream swirls and toppings.</li>
+                    <li><strong>Macarons</strong> Delicate French almond meringue cookies with ganache filling.</li>
+                    <li><strong>Croissants</strong> Buttery, flaky pastries baked fresh daily.</li>
+                </ul>
+            </section>
+
+            <section id="menu-table">
+                <h2>Prices &amp; ingredients overview</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Category</th>
+                                <th scope="col">Item name</th>
+                                <th scope="col">Main ingredients</th>
+                                <th scope="col">Price ($)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="2">Cupcakes</td>
+                                <td>Salted Caramel Cupcake</td>
+                                <td>Flour, butter, salted caramel, buttercream frosting</td>
+                                <td>3.50</td>
+                            </tr>
+                            <tr>
+                                <td>Double Chocolate Cupcake</td>
+                                <td>Cocoa, dark chocolate chips, chocolate cream</td>
+                                <td>3.80</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">Macarons</td>
+                                <td>Pistachio Macaron</td>
+                                <td>Almond flour, egg whites, pistachio paste, white chocolate</td>
+                                <td>2.50</td>
+                            </tr>
+                            <tr>
+                                <td>Raspberry Macaron</td>
+                                <td>Almond flour, fresh raspberry puree, dark chocolate ganache</td>
+                                <td>2.50</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">Croissants</td>
+                                <td>Classic Butter Croissant</td>
+                                <td>French butter, wheat flour, yeast, milk</td>
+                                <td>3.00</td>
+                            </tr>
+                            <tr>
+                                <td>Almond Croissant</td>
+                                <td>Butter croissant, frangipane (almond cream), flaked almonds</td>
+                                <td>4.20</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <footer>
         <p>Created by: Shamelova Dilara, Yessendos Diana, Shyntemir Zhanbota</p>
