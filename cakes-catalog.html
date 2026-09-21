@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+[21.09.2026 21:59] Дилара: <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Sweet Bakery - Cakes Catalog</title>
 </head>
-<body>
+<body class="page-layout">
     <header class="site-header">
         <div class="header-inner">
             <a href="index.html" class="brand">Sweet<span>Bakery</span></a>
@@ -24,6 +24,16 @@
         </div>
     </header>
 
+    <aside class="page-sidebar">
+        <h3>Quick Navigation</h3>
+        <ul>
+            <li><a href="#cake-cards">Popular Cakes</a></li>
+            <li><a href="#fillings">Fillings &amp; Flavors</a></li>
+            <li><a href="#decor-options">Decor Options</a></li>
+            <li><a href="#gallery">Cake Gallery</a></li>
+        </ul>
+    </aside>
+
     <main>
         <section id="cakes-hero" class="page-hero">
             <div class="page-hero-inner">
@@ -32,7 +42,7 @@
             </div>
         </section>
 
-        <!-- Cake cards -->
+        <!-- Cake cards (Flexbox) -->
         <section id="cake-cards">
             <h2>Popular cake designs</h2>
             <div class="card-container">
@@ -42,6 +52,7 @@
                     </div>
                     <h3>Chocolate Delight</h3>
                     <p>Rich chocolate sponge with Belgian dark chocolate ganache.</p>
+                    <a href="order-contact.html" class="btn">Order this cake</a>
                 </article>
                 <article class="card">
                     <div class="card-img-wrap">
@@ -49,6 +60,7 @@
                     </div>
                     <h3>Berry Bliss</h3>
                     <p>Light vanilla sponge layered with fresh seasonal berries and cream.</p>
+                    <a href="order-contact.html" class="btn">Order this cake</a>
                 </article>
                 <article class="card">
                     <div class="card-img-wrap">
@@ -56,11 +68,11 @@
                     </div>
                     <h3>Classic Red Velvet</h3>
                     <p>Traditional velvet cake with smooth cream cheese frosting.</p>
+                    <a href="order-contact.html" class="btn">Order this cake</a>
                 </article>
             </div>
         </section>
-
-        <!-- Fillings -->
+[21.09.2026 21:59] Дилара: <!-- Fillings -->
         <section id="fillings">
             <h2>Available fillings &amp; flavors</h2>
             <div class="fillings-grid">
@@ -86,32 +98,76 @@
         <!-- Decor options table -->
         <section id="decor-options">
             <h2>Custom design &amp; decor options</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Decor style</th>
-                        <th>Description</th>
-                        <th>Preparation time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Minimalist / Cream Coating</td>
-                        <td>Smooth frosting with simple lettering or fresh berries</td>
-                        <td>1–2 days</td>
-                    </tr>
-                    <tr>
-                        <td>Sugar Paste / Fondant Figurine</td>
-                        <td>Custom hand-sculpted figures and detailed themed designs</td>
-                        <td>3–5 days</td>
-                    </tr>
-                    <tr>
-                        <td>Tiered Event Cake</td>
-                        <td>Multi-layer celebration cakes for weddings and large parties</td>
-                        <td>5+ days</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Decor style</th>
+                            <th>Description</th>
+                            <th>Preparation time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Minimalist / Cream Coating</td>
+                            <td>Smooth frosting with simple lettering or fresh berries</td>
+                            <td>1–2 days</td>
+                        </tr>
+                        <tr>
+                            <td>Sugar Paste / Fondant Figurine</td>
+                            <td>Custom hand-sculpted figures and detailed themed designs</td>
+                            <td>3–5 days</td>
+                        </tr>
+                        <tr>
+                            <td>Tiered Event Cake</td>
+                            <td>Multi-layer celebration cakes for weddings and large parties</td>
+                            <td>5+ days</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+[21.09.2026 21:59] Дилара: <!-- Image gallery (Grid): put your 9 photos in images/gallery-1.jpg ... gallery-9.jpg -->
+        <section id="gallery">
+            <h2>Cake gallery</h2>
+            <div class="gallery">
+                <figure class="gallery-item" tabindex="0">
+                    <img src="images/gallery-1.jpg" alt="Chocolate cake with ganache">
+                    <figcaption>Chocolate ganache cake</figcaption>
+                </figure>
+                <figure class="gallery-item" tabindex="0">
+                    <img src="images/gallery-2.jpg" alt="Cake with fresh berries">
+                    <figcaption>Fresh berry cake</figcaption>
+                </figure>
+                <figure class="gallery-item" tabindex="0">
+                    <img src="images/gallery-3.jpg" alt="Red velvet cake slice">
+                    <figcaption>Red velvet slice</figcaption>
+                </figure>
+                <figure class="gallery-item" tabindex="0">
+                    <img src="images/gallery-4.jpg" alt="Birthday cake with candles">
+                    <figcaption>Birthday cake</figcaption>
+                </figure>
+                <figure class="gallery-item" tabindex="0">
+                    <img src="images/gallery-5.jpg" alt="Three-tier wedding cake">
+                    <figcaption>Three-tier wedding cake</figcaption>
+                </figure>
+                <figure class="gallery-item" tabindex="0">
+                    <img src="images/gallery-6.jpg" alt="Fondant figurine cake">
+                    <figcaption>Fondant figurine cake</figcaption>
+                </figure>
+                <figure class="gallery-item" tabindex="0">
+                    <img src="images/gallery-7.jpg" alt="Minimalist cream cake">
+                    <figcaption>Minimalist cream cake</figcaption>
+                </figure>
+                <figure class="gallery-item" tabindex="0">
+                    <img src="images/gallery-8.jpg" alt="Salted caramel cake">
+                    <figcaption>Salted caramel cake</figcaption>
+                </figure>
+                <figure class="gallery-item" tabindex="0">
+                    <img src="images/gallery-9.jpg" alt="Mango passionfruit cake">
+                    <figcaption>Mango-passionfruit cake</figcaption>
+                </figure>
+            </div>
         </section>
     </main>
 

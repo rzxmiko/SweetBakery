@@ -1,7 +1,7 @@
 :root {
     --plum-950: #34102f;
-    --plum-800: #591a58;
-    --plum-700: #6c2168;
+    --plum-800: hsl(303, 17%, 55%);
+    --plum-700: #4f3c4e;
     --plum-600: #82277c;
     --plum-500: #9b3993;
     --lavender-100: #f4e9f5;
@@ -9,9 +9,9 @@
     --rose: #c23e7c;
     --cream: #fffdfb;
     --text: #2c2230;
-    --text-muted: #786d7d;
+    --text-muted: #ac8fb9;
     --border: #ead9ea;
-    --border-soft: #f0e4f1;
+    --border-soft: #876b8a;
     --radius-lg: 20px;
     --radius-md: 14px;
     --radius-sm: 8px;
