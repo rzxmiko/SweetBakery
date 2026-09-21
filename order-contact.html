@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Sweet Bakery - Order &amp; Contact</title>
 </head>
-<body>
+<body class="page-layout">
     <header class="site-header">
         <div class="header-inner">
             <a href="index.html" class="brand">Sweet<span>Bakery</span></a>
@@ -24,28 +24,46 @@
         </div>
     </header>
 
-    <section class="page-hero">
-        <div class="page-hero-inner">
-            <h1>Order a cake &amp; contact us</h1>
-            <p>Tell us what you have in mind and we'll get back to you with a quote.</p>
-        </div>
-    </section>
+    <aside class="page-sidebar">
+        <h3>Quick Navigation</h3>
+        <ul>
+            <li><a href="#order-form-section">Order Form</a></li>
+            <li><a href="#contacts-section">Contacts</a></li>
+        </ul>
+    </aside>
 
     <main>
-        <section id="order-section">
+        <section class="page-hero">
+            <div class="page-hero-inner">
+                <h1>Order a cake &amp; contact us</h1>
+                <p>Tell us what you have in mind and we'll get back to you with a quote.</p>
+            </div>
+        </section>
+
+        <section id="order-form-section">
             <h2>Order Form</h2>
             <form id="contact-form" action="#" method="post">
-                <label>Name: <input type="text" name="name" required></label><br><br>
-                <label>Email: <input type="email" name="email" required></label><br><br>
-                <label>Cake Color: <input type="color" name="color" value="#ffb6c1"></label><br><br>
-                <label>Special Requests:<br><textarea name="message" rows="4" required></textarea></label><br><br>
+                <label>Name:
+                    <input type="text" name="name" required>
+                </label>
+                <label>Email:
+                    <input type="email" name="email" required>
+                </label>
+                <label>Cake Color:
+                    <input type="color" name="color" value="#ffb6c1">
+                </label>
+                <label>Special Requests:
+                    <textarea name="message" rows="4" required></textarea>
+                </label>
                 <button type="submit" class="submit-btn">Submit</button>
             </form>
         </section>
 
         <section id="contacts-section">
             <h2>Contacts</h2>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2505.378776856515!2d71.4162012!3d51.0908489!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x424585a605555555%3A0x123456789abcdef!2sAstana%20IT%20University!5e0!3m2!1sru!2skz!4v1600000000000" width="100%" height="200" style="border:0;"></iframe>
+            <div class="map-wrap">
+                <iframe title="Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2505.378776856515!2d71.4162012!3d51.0908489!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x424585a605555555%3A0x123456789abcdef!2sAstana%20IT%20University!5e0!3m2!1sru!2skz!4v1600000000000" height="260" style="border:0;" loading="lazy"></iframe>
+            </div>
         </section>
     </main>
 
