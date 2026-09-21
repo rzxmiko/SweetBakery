@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Sweet Bakery - Home</title>
 </head>
-<body>
+<body class="page-layout">
     <header class="site-header">
         <div class="header-inner">
             <a href="index.html" class="brand">Sweet<span>Bakery</span></a>
@@ -23,14 +23,16 @@
             </nav>
         </div>
     </header>
-        <aside class="about-sidebar">
-            <h3>Quick Navigation</h3>
-            <ul>
-                <li><a href="#hero">Top / Hero</a></li>
-                <li><a href="#features">Why Choose Us</a></li>
-                <li><a href="#team-info">Development Team</a></li>
-            </ul>
-        </aside>
+
+    <aside class="page-sidebar">
+        <h3>Quick Navigation</h3>
+        <ul>
+            <li><a href="#hero">Top / Hero</a></li>
+            <li><a href="#features">Why Choose Us</a></li>
+            <li><a href="#team-info">Development Team</a></li>
+        </ul>
+    </aside>
+
     <main>
         <section id="hero">
             <div class="hero-inner-wrap">
@@ -45,26 +47,38 @@
             </div>
         </section>
 
-         <section id="features">
+        <section id="features">
             <h2>Why choose us</h2>
             <ul class="feature-grid">
                 <li>
-                    <h3>Baked fresh daily</h3>
-                    <p>Freshly baked goods made with love and quality ingredients, every single morning.</p>
-                    <br>
-                    <a href="cakes-catalog.html" class="btn">Learn More</a>
+                    <div class="card-img-wrap">
+                        <img src="images/cupcakess.jpg" alt="Freshly baked cupcakes">
+                    </div>
+                    <div class="card-body">
+                        <h3>Baked fresh daily</h3>
+                        <p>Freshly baked goods made with love and quality ingredients, every single morning.</p>
+                        <a href="cakes-catalog.html" class="btn">Learn More</a>
+                    </div>
                 </li>
                 <li>
-                    <h3>Made to order</h3>
-                    <p>Custom cakes for birthdays, weddings and every occasion in between.</p>
-                    <br>
-                    <a href="order-contact.html" class="btn">Order Custom</a>
+                    <div class="card-img-wrap">
+                        <img src="images/birthdaycake.jpg" alt="Custom birthday cake">
+                    </div>
+                    <div class="card-body">
+                        <h3>Made to order</h3>
+                        <p>Custom cakes for birthdays, weddings and every occasion in between.</p>
+                        <a href="order-contact.html" class="btn">Order Custom</a>
+                    </div>
                 </li>
                 <li>
-                    <h3>Personal service</h3>
-                    <p>A friendly team that helps you plan the cake that fits your moment.</p>
-                    <br>
-                    <a href="about.html" class="btn">Meet Team</a>
+                    <div class="card-img-wrap">
+                        <img src="images/Anna.jpg" alt="Chef Anna">
+                    </div>
+                    <div class="card-body">
+                        <h3>Personal service</h3>
+                        <p>A friendly team that helps you plan the cake that fits your moment.</p>
+                        <a href="about.html" class="btn">Meet Team</a>
+                    </div>
                 </li>
             </ul>
         </section>
