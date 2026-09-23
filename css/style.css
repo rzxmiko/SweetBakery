@@ -797,7 +797,7 @@ tbody tr:nth-child(even) {
 
     .hero-img-wrap {
         width: 100%;
-        max-width: 360px;
+        max-width: 120px;
     }
 }
 
