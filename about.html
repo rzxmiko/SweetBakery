@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Sweet Bakery - About Us</title>
 </head>
-<body>
+<body class="page-layout">
     <header class="site-header">
         <div class="header-inner">
             <a href="index.html" class="brand">Sweet<span>Bakery</span></a>
@@ -24,6 +24,15 @@
         </div>
     </header>
 
+    <aside class="page-sidebar">
+        <h3>Quick Navigation</h3>
+        <ul>
+            <li><a href="#pastry-chef">Our Pastry Chef</a></li>
+            <li><a href="#about-values">What We Stand For</a></li>
+            <li><a href="#team-info">Our Team</a></li>
+        </ul>
+    </aside>
+
     <main>
         <section id="about-hero" class="page-hero">
             <div class="page-hero-inner">
@@ -32,10 +41,45 @@
             </div>
         </section>
 
-        <section id="pastry-chef">
-            <h2>Our Pastry Chef</h2>
-            <img src="images/Anna.jpg" alt="Chef Anna" class="profile-img">
-            <p><strong>Anna Petrova</strong> — Head Pastry Chef with 10 years of experience.</p>
+        <section id="pastry-chef" class="profile-section">
+            <div class="profile-img-wrap">
+                <img src="images/Anna.jpg" alt="Chef Anna">
+            </div>
+            <div>
+                <h2>Our Pastry Chef</h2>
+                <p><strong>Anna Petrova</strong> — Head Pastry Chef with 10 years of experience.</p>
+            </div>
+        </section>
+
+        <!-- Cards (Flexbox) -->
+        <section id="about-values">
+            <h2>What we stand for</h2>
+            <div class="card-container">
+                <article class="card">
+                    <div class="card-img-wrap">
+                        <img src="images/berry-bliss.jpg" alt="Cake with fresh berries">
+                    </div>
+                    <h3>Natural ingredients</h3>
+                    <p>Fresh berries, real butter and Belgian chocolate in every cake we make.</p>
+                    <a href="cakes-catalog.html" class="btn">See the cakes</a>
+                </article>
+                <article class="card">
+                    <div class="card-img-wrap">
+                        <img src="images/cupcakess.jpg" alt="Freshly baked cupcakes">
+                    </div>
+                    <h3>Baked every morning</h3>
+                    <p>Cupcakes, macarons and croissants come out of the oven fresh each day.</p>
+                    <a href="desserts-menu.html" class="btn">View the menu</a>
+                </article>
+                <article class="card">
+                    <div class="card-img-wrap">
+                        <img src="images/birthdaycake.jpg" alt="Custom birthday cake">
+                    </div>
+                    <h3>Made for your occasion</h3>
+                    <p>From birthday cakes to tiered wedding cakes, we design around your event.</p>
+                    <a href="order-contact.html" class="btn">Place an order</a>
+                </article>
+            </div>
         </section>
 
         <section id="team-info">
