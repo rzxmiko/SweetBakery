@@ -1,24 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
 :root {
-    --plum-950: #34102f;
-    --plum-800: #591a58;
-    --plum-700: #6c2168;
-    --plum-600: #82277c;
-    --plum-500: #9b3993;
-    --lavender-100: #f4e9f5;
-    --lavender-50: #faf5fb;
-    --rose: #c23e7c;
-    --cream: #fffdfb;
-    --text: #2c2230;
-    --text-muted: #786d7d;
-    --border: #ead9ea;
-    --border-soft: #f0e4f1;
-    --radius-lg: 20px;
-    --radius-md: 14px;
-    --radius-sm: 8px;
-    --shadow-soft: 0 12px 30px rgba(89, 26, 88, 0.08);
+    --pastel-dark: #2b3a4a;
+    --pastel-blue-800: #4a6fa5;
+    --pastel-blue-700: #3b5984;
+    --pastel-blue-400: #8aaee0;
+    --pastel-blue-100: #e8f1f9;
+    --pastel-blue-50:  #f4f8fc;
+    --accent: #6c9bd2;
+    --cream: #fbfdfe;
+    --text: #2f3e4e;
+    --text-muted: #7e91a5;
+    --border: #d8e5f2;
+    --border-soft: #e9f1f8;
+    --radius-lg: 16px;
+    --radius-md: 10px;
+    --radius-sm: 6px;
+    --shadow-soft: 0 10px 25px rgba(74, 111, 165, 0.06);
     --container: 1160px;
-    --font-display: "Fraunces", Georgia, "Times New Roman", serif;
-    --font-body: "Nunito Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-display: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 * {
@@ -35,6 +36,7 @@ body {
     color: var(--text);
     background: var(--cream);
     line-height: 1.6;
+    letter-spacing: -0.01em;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -50,15 +52,16 @@ a {
 
 h1, h2, h3 {
     font-family: var(--font-display);
-    color: var(--plum-800);
-    line-height: 1.15;
+    color: var(--pastel-dark);
+    line-height: 1.2;
     margin: 0 0 0.5em;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
 
-h1 { font-size: clamp(2rem, 4vw, 2.9rem); }
-h2 { font-size: clamp(1.4rem, 2.4vw, 1.85rem); }
-h3 { font-size: 1.15rem; }
+h1 { font-size: clamp(2rem, 3.8vw, 2.75rem); }
+h2 { font-size: clamp(1.35rem, 2.2vw, 1.75rem); }
+h3 { font-size: 1.1rem; }
 
 p {
     margin: 0 0 1em;
@@ -69,8 +72,6 @@ ul, ol {
     margin: 0;
     padding-left: 1.25em;
 }
-
-/* ---------- Layout helpers ---------- */
 
 main {
     max-width: var(--container);
@@ -87,21 +88,61 @@ main > section:last-child {
     border-bottom: none;
 }
 
-/* ---------- Header / Nav ---------- */
+.btn,
+.submit-btn,
+button.btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #fff;
+    background: var(--pastel-blue-800);
+    border: none;
+    padding: 10px 24px;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(74, 111, 165, 0.15);
+    transition: all 0.2s ease;
+}
+
+.btn:hover,
+.submit-btn:hover,
+button.btn:hover {
+    background: var(--pastel-blue-700);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(74, 111, 165, 0.25);
+}
+
+footer {
+    background: var(--pastel-dark);
+    color: #e2eaf4;
+    text-align: center;
+    padding: 24px;
+    font-size: 0.88rem;
+}
+
+footer p {
+    color: #e2eaf4;
+}
+
+
+/* ==========================================================================
+   SECTION 1: SHAMELOVA DILARA (Home & Promotions)
+   ========================================================================== */
 
 .site-header {
     position: sticky;
     top: 0;
     z-index: 20;
-    background: rgba(255, 253, 251, 0.92);
-    backdrop-filter: blur(8px);
+    background: rgba(251, 253, 254, 0.88);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
 }
 
 .header-inner {
     max-width: var(--container);
     margin: 0 auto;
-    padding: 18px 24px;
+    padding: 16px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -111,79 +152,52 @@ main > section:last-child {
 
 .brand {
     font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.45rem;
-    color: var(--plum-800);
-    letter-spacing: 0.01em;
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: var(--pastel-dark);
+    letter-spacing: -0.02em;
 }
 
 .brand span {
-    color: var(--rose);
+    color: var(--pastel-blue-800);
 }
 
 .site-nav {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     flex-wrap: wrap;
 }
 
 .site-nav a {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    color: var(--text);
-    padding: 8px 14px;
+    color: var(--text-muted);
+    padding: 8px 16px;
     border-radius: 999px;
     position: relative;
-    transition: background 0.2s ease, color 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .site-nav a:hover {
-    background: var(--lavender-100);
-    color: var(--plum-800);
+    background: var(--pastel-blue-100);
+    color: var(--pastel-blue-800);
 }
 
 .site-nav a.active {
-    background: var(--plum-800);
+    background: var(--pastel-blue-800);
     color: #fff;
 }
-
-/* ---------- Buttons ---------- */
-
-.btn,
-.submit-btn,
-button.btn {
-    display: inline-block;
-    font-family: var(--font-body);
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: #fff;
-    background: var(--plum-800);
-    border: none;
-    padding: 12px 26px;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.15s ease;
-}
-
-.btn:hover,
-.submit-btn:hover,
-button.btn:hover {
-    background: var(--plum-700);
-    transform: translateY(-1px);
-}
-
-/* ---------- Hero (home) ---------- */
 
 #hero {
-    background: radial-gradient(120% 160% at 20% 0%, var(--lavender-100) 0%, var(--cream) 60%);
+    background: radial-gradient(120% 160% at 20% 0%, var(--pastel-blue-100) 0%, var(--cream) 70%);
     border-bottom: 1px solid var(--border-soft);
 }
 
 #hero .hero-inner-wrap {
     max-width: var(--container);
     margin: 0 auto;
-    padding: 80px 24px;
+    padding: 72px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -197,7 +211,7 @@ button.btn:hover {
 
 .hero-inner p {
     color: var(--text-muted);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     margin-bottom: 1.75em;
 }
 
@@ -215,27 +229,23 @@ button.btn:hover {
     object-fit: cover;
 }
 
-/* ---------- Page hero (inner pages) ---------- */
-
 .page-hero {
-    background: var(--lavender-50);
+    background: var(--pastel-blue-50);
     border-bottom: 1px solid var(--border-soft);
 }
 
 .page-hero-inner {
     max-width: var(--container);
     margin: 0 auto;
-    padding: 64px 24px;
+    padding: 56px 24px;
     max-width: 680px;
 }
 
 .page-hero-inner p {
     color: var(--text-muted);
-    font-size: 1.05rem;
+    font-size: 1rem;
     margin: 0;
 }
-
-/* ---------- Dilara: Feature cards (home) - Flexbox ---------- */
 
 .feature-grid {
     list-style: none;
@@ -243,7 +253,7 @@ button.btn:hover {
     margin: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 28px;
+    gap: 24px;
 }
 
 .feature-grid li {
@@ -254,19 +264,20 @@ button.btn:hover {
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    transition: all 0.25s ease;
 }
 
 .feature-grid li:hover {
+    border-color: var(--pastel-blue-400);
     box-shadow: var(--shadow-soft);
-    transform: translateY(-4px);
+    transform: translateY(-3px);
 }
 
 .feature-grid .card-body {
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 22px 24px 26px;
+    padding: 24px;
 }
 
 .feature-grid h3 {
@@ -275,6 +286,7 @@ button.btn:hover {
 
 .feature-grid p {
     color: var(--text-muted);
+    font-size: 0.95rem;
     margin: 0 0 20px;
 }
 
@@ -282,8 +294,6 @@ button.btn:hover {
     margin-top: auto;
     align-self: flex-start;
 }
-
-/* ---------- Team list ---------- */
 
 .team-list {
     list-style: none;
@@ -294,18 +304,17 @@ button.btn:hover {
 }
 
 .team-list li {
-    background: var(--lavender-50);
+    background: var(--pastel-blue-50);
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-sm);
-    padding: 12px 16px;
+    padding: 12px 18px;
+    font-size: 0.95rem;
 }
-
-/* ---------- Promo cards ---------- */
 
 #promo-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 28px;
+    gap: 24px;
 }
 
 .promo-card {
@@ -316,17 +325,18 @@ button.btn:hover {
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    transition: all 0.25s ease;
 }
 
 .promo-card:hover {
+    border-color: var(--pastel-blue-400);
     box-shadow: var(--shadow-soft);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
 }
 
 .card-img-wrap {
     aspect-ratio: 16 / 10;
-    background: var(--lavender-100);
+    background: var(--pastel-blue-100);
     overflow: hidden;
 }
 
@@ -340,7 +350,7 @@ button.btn:hover {
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 22px 24px 26px;
+    padding: 24px;
 }
 
 .promo-card .btn {
@@ -357,312 +367,16 @@ button.btn:hover {
 
 .price {
     font-family: var(--font-display);
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: var(--plum-800);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--pastel-blue-800);
 }
 
 .price-was {
     color: var(--text-muted);
     text-decoration: line-through;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
-
-/* ---------- Cake catalog cards ---------- */
-
-/* Diana: cake cards (Cakes Catalog) - Flexbox. Also reused on About Us */
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 26px;
-}
-
-.card {
-    flex: 1 1 240px;
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    padding-bottom: 22px;
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.card:hover {
-    box-shadow: var(--shadow-soft);
-    transform: translateY(-2px);
-}
-
-.card .card-img-wrap {
-    aspect-ratio: 4 / 3;
-    margin-bottom: 16px;
-}
-
-.card h3,
-.card p {
-    padding: 0 20px;
-}
-
-.card p {
-    color: var(--text-muted);
-    margin: 0 0 18px;
-}
-
-.card .btn {
-    margin: auto 20px 0;
-    align-self: flex-start;
-}
-
-/* ---------- Fillings ---------- */
-
-.fillings-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-}
-
-.fillings-group {
-    background: var(--lavender-50);
-    border: 1px solid var(--border-soft);
-    border-radius: var(--radius-md);
-    padding: 22px 26px;
-}
-
-.fillings-group ol {
-    margin-top: 10px;
-    color: var(--text-muted);
-}
-
-.fillings-group li {
-    margin-bottom: 4px;
-}
-
-/* ---------- Dessert list (menu page) ---------- */
-
-/* Diana: dessert categories (Desserts Menu) - Flexbox */
-.dessert-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-}
-
-.dessert-list li {
-    flex: 1 1 220px;
-    background: var(--lavender-50);
-    border: 1px solid var(--border-soft);
-    border-radius: var(--radius-md);
-    padding: 20px 22px;
-    color: var(--text-muted);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.dessert-list li:hover {
-    box-shadow: var(--shadow-soft);
-    transform: translateY(-2px);
-}
-
-.dessert-list strong {
-    display: block;
-    font-family: var(--font-display);
-    font-size: 1.15rem;
-    color: var(--plum-800);
-    margin-bottom: 4px;
-}
-
-/* Diana: image gallery (Cakes Catalog) - Grid */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 16px;
-}
-
-.gallery-item {
-    position: relative;
-    margin: 0;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    border-radius: var(--radius-md);
-    background: var(--lavender-100);
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.35s ease;
-}
-
-.gallery-item figcaption {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: flex-end;
-    padding: 16px;
-    color: #fff;
-    font-weight: 700;
-    background: linear-gradient(to top, rgba(52, 16, 47, 0.85), rgba(52, 16, 47, 0) 60%);
-    opacity: 0;
-    transition: opacity 0.25s ease;
-}
-
-.gallery-item:hover img,
-.gallery-item:focus-visible img {
-    transform: scale(1.06);
-}
-
-.gallery-item:hover figcaption,
-.gallery-item:focus-visible figcaption {
-    opacity: 1;
-}
-
-.gallery-item:focus-visible {
-    outline: 3px solid var(--plum-600);
-    outline-offset: 2px;
-}
-
-/* touch screens have no hover, so captions stay visible */
-@media (hover: none) {
-    .gallery-item figcaption {
-        opacity: 1;
-    }
-}
-
-/* wide tables scroll inside their own box on small screens */
-.table-wrap {
-    overflow-x: auto;
-}
-
-/* ---------- Tables ---------- */
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-}
-
-thead th {
-    background: var(--plum-800);
-    color: #fff;
-    text-align: left;
-    font-family: var(--font-display);
-    font-weight: 600;
-    padding: 14px 18px;
-}
-
-tbody td {
-    padding: 13px 18px;
-    border-top: 1px solid var(--border-soft);
-    color: var(--text);
-}
-
-tbody tr:nth-child(even) {
-    background: var(--lavender-50);
-}
-
-/* ---------- About page ---------- */
-
-.profile-section {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 32px;
-    align-items: center;
-}
-
-.profile-img-wrap {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    overflow: hidden;
-    background: var(--lavender-100);
-    border: 4px solid var(--lavender-100);
-}
-
-.profile-img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* ---------- Order & Contact ---------- */
-
-#order-form-section form {
-    max-width: 560px;
-    background: var(--lavender-50);
-    border: 1px solid var(--border-soft);
-    border-radius: var(--radius-lg);
-    padding: 32px;
-}
-
-#order-form-section form h2 {
-    margin-bottom: 0.6em;
-}
-
-#order-form-section label {
-    display: block;
-    font-weight: 700;
-    font-size: 0.92rem;
-    color: var(--plum-800);
-    margin-bottom: 16px;
-}
-
-#order-form-section input,
-#order-form-section textarea {
-    display: block;
-    width: 100%;
-    margin-top: 6px;
-    font-family: var(--font-body);
-    font-size: 1rem;
-    padding: 11px 14px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    background: #fff;
-    color: var(--text);
-}
-
-#order-form-section input[type="color"] {
-    width: 68px;
-    height: 40px;
-    padding: 4px;
-    cursor: pointer;
-}
-
-#order-form-section textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-#order-form-section input:focus,
-#order-form-section textarea:focus {
-    outline: none;
-    border-color: var(--plum-600);
-    box-shadow: 0 0 0 3px var(--lavender-100);
-}
-
-#contact-info p {
-    color: var(--text-muted);
-    font-size: 1.02rem;
-}
-
-.map-wrap {
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    border: 1px solid var(--border);
-    margin-top: 12px;
-}
-
-.map-wrap iframe {
-    display: block;
-    width: 100%;
-}
-
-/* ---------- Dilara: Page layout (Home & Promotions) - Grid areas ---------- */
 
 .page-layout {
     display: grid;
@@ -675,7 +389,6 @@ tbody tr:nth-child(even) {
     min-height: 100vh;
 }
 
-/* sticky does not work for a grid item inside its own row, so the header scrolls normally here */
 .page-layout > .site-header {
     grid-area: header;
     position: relative;
@@ -688,7 +401,7 @@ tbody tr:nth-child(even) {
     top: 24px;
     margin: 32px 32px 0 0;
     padding: 22px;
-    background: var(--lavender-50);
+    background: var(--pastel-blue-50);
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-lg);
 }
@@ -713,7 +426,7 @@ tbody tr:nth-child(even) {
 }
 
 .page-sidebar h3 {
-    font-size: 1.05rem;
+    font-size: 1rem;
     margin-bottom: 0.6em;
 }
 
@@ -730,29 +443,316 @@ tbody tr:nth-child(even) {
     padding: 8px 12px;
     border-radius: var(--radius-sm);
     font-weight: 600;
-    transition: background 0.2s ease, color 0.2s ease;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
 }
 
 .page-sidebar a:hover {
-    background: var(--lavender-100);
-    color: var(--plum-800);
+    background: var(--pastel-blue-100);
+    color: var(--pastel-blue-800);
 }
 
-/* ---------- Footer ---------- */
 
-footer {
-    background: var(--plum-950);
-    color: #fff8e7;
-    text-align: center;
-    padding: 26px 24px;
+/* ==========================================================================
+   SECTION 2: YESSENDOS DIANA (Cakes Catalog & Desserts Menu)
+   ========================================================================== */
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.card {
+    flex: 1 1 240px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    padding-bottom: 20px;
+    transition: all 0.25s ease;
+}
+
+.card:hover {
+    border-color: var(--pastel-blue-400);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-3px);
+}
+
+.card .card-img-wrap {
+    aspect-ratio: 4 / 3;
+    margin-bottom: 16px;
+}
+
+.card h3,
+.card p {
+    padding: 0 20px;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin: 0 0 16px;
+}
+
+.card .btn {
+    margin: auto 20px 0;
+    align-self: flex-start;
+}
+
+.fillings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.fillings-group {
+    background: var(--pastel-blue-50);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+}
+
+.fillings-group ol {
+    margin-top: 10px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.fillings-group li {
+    margin-bottom: 4px;
+}
+
+.dessert-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.dessert-list li {
+    flex: 1 1 220px;
+    background: var(--pastel-blue-50);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    transition: all 0.2s ease;
+}
+
+.dessert-list li:hover {
+    border-color: var(--pastel-blue-400);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-2px);
+}
+
+.dessert-list strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--pastel-dark);
+    margin-bottom: 4px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.gallery-item {
+    position: relative;
+    margin: 0;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--pastel-blue-100);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+
+.gallery-item figcaption {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+    color: #fff;
+    font-weight: 600;
     font-size: 0.9rem;
+    background: linear-gradient(to top, rgba(43, 58, 74, 0.85), rgba(43, 58, 74, 0) 60%);
+    opacity: 0;
+    transition: opacity 0.25s ease;
 }
 
-footer p {
-    color: #fff8e7;
+.gallery-item:hover img,
+.gallery-item:focus-visible img {
+    transform: scale(1.05);
 }
 
-/* ---------- Responsive ---------- */
+.gallery-item:hover figcaption,
+.gallery-item:focus-visible figcaption {
+    opacity: 1;
+}
+
+.gallery-item:focus-visible {
+    outline: 2px solid var(--pastel-blue-800);
+    outline-offset: 2px;
+}
+
+
+/* ==========================================================================
+   SECTION 3: SHYNTEMIR ZHANBOTA (About Us & Order and Contact)
+   ========================================================================== */
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+thead th {
+    background: var(--pastel-blue-800);
+    color: #fff;
+    text-align: left;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 14px 18px;
+}
+
+tbody td {
+    padding: 13px 18px;
+    border-top: 1px solid var(--border-soft);
+    color: var(--text);
+    font-size: 0.92rem;
+}
+
+tbody tr:nth-child(even) {
+    background: var(--pastel-blue-50);
+}
+
+.profile-section {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+    align-items: center;
+}
+
+.profile-img-wrap {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--pastel-blue-100);
+    border: 4px solid var(--pastel-blue-100);
+}
+
+.profile-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#order-form-section form {
+    max-width: 560px;
+    background: var(--pastel-blue-50);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+}
+
+#order-form-section form h2 {
+    margin-bottom: 0.6em;
+}
+
+#order-form-section label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--pastel-dark);
+    margin-bottom: 16px;
+}
+
+#order-form-section input,
+#order-form-section textarea {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: #fff;
+    color: var(--text);
+    transition: border-color 0.2s ease;
+}
+
+#order-form-section input[type="color"] {
+    width: 68px;
+    height: 40px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+#order-form-section textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+#order-form-section input:focus,
+#order-form-section textarea:focus {
+    outline: none;
+    border-color: var(--pastel-blue-800);
+    box-shadow: 0 0 0 3px var(--pastel-blue-100);
+}
+
+#contact-info p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.map-wrap {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-top: 12px;
+}
+
+.map-wrap iframe {
+    display: block;
+    width: 100%;
+}
+
+
+/* ==========================================================================
+   MEDIA QUERIES (Responsiveness)
+   ========================================================================== */
+
+@media (hover: none) {
+    .gallery-item figcaption {
+        opacity: 1;
+    }
+}
 
 @media (max-width: 860px) {
     .page-layout {
@@ -788,10 +788,11 @@ footer p {
         text-align: center;
         justify-items: center;
     }
+
     #hero .hero-inner-wrap {
         flex-direction: column;
         text-align: center;
-        padding: 56px 20px;
+        padding: 48px 20px;
     }
 
     .hero-img-wrap {
@@ -812,8 +813,8 @@ footer p {
     }
 
     .site-nav a {
-        padding: 7px 10px;
-        font-size: 0.88rem;
+        padding: 6px 10px;
+        font-size: 0.85rem;
     }
 
     .gallery {
@@ -822,7 +823,7 @@ footer p {
     }
 
     .hero-inner {
-        padding: 64px 20px 56px;
+        padding: 48px 16px 40px;
     }
 }
 
