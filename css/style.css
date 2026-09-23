@@ -1,6 +1,27 @@
-/* ==========================================================================
-   Base Styles & Reset
-   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+    --pastel-dark: #2b3a4a;
+    --pastel-blue-800: #4a6fa5;
+    --pastel-blue-700: #3b5984;
+    --pastel-blue-400: #8aaee0;
+    --pastel-blue-100: #e8f1f9;
+    --pastel-blue-50:  #f4f8fc;
+    --accent: #6c9bd2;
+    --cream: #fbfdfe;
+    --text: #2f3e4e;
+    --text-muted: #7e91a5;
+    --border: #d8e5f2;
+    --border-soft: #e9f1f8;
+    --radius-lg: 16px;
+    --radius-md: 10px;
+    --radius-sm: 6px;
+    --shadow-soft: 0 10px 25px rgba(74, 111, 165, 0.06);
+    --container: 1160px;
+    --font-display: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -14,22 +35,14 @@ body {
     line-height: 1.6;
 }
 
-/* Task 3 (Zhanbota): Grid Areas Page Layout */
-.page-layout {
-    display: grid;
-    grid-template-areas: 
-        "header header"
-        "sidebar main"
-        "footer footer";
-    grid-template-columns: 240px 1fr;
-    grid-template-rows: auto 1fr auto;
-    min-height: 100vh;
-}
-
-h1, h2, h3 {
-    font-family: 'Fraunces', serif;
-    color: #4a2e2b;
-    margin-bottom: 0.5rem;
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--text);
+    background: var(--cream);
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
 }
 
 img {
@@ -38,9 +51,91 @@ img {
     display: block;
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-display);
+    color: var(--pastel-dark);
+    line-height: 1.2;
+    margin: 0 0 0.5em;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(2rem, 3.8vw, 2.75rem); }
+h2 { font-size: clamp(1.35rem, 2.2vw, 1.75rem); }
+h3 { font-size: 1.1rem; }
+
+p {
+    margin: 0 0 1em;
+    color: var(--text);
+}
+
+ul, ol {
+    margin: 0;
+    padding-left: 1.25em;
+}
+
+main {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 24px 80px;
+}
+
+main > section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+main > section:last-child {
+    border-bottom: none;
+}
+
+.btn,
+.submit-btn,
+button.btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #fff;
+    background: var(--pastel-blue-800);
+    border: none;
+    padding: 10px 24px;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(74, 111, 165, 0.15);
+    transition: all 0.2s ease;
+}
+
+.btn:hover,
+.submit-btn:hover,
+button.btn:hover {
+    background: var(--pastel-blue-700);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(74, 111, 165, 0.25);
+}
+
+footer {
+    background: var(--pastel-dark);
+    color: #e2eaf4;
+    text-align: center;
+    padding: 24px;
+    font-size: 0.88rem;
+}
+
+footer p {
+    color: #e2eaf4;
+}
+
+
 /* ==========================================================================
-   Task 1: Flexbox Navigation & Header
+   SECTION 1: SHAMELOVA DILARA (Home & Promotions)
    ========================================================================== */
+
 .site-header {
     grid-area: header;
     background-color: #ffffff;
@@ -48,12 +143,16 @@ img {
     padding: 15px 30px;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 20;
+    background: rgba(251, 253, 254, 0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
 }
 
 .header-inner {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 16px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -61,61 +160,55 @@ img {
 }
 
 .brand {
-    font-family: 'Fraunces', serif;
-    font-size: 1.5rem;
+    font-family: var(--font-display);
     font-weight: 700;
-    color: #8b4513;
-    text-decoration: none;
+    font-size: 1.35rem;
+    color: var(--pastel-dark);
+    letter-spacing: -0.02em;
 }
 
 .brand span {
-    color: #d2691e;
+    color: var(--pastel-blue-800);
 }
 
 .site-nav {
     display: flex;
     gap: 15px;
     align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
 }
 
 .site-nav a {
-    text-decoration: none;
-    color: #555;
+    font-size: 0.9rem;
     font-weight: 600;
-    padding: 6px 12px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
+    color: var(--text-muted);
+    padding: 8px 16px;
+    border-radius: 999px;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.site-nav a:hover {
+    background: var(--pastel-blue-100);
+    color: var(--pastel-blue-800);
 }
 
 .site-nav a:hover,
 .site-nav a.active {
-    color: #ffffff;
-    background-color: #d2691e;
+    background: var(--pastel-blue-800);
+    color: #fff;
 }
 
-/* ==========================================================================
-   Sidebar & Main Layout
-   ========================================================================== */
-.page-sidebar {
-    grid-area: sidebar;
-    background-color: #ffffff;
-    padding: 20px;
-    border-right: 1px solid #f0e6df;
+#hero {
+    background: radial-gradient(120% 160% at 20% 0%, var(--pastel-blue-100) 0%, var(--cream) 70%);
+    border-bottom: 1px solid var(--border-soft);
 }
 
-.page-sidebar h3 {
-    font-size: 1rem;
-    margin-bottom: 8px;
-}
-
-.page-sidebar hr {
-    border: none;
-    border-top: 1px solid #eee;
-    margin-bottom: 12px;
-}
-
-.page-sidebar ul {
-    list-style: none;
+#hero .hero-inner-wrap {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 72px 24px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -128,8 +221,10 @@ img {
     transition: color 0.2s ease;
 }
 
-.page-sidebar a:hover {
-    color: #d2691e;
+.hero-inner p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 1.75em;
 }
 
 main {
@@ -141,42 +236,481 @@ main {
 }
 
 .page-hero {
-    background-color: #fff0f5;
-    padding: 30px 20px;
-    text-align: center;
-    border-radius: 12px;
-    margin-bottom: 30px;
+    background: var(--pastel-blue-50);
+    border-bottom: 1px solid var(--border-soft);
 }
 
-.page-hero h1 {
-    font-size: 2rem;
-    color: #8b4513;
+.page-hero-inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 56px 24px;
+    max-width: 680px;
 }
 
-/* ==========================================================================
-   Task 2 (Zhanbota): Order Form & Contact Styles
-   ========================================================================== */
-#order-form-section,
-#contacts-section {
-    background: #ffffff;
-    padding: 25px;
-    border-radius: 10px;
-    border: 1px solid #e0e0e0;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+.page-hero-inner p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin: 0;
 }
 
-#contact-form {
+.feature-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.feature-grid li {
+    flex: 1 1 240px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    max-width: 500px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.25s ease;
 }
 
-#contact-form label {
+.feature-grid li:hover {
+    border-color: var(--pastel-blue-400);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-3px);
+}
+
+.feature-grid .card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 24px;
+}
+
+.feature-grid h3 {
+    margin-bottom: 0.4em;
+}
+
+.feature-grid p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin: 0 0 20px;
+}
+
+.feature-grid .btn {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+.team-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+    max-width: 560px;
+}
+
+.team-list li {
+    background: var(--pastel-blue-50);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-sm);
+    padding: 12px 18px;
+    font-size: 0.95rem;
+}
+
+#promo-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.promo-card {
+    flex: 1 1 260px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.25s ease;
+}
+
+.promo-card:hover {
+    border-color: var(--pastel-blue-400);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-3px);
+}
+
+.card-img-wrap {
+    aspect-ratio: 16 / 10;
+    background: var(--pastel-blue-100);
+    overflow: hidden;
+}
+
+.card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.promo-card .card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 24px;
+}
+
+.promo-card .btn {
+    align-self: flex-start;
+}
+
+.price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-top: auto;
+    margin-bottom: 16px;
+}
+
+.price {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
     font-weight: 700;
-    color: #4a2e2b;
+    color: var(--pastel-blue-800);
+}
+
+.price-was {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    font-size: 0.9rem;
+}
+
+.page-layout {
+    display: grid;
+    grid-template-columns: minmax(24px, 1fr) 240px minmax(0, 920px) minmax(24px, 1fr);
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header header  header header"
+        ".      sidebar main   ."
+        "footer footer  footer footer";
+    min-height: 100vh;
+}
+
+.page-layout > .site-header {
+    grid-area: header;
+    position: relative;
+}
+
+.page-layout > .page-sidebar {
+    grid-area: sidebar;
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    margin: 32px 32px 0 0;
+    padding: 22px;
+    background: var(--pastel-blue-50);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+}
+
+.page-layout > main {
+    grid-area: main;
+    max-width: none;
+    margin: 0;
+    padding: 32px 0 80px;
+}
+
+.page-layout > footer {
+    grid-area: footer;
+}
+
+.page-layout #hero,
+.page-layout .page-hero {
+    padding: 0;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.page-sidebar h3 {
+    font-size: 1rem;
+    margin-bottom: 0.6em;
+}
+
+.page-sidebar ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.page-sidebar a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+}
+
+.page-sidebar a:hover {
+    background: var(--pastel-blue-100);
+    color: var(--pastel-blue-800);
+}
+
+
+/* ==========================================================================
+   SECTION 2: YESSENDOS DIANA (Cakes Catalog & Desserts Menu)
+   ========================================================================== */
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.card {
+    flex: 1 1 240px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    padding-bottom: 20px;
+    transition: all 0.25s ease;
+}
+
+.card:hover {
+    border-color: var(--pastel-blue-400);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-3px);
+}
+
+.card .card-img-wrap {
+    aspect-ratio: 4 / 3;
+    margin-bottom: 16px;
+}
+
+.card h3,
+.card p {
+    padding: 0 20px;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin: 0 0 16px;
+}
+
+.card .btn {
+    margin: auto 20px 0;
+    align-self: flex-start;
+}
+
+.fillings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.fillings-group {
+    background: var(--pastel-blue-50);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+}
+
+.fillings-group ol {
+    margin-top: 10px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.fillings-group li {
+    margin-bottom: 4px;
+}
+
+.dessert-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.dessert-list li {
+    flex: 1 1 220px;
+    background: var(--pastel-blue-50);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    transition: all 0.2s ease;
+}
+
+.dessert-list li:hover {
+    border-color: var(--pastel-blue-400);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-2px);
+}
+
+.dessert-list strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--pastel-dark);
+    margin-bottom: 4px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.gallery-item {
+    position: relative;
+    margin: 0;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--pastel-blue-100);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+
+.gallery-item figcaption {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: linear-gradient(to top, rgba(43, 58, 74, 0.85), rgba(43, 58, 74, 0) 60%);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.gallery-item:hover img,
+.gallery-item:focus-visible img {
+    transform: scale(1.05);
+}
+
+.gallery-item:hover figcaption,
+.gallery-item:focus-visible figcaption {
+    opacity: 1;
+}
+
+.gallery-item:focus-visible {
+    outline: 2px solid var(--pastel-blue-800);
+    outline-offset: 2px;
+}
+
+
+/* ==========================================================================
+   SECTION 3: SHYNTEMIR ZHANBOTA (About Us & Order and Contact)
+   ========================================================================== */
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+thead th {
+    background: var(--pastel-blue-800);
+    color: #fff;
+    text-align: left;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 14px 18px;
+}
+
+tbody td {
+    padding: 13px 18px;
+    border-top: 1px solid var(--border-soft);
+    color: var(--text);
+    font-size: 0.92rem;
+}
+
+tbody tr:nth-child(even) {
+    background: var(--pastel-blue-50);
+}
+
+.profile-section {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+    align-items: center;
+}
+
+.profile-img-wrap {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--pastel-blue-100);
+    border: 4px solid var(--pastel-blue-100);
+}
+
+.profile-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#order-form-section form {
+    max-width: 560px;
+    background: var(--pastel-blue-50);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+}
+
+#order-form-section form h2 {
+    margin-bottom: 0.6em;
+}
+
+#order-form-section label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--pastel-dark);
+    margin-bottom: 16px;
+}
+
+#order-form-section input,
+#order-form-section textarea {
+    display: block;
+    width: 100%;
     margin-top: 6px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: #fff;
+    color: var(--text);
+    transition: border-color 0.2s ease;
 }
 
 #contact-form input[type="text"],
@@ -195,37 +729,13 @@ main {
 #contact-form input:focus,
 #contact-form textarea:focus {
     outline: none;
-    border-color: #d2691e;
+    border-color: var(--pastel-blue-800);
+    box-shadow: 0 0 0 3px var(--pastel-blue-100);
 }
 
-#contact-form input[type="color"] {
-    width: 45px;
-    height: 35px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-    background: #fff;
-    padding: 2px;
-}
-
-.submit-btn, .btn {
-    background-color: #d2691e;
-    color: #ffffff;
-    border: none;
-    padding: 12px 20px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    border-radius: 6px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
-}
-
-.submit-btn:hover, .btn:hover {
-    background-color: #b05314;
+#contact-info p {
+    color: var(--text-muted);
+    font-size: 1rem;
 }
 
 .map-wrap {
@@ -234,28 +744,70 @@ main {
     border: 1px solid #eee;
 }
 
-/* ==========================================================================
-   Footer & Media Queries
-   ========================================================================== */
-footer {
-    grid-area: footer;
-    background-color: #4a2e2b;
-    color: #ffffff;
-    text-align: center;
-    padding: 20px;
-    font-size: 0.9rem;
+.map-wrap iframe {
+    display: block;
+    width: 100%;
 }
 
-@media (max-width: 768px) {
+
+/* ==========================================================================
+   MEDIA QUERIES (Responsiveness)
+   ========================================================================== */
+
+@media (hover: none) {
+    .gallery-item figcaption {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 860px) {
     .page-layout {
-        grid-template-areas: 
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas:
             "header"
             "sidebar"
             "main"
             "footer";
+    }
+
+    .page-layout > .page-sidebar {
+        position: static;
+        margin: 20px 24px 0;
+    }
+
+    .page-sidebar ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .page-layout > main {
+        padding: 24px 24px 60px;
+    }
+
+    .fillings-grid {
         grid-template-columns: 1fr;
     }
 
+    .profile-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+    }
+
+    #hero .hero-inner-wrap {
+        flex-direction: column;
+        text-align: center;
+        padding: 48px 20px;
+    }
+
+    .hero-img-wrap {
+        width: 100%;
+        max-width: 360px;
+    }
+}
+
+@media (max-width: 600px) {
     .header-inner {
         flex-direction: column;
         gap: 10px;
@@ -264,5 +816,26 @@ footer {
     .site-nav {
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    .site-nav a {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: none;
+    }
+
+    .hero-inner {
+        padding: 48px 16px 40px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        scroll-behavior: auto !important;
     }
 }
