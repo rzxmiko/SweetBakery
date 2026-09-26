@@ -22,6 +22,31 @@
     --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
+/* ==========================================================================
+   BOOTSTRAP THEME OVERRIDE (index.html & promotions.html use Bootstrap 5.3)
+   Makes Bootstrap's "primary" utility/button classes use our own brand
+   color instead of Bootstrap's default blue.
+   ========================================================================== */
+:root {
+    --bs-primary: var(--pastel-blue-800);
+    --bs-primary-rgb: 74, 111, 165;
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--pastel-blue-800);
+    --bs-btn-border-color: var(--pastel-blue-800);
+    --bs-btn-hover-bg: var(--pastel-blue-700);
+    --bs-btn-hover-border-color: var(--pastel-blue-700);
+    --bs-btn-active-bg: var(--pastel-dark);
+    --bs-btn-active-border-color: var(--pastel-dark);
+    --bs-btn-disabled-bg: var(--pastel-blue-800);
+    --bs-btn-disabled-border-color: var(--pastel-blue-800);
+}
+
+.bg-primary-subtle {
+    background-color: var(--pastel-blue-50) !important;
+}
+
 * {
     box-sizing: border-box;
 }
