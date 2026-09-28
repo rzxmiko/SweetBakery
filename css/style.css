@@ -468,6 +468,7 @@ main {
     display: flex;
     flex-wrap: wrap;
     gap: 24px;
+    flex-direction:column;
 }
 
 .card {
@@ -624,6 +625,7 @@ main {
 
 .table-wrap {
     overflow-x: auto;
+    margin-top: 16px;
 }
 
 table {
@@ -699,7 +701,8 @@ tbody tr:nth-child(even) {
 }
 
 #order-form-section input,
-#order-form-section textarea {
+#order-form-section textarea,
+#order-form-section select {
     display: block;
     width: 100%;
     margin-top: 6px;
@@ -710,24 +713,12 @@ tbody tr:nth-child(even) {
     border-radius: var(--radius-sm);
     background: #fff;
     color: var(--text);
-    transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-#contact-form input[type="text"],
-#contact-form input[type="email"],
-#contact-form textarea {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 0.95rem;
-    background-color: #fff;
-    transition: border-color 0.2s ease;
-}
-
-#contact-form input:focus,
-#contact-form textarea:focus {
+#order-form-section input:focus,
+#order-form-section textarea:focus,
+#order-form-section select:focus {
     outline: none;
     border-color: var(--pastel-blue-800);
     box-shadow: 0 0 0 3px var(--pastel-blue-100);
@@ -739,9 +730,9 @@ tbody tr:nth-child(even) {
 }
 
 .map-wrap {
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     overflow: hidden;
-    border: 1px solid #eee;
+    border: 1px solid var(--border);
 }
 
 .map-wrap iframe {
