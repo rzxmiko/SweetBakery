@@ -13,6 +13,8 @@
     --text-muted: #566577;
     --border: #d8e5f2;
     --border-soft: #e9f1f8;
+    --rose-100: #fde9ee;
+    --rose-700: #9b3652;
     --radius-lg: 16px;
     --radius-md: 10px;
     --radius-sm: 6px;
@@ -141,7 +143,6 @@ footer p {
     border: 0;
 }
 
-/* Шапка и навигация */
 .site-header {
     position: sticky;
     top: 0;
@@ -200,7 +201,6 @@ footer p {
     color: #fff;
 }
 
-/* Макет страниц с сайдбаром */
 .page-layout {
     display: grid;
     grid-template-columns: minmax(24px, 1fr) 240px minmax(0, 920px) minmax(24px, 1fr);
@@ -276,7 +276,6 @@ footer p {
     color: var(--pastel-blue-800);
 }
 
-/* Главный блок / Герой */
 #hero {
     background: radial-gradient(120% 160% at 20% 0%, var(--pastel-blue-100) 0%, var(--cream) 70%);
     border-bottom: 1px solid var(--border-soft);
@@ -334,7 +333,6 @@ footer p {
     margin: 0;
 }
 
-/* Карточки и сетки */
 .feature-grid, .card-container, #promo-container {
     list-style: none;
     padding: 0;
@@ -432,7 +430,6 @@ footer p {
     font-size: 0.9rem;
 }
 
-/* Начинки и списки десертов */
 .fillings-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -482,7 +479,6 @@ footer p {
     margin-bottom: 4px;
 }
 
-/* Галерея */
 .gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -527,7 +523,6 @@ footer p {
     opacity: 1;
 }
 
-/* Таблицы */
 .table-wrap {
     overflow-x: auto;
 }
@@ -562,7 +557,6 @@ tbody tr:nth-child(even) {
     background: var(--pastel-blue-50);
 }
 
-/* Профиль шефа */
 .profile-section {
     display: grid;
     grid-template-columns: 200px 1fr;
@@ -585,7 +579,6 @@ tbody tr:nth-child(even) {
     object-fit: cover;
 }
 
-/* Формы */
 #order-form-section form {
     max-width: 560px;
     background: var(--pastel-blue-50);
@@ -641,7 +634,203 @@ tbody tr:nth-child(even) {
     width: 100%;
 }
 
-/* Адаптивность */
+.section-lead {
+    color: var(--text-muted);
+    margin-bottom: 28px;
+    max-width: 52ch;
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--pastel-blue-800);
+    border: 2px solid var(--pastel-blue-800);
+    box-shadow: none;
+    padding: 8px 22px;
+}
+
+.btn-ghost:hover {
+    background: var(--pastel-blue-100);
+    color: var(--pastel-blue-700);
+    box-shadow: none;
+}
+
+.btn-light {
+    background: #fff;
+    color: var(--pastel-dark);
+    box-shadow: none;
+}
+
+.btn-light:hover {
+    background: var(--rose-100);
+    color: var(--rose-700);
+    box-shadow: none;
+}
+
+.btn:focus-visible,
+.site-nav a:focus-visible,
+.page-sidebar a:focus-visible {
+    outline: 3px solid var(--rose-700);
+    outline-offset: 3px;
+}
+
+a.btn {
+    text-align: center;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.page-home #hero .hero-img-wrap {
+    position: relative;
+    overflow: visible;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.page-home #hero .hero-img-wrap img {
+    border-radius: 28px 28px 120px 28px;
+    box-shadow: 0 24px 48px rgba(74, 111, 165, 0.18);
+}
+
+.hero-sticker {
+    position: absolute;
+    left: -28px;
+    bottom: 36px;
+    width: 96px;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 50%;
+    background: var(--rose-100);
+    color: var(--rose-700);
+    border: 2px dashed var(--rose-700);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.8rem;
+    line-height: 1.15;
+    transform: rotate(-10deg);
+}
+
+.steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.steps li {
+    background: var(--pastel-blue-50);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    padding: 22px 20px;
+}
+
+.step-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    margin-bottom: 14px;
+    border-radius: 50%;
+    background: var(--pastel-blue-800);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.steps h3 {
+    margin-bottom: 0.3em;
+}
+
+.steps p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.93rem;
+}
+
+.page-home main > section.cta-band {
+    margin-top: 56px;
+    padding: 56px 32px;
+    text-align: center;
+    background: var(--pastel-dark);
+    border-radius: var(--radius-lg);
+    border-bottom: none;
+}
+
+.cta-band h2 {
+    color: #fff;
+}
+
+.cta-band p {
+    color: #d3deea;
+    max-width: 46ch;
+    margin: 0 auto 24px;
+}
+
+.promo-card .card-img-wrap {
+    position: relative;
+}
+
+.promo-save {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    padding: 5px 14px;
+    border-radius: 999px;
+    background: var(--rose-100);
+    color: var(--rose-700);
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.page-promos .price {
+    color: var(--rose-700);
+}
+
+.page-promos #promo-container {
+    margin-top: 32px;
+    border-bottom: none;
+}
+
+.promo-card .card-body p {
+    flex: 1;
+}
+
+.page-promos main > section.gift-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 56px;
+    padding: 40px 36px;
+    background: var(--pastel-dark);
+    border-radius: var(--radius-lg);
+    border-bottom: none;
+}
+
+.gift-banner-text {
+    flex: 1 1 320px;
+    max-width: 560px;
+}
+
+.gift-banner h2 {
+    color: #fff;
+}
+
+.gift-banner p {
+    margin: 0;
+    color: #d3deea;
+}
+
 @media (max-width: 860px) {
     .page-layout {
         grid-template-columns: minmax(0, 1fr);
@@ -687,6 +876,18 @@ tbody tr:nth-child(even) {
         width: 100%;
         max-width: 360px;
     }
+
+    .steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-sticker {
+        left: -8px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -698,5 +899,16 @@ tbody tr:nth-child(even) {
 
     .gallery {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 520px) {
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+    .page-home main > section.cta-band,
+    .page-promos main > section.gift-banner {
+        padding: 36px 22px;
     }
 }

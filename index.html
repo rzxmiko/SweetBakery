@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Sweet Bakery - Home</title>
 </head>
-<body class="page-layout">
+<body class="page-layout page-home">
     <a class="visually-hidden" href="#main-content">Skip to main content</a>
     
     <header class="site-header">
@@ -31,6 +31,7 @@
         <ul>
             <li><a href="#hero">Top / Hero</a></li>
             <li><a href="#features">Why Choose Us</a></li>
+            <li><a href="#how-it-works">How to Order</a></li>
             <li><a href="#team-info">Development Team</a></li>
         </ul>
     </aside>
@@ -41,10 +42,14 @@
                 <div class="hero-inner">
                     <h1>Handcrafted cakes for Astana's sweetest moments</h1>
                     <p>Delicious handcrafted pastries and custom cakes, baked fresh every day and made to order.</p>
-                    <a href="cakes-catalog.html" class="btn">Browse the catalog</a>
+                    <div class="hero-actions">
+                        <a href="cakes-catalog.html" class="btn">Browse the catalog</a>
+                        <a href="order-contact.html" class="btn btn-ghost">Order a custom cake</a>
+                    </div>
                 </div>
                 <div class="hero-img-wrap">
                     <img src="images/hero-cake.jpg" alt="Signature SweetBakery cake">
+                    <span class="hero-sticker">Baked<br>this<br>morning</span>
                 </div>
             </div>
         </section>
@@ -59,7 +64,7 @@
                     <div class="card-body">
                         <h3>Baked fresh daily</h3>
                         <p>Freshly baked goods made with love and quality ingredients, every single morning.</p>
-                        <a href="cakes-catalog.html" class="btn">Learn More</a>
+                        <a href="cakes-catalog.html" class="btn">See the cakes</a>
                     </div>
                 </li>
                 <li>
@@ -69,7 +74,7 @@
                     <div class="card-body">
                         <h3>Made to order</h3>
                         <p>Custom cakes for birthdays, weddings and every occasion in between.</p>
-                        <a href="order-contact.html" class="btn">Order Custom</a>
+                        <a href="order-contact.html" class="btn">Order custom</a>
                     </div>
                 </li>
                 <li>
@@ -79,10 +84,33 @@
                     <div class="card-body">
                         <h3>Personal service</h3>
                         <p>A friendly team that helps you plan the cake that fits your moment.</p>
-                        <a href="about.html" class="btn">Meet Team</a>
+                        <a href="about.html" class="btn">Meet the team</a>
                     </div>
                 </li>
             </ul>
+        </section>
+
+        <section id="how-it-works">
+            <h2>How to order a cake</h2>
+            <p class="section-lead">Four steps from idea to a cake on your table.</p>
+            <ol class="steps">
+                <li>
+                    <span class="step-num">1</span><h3>Pick a cake</h3>
+                    <p>Look through the catalog and choose a flavor, size and filling.</p>
+                </li>
+                <li>
+                    <span class="step-num">2</span><h3>Send your order</h3>
+                    <p>Fill in the order form with the date and your wishes for the design.</p>
+                </li>
+                <li>
+                    <span class="step-num">3</span><h3>We confirm</h3>
+                    <p>We get back to you to agree on details and the final price.</p>
+                </li>
+                <li>
+                    <span class="step-num">4</span><h3>Enjoy</h3>
+                    <p>Pick up your cake fresh on the day of your celebration.</p>
+                </li>
+            </ol>
         </section>
 
         <section id="team-info">
@@ -93,6 +121,12 @@
                 <li><strong>Yessendos Diana</strong> — Cakes Catalog &amp; Desserts Menu pages</li>
                 <li><strong>Shyntemir Zhanbota</strong> — About Us &amp; Order and Contact pages</li>
             </ul>
+        </section>
+
+        <section class="cta-band">
+            <h2>Planning a celebration?</h2>
+            <p>Tell us the date and what you have in mind, and we will bake it.</p>
+            <a href="order-contact.html" class="btn btn-light">Place an order</a>
         </section>
     </main>
 
