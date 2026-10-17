@@ -63,6 +63,11 @@ body {
     line-height: 1.6;
     letter-spacing: -0.01em;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.4s ease;
+}
+
+body.no-scroll {
+    overflow: hidden;
 }
 
 img {
@@ -677,10 +682,21 @@ tbody tr:nth-child(even) {
     background: var(--pastel-blue-50);
 }
 
+/* ---------- Profile (About) ---------- */
 .profile-section {
     display: flex;
     align-items: center;
     gap: 32px;
+}
+
+.profile-section p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+.profile-section strong {
+    color: var(--pastel-dark);
 }
 
 .profile-img-wrap {
@@ -699,6 +715,7 @@ tbody tr:nth-child(even) {
     object-fit: cover;
 }
 
+/* ---------- Order form ---------- */
 #order-form-section form {
     max-width: 560px;
     background: var(--pastel-blue-50);
@@ -754,9 +771,14 @@ tbody tr:nth-child(even) {
     box-shadow: 0 0 0 3px var(--pastel-blue-100);
 }
 
+/* ---------- Contact section ---------- */
 #contact-info p {
     color: var(--text-muted);
     font-size: 1rem;
+}
+
+#contact-info .btn {
+    margin-top: 4px;
 }
 
 .map-wrap {
@@ -766,9 +788,221 @@ tbody tr:nth-child(even) {
     margin-top: 12px;
 }
 
+#contact-info .map-wrap {
+    margin-top: 20px;
+}
+
 .map-wrap iframe {
     display: block;
     width: 100%;
+}
+
+/* ---------- Sidebar tools (date/time + background button) ---------- */
+.sidebar-tools {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.sidebar-tools .datetime {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin: 0 0 12px;
+}
+
+.sidebar-tools .btn {
+    width: 100%;
+    padding: 9px 16px;
+    font-size: 0.85rem;
+}
+
+/* ---------- Accordion (FAQ) ---------- */
+.accordion {
+    display: grid;
+    gap: 12px;
+}
+
+.accordion-item {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.accordion-item:hover {
+    border-color: var(--pastel-blue-400);
+    box-shadow: var(--shadow-soft);
+}
+
+.accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    padding: 16px 20px;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--pastel-dark);
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.accordion-header::after {
+    content: "+";
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--pastel-blue-800);
+    transition: transform 0.3s ease;
+}
+
+.accordion-header[aria-expanded="true"]::after {
+    transform: rotate(45deg);
+}
+
+.accordion-header:focus-visible {
+    outline: 2px solid var(--pastel-blue-800);
+    outline-offset: -2px;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+}
+
+.accordion-content p {
+    margin: 0;
+    padding: 0 20px 18px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* ---------- Form validation ---------- */
+.error {
+    display: block;
+    min-height: 1.1em;
+    margin-top: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #c0504d;
+}
+
+#order-form-section input.invalid,
+#order-form-section textarea.invalid,
+.popup input.invalid,
+.popup textarea.invalid {
+    border-color: #c0504d;
+}
+
+.form-success {
+    margin: 16px 0 0;
+    padding: 12px 16px;
+    background: var(--pastel-blue-100);
+    border: 1px solid var(--pastel-blue-400);
+    border-radius: var(--radius-sm);
+    color: var(--pastel-blue-700);
+    font-weight: 600;
+    font-size: 0.92rem;
+}
+
+.form-success[hidden] {
+    display: none;
+}
+
+/* ---------- Popup ---------- */
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(43, 58, 74, 0.55);
+    backdrop-filter: blur(3px);
+}
+
+.popup-overlay.open {
+    display: flex;
+    animation: popup-fade 0.25s ease;
+}
+
+@keyframes popup-fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.popup {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    box-shadow: 0 20px 50px rgba(43, 58, 74, 0.25);
+}
+
+.popup-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: var(--pastel-blue-50);
+    color: var(--pastel-dark);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.popup-close:hover {
+    background: var(--pastel-blue-100);
+}
+
+.popup label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--pastel-dark);
+    margin-bottom: 14px;
+}
+
+.popup input,
+.popup textarea {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: #fff;
+    color: var(--text);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.popup textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.popup input:focus,
+.popup textarea:focus {
+    outline: none;
+    border-color: var(--pastel-blue-800);
+    box-shadow: 0 0 0 3px var(--pastel-blue-100);
 }
 
 
@@ -812,9 +1046,8 @@ tbody tr:nth-child(even) {
     }
 
     .profile-section {
-        grid-template-columns: 1fr;
+        flex-direction: column;
         text-align: center;
-        justify-items: center;
     }
 
     #hero .hero-inner-wrap {
@@ -852,6 +1085,14 @@ tbody tr:nth-child(even) {
 
     .hero-inner {
         padding: 48px 16px 40px;
+    }
+
+    #order-form-section form {
+        padding: 22px 18px;
+    }
+
+    .popup {
+        padding: 28px 20px;
     }
 }
 
