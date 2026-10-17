@@ -3,90 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Sweet Bakery - Order &amp; Contact</title>
 </head>
 <body class="page-layout">
-<header class="site-header">
-    <div class="header-inner">
-        <a href="index.html" class="brand">Sweet<span>Bakery</span></a>
-        <nav class="site-nav">
-            <a href="index.html">Home</a>
-            <a href="promotions.html">Promotions</a>
-            <a href="cakes-catalog.html">Cakes Catalog</a>
-            <a href="desserts-menu.html">Desserts Menu</a>
-            <a href="about.html">About Us</a>
-            <a href="order-contact.html" class="active">Order &amp; Contact</a>
-        </nav>
-    </div>
-</header>
+    <a class="visually-hidden" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="brand">Sweet<span>Bakery</span></a>
+            <nav class="site-nav">
+                <a href="index.html">Home</a>
+                <a href="promotions.html">Promotions</a>
+                <a href="cakes-catalog.html">Cakes Catalog</a>
+                <a href="desserts-menu.html">Desserts Menu</a>
+                <a href="about.html">About Us</a>
+                <a href="order-contact.html" class="active">Order &amp; Contact</a>
+            </nav>
+        </div>
+    </header>
 
     <aside class="page-sidebar">
         <h3>Quick Navigation</h3>
         <ul>
             <li><a href="#order-form-section">Order Form</a></li>
-            <li><a href="#contact-info">Contacts</a></li>
+            <li><a href="#contacts-section">Contacts</a></li>
         </ul>
-        <div class="sidebar-tools">
-            <p class="datetime" id="datetime"></p>
-            <button type="button" class="btn" id="bg-color-btn">Change background</button>
-        </div>
     </aside>
 
-    <main>
-        <section id="order-hero" class="page-hero">
+    <main id="main-content">
+        <section class="page-hero">
             <div class="page-hero-inner">
                 <h1>Order a cake &amp; contact us</h1>
                 <p>Tell us what you have in mind and we'll get back to you with a quote.</p>
             </div>
         </section>
 
-        <!-- TASK 1: Form validation -->
         <section id="order-form-section">
-            <form id="order-form" action="#" method="post" novalidate>
-                <h2>Order form</h2>
-
-                <label>Your name
-                    <input type="text" name="name" data-rule="name" placeholder="Enter your name">
-                    <span class="error" aria-live="polite"></span>
+            <h2>Order Form</h2>
+            <form id="contact-form" action="#" method="post">
+                <label for="user-name">Your name
+                    <input type="text" id="user-name" name="name" placeholder="Enter your name" autocomplete="name" required>
                 </label>
 
-                <label>Email address
-                    <input type="email" name="email" data-rule="email" placeholder="name@example.com">
-                    <span class="error" aria-live="polite"></span>
+                <label for="user-email">Email address
+                    <div style="display: flex; align-items: stretch; margin-top: 6px;">
+                        <span style="display: flex; align-items: center; padding: 0 12px; background: var(--pastel-blue-100); border: 1px solid var(--border); border-right: none; border-radius: var(--radius-sm) 0 0 var(--radius-sm);">@</span>
+                        <input type="email" id="user-email" name="email" placeholder="you@example.com" autocomplete="email" required style="margin-top: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                    </div>
                 </label>
 
-                <label>Password
-                    <input type="password" name="password" data-rule="password" placeholder="At least 8 characters" autocomplete="new-password">
-                    <span class="error" aria-live="polite"></span>
+                <label for="user-phone">Phone number
+                    <div style="display: flex; align-items: stretch; margin-top: 6px;">
+                        <span style="display: flex; align-items: center; padding: 0 12px; background: var(--pastel-blue-100); border: 1px solid var(--border); border-right: none; border-radius: var(--radius-sm) 0 0 var(--radius-sm);">+7</span>
+                        <input type="tel" id="user-phone" name="phone" placeholder="700 000 00 00" autocomplete="tel-national" style="margin-top: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                    </div>
                 </label>
 
-                <label>Confirm password
-                    <input type="password" name="confirm" data-rule="confirm" placeholder="Repeat your password" autocomplete="new-password">
-                    <span class="error" aria-live="polite"></span>
+                <label for="cake-type">Cake type
+                    <select id="cake-type" name="cake-type">
+                        <option value="chocolate">Chocolate Delight</option>
+                        <option value="berry">Berry Bliss</option>
+                        <option value="red-velvet">Classic Red Velvet</option>
+                        <option value="custom">Custom design</option>
+                    </select>
                 </label>
 
-                <label>Cake color preference
-                    <input type="color" name="color" value="#ffb6c1">
+                <label for="cake-color">Cake color preference
+                    <input type="color" id="cake-color" name="color" value="#ffb6c1" title="Choose your color">
                 </label>
 
-                <label>Special requests
-                    <textarea name="message" data-rule="message" rows="4" placeholder="Write your cake requirements..."></textarea>
-                    <span class="error" aria-live="polite"></span>
+                <fieldset style="border: none; padding: 0; margin: 16px 0;">
+                    <legend style="font-weight: 600; font-size: 0.9rem; color: var(--pastel-dark); margin-bottom: 8px;">Receiving method</legend>
+                    <label style="display: inline-flex; align-items: center; margin-right: 16px; font-weight: normal; cursor: pointer;">
+                        <input type="radio" name="delivery" value="pickup" checked style="width: auto; margin-right: 6px;"> Pickup
+                    </label>
+                    <label style="display: inline-flex; align-items: center; font-weight: normal; cursor: pointer;">
+                        <input type="radio" name="delivery" value="courier" style="width: auto; margin-right: 6px;"> Courier delivery
+                    </label>
+                </fieldset>
+
+                <label for="user-message">Special requests
+                    <textarea id="user-message" name="message" rows="4" placeholder="Write your cake requirements..." required></textarea>
                 </label>
 
-                <button type="submit" class="btn">Submit order</button>
-                <p class="form-success" hidden>Thank you! Your order has been sent. We will contact you soon.</p>
+                <div style="margin: 16px 0;">
+                    <label style="display: flex; align-items: center; font-weight: normal; cursor: pointer; margin-bottom: 8px;">
+                        <input type="checkbox" value="candles" id="add-candles" name="candles" style="width: auto; margin-right: 8px;"> Add a set of candles
+                    </label>
+                    <label style="display: flex; align-items: center; font-weight: normal; cursor: pointer;">
+                        <input type="checkbox" value="agree" id="agree-contact" name="agree" required style="width: auto; margin-right: 8px;"> I agree to be contacted about my order
+                    </label>
+                </div>
+
+                <div style="display: flex; gap: 12px; margin-top: 24px;">
+                    <button type="submit" class="submit-btn" style="flex: 1;">Submit Order</button>
+                    <button type="reset" class="btn" style="background: var(--text-muted);">Reset</button>
+                </div>
             </form>
         </section>
 
-        <section id="contact-info">
-            <h2>Contacts &amp; location</h2>
-            <p><strong>Address:</strong> Astana IT University, EXPO Block C1, Astana, Kazakhstan</p>
-            <!-- TASK 3: opens the popup -->
-            <button type="button" class="btn" id="open-popup">Contact us</button>
+        <section id="contacts-section">
+            <h2>Contacts &amp; Location</h2>
+            <p style="color: var(--text-muted); margin-bottom: 12px;"><strong>Address:</strong> Astana IT University, EXPO Block C1, Astana, Kazakhstan</p>
             <div class="map-wrap">
-                <iframe title="Sweet Bakery location map" src="https://www.google.com/maps?q=Astana+IT+University&amp;output=embed" height="340" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe title="Map showing Astana IT University" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2505.378776856515!2d71.4162012!3d51.0908489!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x424585a605555555%3A0x123456789abcdef!2sAstana%20IT%20University!5e0!3m2!1sru!2skz!4v1600000000000" height="260" style="border:0;" loading="lazy"></iframe>
             </div>
         </section>
     </main>
@@ -94,31 +118,5 @@
     <footer>
         <p>Created by: Shamelova Dilara, Yessendos Diana, Shyntemir Zhanbota (SE-2506)</p>
     </footer>
-
-    <!-- TASK 3: Popup contact form (hidden by default) -->
-    <div class="popup-overlay" id="popup-overlay" aria-hidden="true">
-        <div class="popup" role="dialog" aria-modal="true" aria-labelledby="popup-title">
-            <button type="button" class="popup-close" id="close-popup" aria-label="Close">&times;</button>
-            <h2 id="popup-title">Contact us</h2>
-            <form id="popup-form" novalidate>
-                <label>Your name
-                    <input type="text" data-rule="name" placeholder="Enter your name">
-                    <span class="error" aria-live="polite"></span>
-                </label>
-                <label>Email address
-                    <input type="email" data-rule="email" placeholder="name@example.com">
-                    <span class="error" aria-live="polite"></span>
-                </label>
-                <label>Message
-                    <textarea data-rule="message" rows="4" placeholder="How can we help you?"></textarea>
-                    <span class="error" aria-live="polite"></span>
-                </label>
-                <button type="submit" class="btn">Send message</button>
-                <p class="form-success" hidden>Message sent! We will reply soon.</p>
-            </form>
-        </div>
-    </div>
-
-    <script src="js/script.js"></script>
 </body>
 </html>
