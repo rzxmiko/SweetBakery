@@ -1192,3 +1192,60 @@ tbody tr:nth-child(even) {
         scroll-behavior: auto !important;
     }
 }
+
+/* Стили для Аккордеона (Task 2) */
+.accordion-header {
+    cursor: pointer;
+    background: var(--pastel-blue-50);
+    padding: 12px 18px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 8px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.accordion-header::after {
+    content: "+";
+    font-size: 1.2rem;
+}
+.accordion-header.active::after {
+    content: "-";
+}
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding: 0 18px;
+    background: #fff;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+}
+
+/* Стили для Popup-модального окна (Task 3) */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(43, 58, 74, 0.6);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+.popup-box {
+    background: #fff;
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    width: 90%;
+    max-width: 420px;
+    position: relative;
+    box-shadow: var(--shadow-soft);
+}
+.popup-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-muted);
+}

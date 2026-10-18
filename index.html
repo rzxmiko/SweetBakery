@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Sweet Bakery - Home</title>
+    <script src="js/main.js" defer></script>
 </head>
 <body class="page-layout page-home">
     <a class="visually-hidden" href="#main-content">Skip to main content</a>
@@ -15,6 +16,11 @@
     <header class="site-header">
         <div class="header-inner">
             <a href="index.html" class="brand">Sweet<span>Bakery</span></a>
+            <div style="display: flex; align-items: center; gap: 12px; font-size: 0.85rem;">
+                <span id="live-clock" style="font-weight: 600; color: var(--pastel-blue-800);"></span>
+                <button id="bg-color-btn" class="btn" style="padding: 6px 12px; font-size: 0.8rem;"> Theme</button>
+            </div>
+
             <nav class="site-nav">
                 <a href="index.html" class="active">Home</a>
                 <a href="promotions.html">Promotions</a>

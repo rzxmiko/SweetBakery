@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Sweet Bakery - Promotions</title>
+    <script src="js/main.js" defer></script>
 </head>
 <body class="page-layout page-promos">
     <a class="visually-hidden" href="#main-content">Skip to main content</a>
@@ -40,8 +41,20 @@
             <div class="page-hero-inner">
                 <h1>Special promotions &amp; gift sets</h1>
                 <p>Check out our latest special offers and gift sets for any occasion.</p>
+                <div style="margin-top: 16px;">
+                    <button id="open-popup-btn" class="btn">Quick Subscribe</button>
+                </div>
             </div>
         </section>
+        <div id="popup-modal" class="popup-overlay">
+      <div class="popup-box">
+        <span id="close-popup-btn" class="popup-close">&times;</span>
+        <h3>Subscribe to SweetNews</h3>
+        <p>Get fresh recipes and special discounts straight to your inbox.</p>
+        <input type="email" placeholder="Your email address" style="width:100%; padding:10px; margin:12px 0; border:1px solid var(--border); border-radius:var(--radius-sm);">
+        <button class="btn" style="width:100%;">Subscribe</button>
+      </div>
+    </div>
 
         <section id="promo-container">
             <article class="promo-card">
