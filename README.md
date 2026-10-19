@@ -33,7 +33,6 @@ shows cakes, desserts, promotions, and information about the team.
 ## Technologies
 - HTML5
 - CSS3
-- Bootstrap 5.3
 - JavaScript (Vanilla JS / ES6)
 - Google Fonts
 
