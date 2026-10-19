@@ -3,41 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <title>Sweet Bakery - About Us</title>
     <script src="js/main.js" defer></script>
+    <title>Sweet Bakery - About Us</title>
 </head>
 <body class="page-layout">
-<header class="site-header">
-    <div class="header-inner">
-        <a href="index.html" class="brand">Sweet<span>Bakery</span></a>
-        <nav class="site-nav">
-            <a href="index.html">Home</a>
-            <a href="promotions.html">Promotions</a>
-            <a href="cakes-catalog.html">Cakes Catalog</a>
-            <a href="desserts-menu.html">Desserts Menu</a>
-            <a href="about.html" class="active">About Us</a>
-            <a href="order-contact.html">Order &amp; Contact</a>
-        </nav>
-    </div>
-</header>
+    <a class="visually-hidden" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="brand">Sweet<span>Bakery</span></a>
+            
+            <div style="display: flex; align-items: center; gap: 12px; font-size: 0.85rem;">
+              <span id="live-clock" style="font-weight: 600; color: var(--pastel-blue-800);"></span>
+              <button id="bg-color-btn" class="btn" style="padding: 6px 12px; font-size: 0.8rem;">Theme</button>
+            </div>
+
+            <nav class="site-nav">
+                <a href="index.html">Home</a>
+                <a href="promotions.html">Promotions</a>
+                <a href="cakes-catalog.html">Cakes Catalog</a>
+                <a href="desserts-menu.html">Desserts Menu</a>
+                <a href="about.html" class="active">About Us</a>
+                <a href="order-contact.html">Order &amp; Contact</a>
+            </nav>
+        </div>
+    </header>
 
     <aside class="page-sidebar">
         <h3>Quick Navigation</h3>
         <ul>
             <li><a href="#pastry-chef">Our Pastry Chef</a></li>
             <li><a href="#about-values">What We Stand For</a></li>
-            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#faq-section">FAQ (Accordion)</a></li>
             <li><a href="#team-info">Our Team</a></li>
         </ul>
-        <div class="sidebar-tools">
-            <p class="datetime" id="datetime"></p>
-            <button type="button" class="btn" id="bg-color-btn">Change background</button>
-        </div>
     </aside>
 
-    <main>
-        <section id="about-hero" class="page-hero">
+    <main id="main-content">
+        <section class="page-hero">
             <div class="page-hero-inner">
                 <h1>About SweetBakery</h1>
                 <p>We have been making fresh signature cakes and desserts using natural ingredients since 2020.</p>
@@ -49,15 +56,15 @@
                 <img src="images/Anna.jpg" alt="Chef Anna">
             </div>
             <div>
-                <h2>Our pastry chef</h2>
+                <h2>Our Pastry Chef</h2>
                 <p><strong>Anna Petrova</strong> — Head Pastry Chef with 10 years of experience.</p>
             </div>
         </section>
 
         <section id="about-values">
             <h2>What we stand for</h2>
-            <ul class="feature-grid">
-                <li>
+            <div class="card-container">
+                <article class="card">
                     <div class="card-img-wrap">
                         <img src="images/berry-bliss.jpg" alt="Cake with fresh berries">
                     </div>
@@ -66,18 +73,18 @@
                         <p>Fresh berries, real butter and Belgian chocolate in every cake we make.</p>
                         <a href="cakes-catalog.html" class="btn">See the cakes</a>
                     </div>
-                </li>
-                <li>
+                </article>
+                <article class="card">
                     <div class="card-img-wrap">
-                        <img src="images/cupcakess.jpg" alt="Freshly baked cupcakes">
+                        <img src="images/cupcakess.jpeg" alt="Freshly baked cupcakes">
                     </div>
                     <div class="card-body">
                         <h3>Baked every morning</h3>
                         <p>Cupcakes, macarons and croissants come out of the oven fresh each day.</p>
                         <a href="desserts-menu.html" class="btn">View the menu</a>
                     </div>
-                </li>
-                <li>
+                </article>
+                <article class="card">
                     <div class="card-img-wrap">
                         <img src="images/birthdaycake.jpg" alt="Custom birthday cake">
                     </div>
@@ -86,67 +93,38 @@
                         <p>From birthday cakes to tiered wedding cakes, we design around your event.</p>
                         <a href="order-contact.html" class="btn">Place an order</a>
                     </div>
-                </li>
-            </ul>
+                </article>
+            </div>
         </section>
 
-        <!-- TASK 2: Accordion FAQ -->
-        <section id="faq">
-            <h2>Frequently asked questions</h2>
-            <div class="accordion">
-                <div class="accordion-item">
-                    <button type="button" class="accordion-header" aria-expanded="false">How far in advance should I order a cake?</button>
-                    <div class="accordion-content">
-                        <p>We recommend ordering at least 3 days ahead for standard cakes and 1–2 weeks ahead for tiered wedding cakes.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button type="button" class="accordion-header" aria-expanded="false">Can I customize the design and color of my cake?</button>
-                    <div class="accordion-content">
-                        <p>Yes! Choose your preferred color and describe your ideas in the order form, and we will design the cake around them.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button type="button" class="accordion-header" aria-expanded="false">Do you take allergies into account?</button>
-                    <div class="accordion-content">
-                        <p>Please mention any allergies in your special requests. We will adapt the recipe where possible, but our kitchen handles nuts, milk, eggs and gluten.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button type="button" class="accordion-header" aria-expanded="false">Are your pastries really baked fresh every day?</button>
-                    <div class="accordion-content">
-                        <p>Yes. Cupcakes, macarons and croissants are baked every morning using natural ingredients.</p>
-                    </div>
-                </div>
+        <!-- TASK 2: Аккордеон (FAQ) -->
+        <section id="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <p class="section-lead">Find answers to common questions about our service.</p>
+            
+            <div class="accordion-header">Do you offer gluten-free options?</div>
+            <div class="accordion-content">
+                <p style="padding: 12px 0;">Yes, we have a selection of gluten-free cupcakes and specialized cakes available upon request.</p>
+            </div>
+
+            <div class="accordion-header">What payment methods do you accept?</div>
+            <div class="accordion-content">
+                <p style="padding: 12px 0;">We accept online bank transfers, mobile payments, and cash upon pickup or courier delivery.</p>
             </div>
         </section>
 
         <section id="team-info">
-            <h2>About our team</h2>
+            <h2>About Our Team</h2>
             <ul class="team-list">
                 <li><strong>Shamelova Dilara</strong> — Home &amp; Promotions</li>
-                <li><strong>Yessendos Diana</strong> — Cakes Catalog &amp; Desserts Menu</li>
-                <li><strong>Shyntemir Zhanbota</strong> — About Us &amp; Order and Contact</li>
+                <li><strong>Yessendos Diana</strong> — Cakes Catalog &amp; Desserts Menu pages</li>
+                <li><strong>Shyntemir Zhanbota</strong> — About Us &amp; Order and Contact pages</li>
             </ul>
         </section>
-
-
-<div class="faq-section" style="margin-top: 32px;">
-  <h2>Frequently Asked Questions</h2>
-  <div class="accordion-header">What are your delivery hours?</div>
-  <div class="accordion-content"><p style="padding: 12px 0;">We deliver fresh cakes daily from 9:00 AM to 8:00 PM across Astana.</p></div>
-  
-  <div class="accordion-header">Can I order a custom design?</div>
-  <div class="accordion-content"><p style="padding: 12px 0;">Yes! Just use our Order form and describe your custom cake requirements.</p></div>
-</div>
-
-
     </main>
 
     <footer>
         <p>Created by: Shamelova Dilara, Yessendos Diana, Shyntemir Zhanbota (SE-2506)</p>
     </footer>
-
-    <script src="js/script.js"></script>
 </body>
 </html>

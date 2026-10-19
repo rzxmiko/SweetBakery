@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // TASK 5
 
+  // TASK 5
   function updateDateTime() {
     const clockElement = document.getElementById("live-clock");
     if (clockElement) {
@@ -9,78 +9,92 @@ document.addEventListener("DOMContentLoaded", () => {
         month: 'long', 
         day: 'numeric', 
         year: 'numeric', 
-        hour: 'numeric', 
-        minute: 'numeric', 
-        second: 'numeric',
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit',
         hour12: true 
       };
-      clockElement.innerText = now.toLocaleDateString('en-US', options);
+      clockElement.innerText = now.toLocaleString('en-US', options);
     }
   }
   updateDateTime();
   setInterval(updateDateTime, 1000);
 
-
   // TASK 4
-
   const colorBtn = document.getElementById("bg-color-btn");
   if (colorBtn) {
-    const pastelColors = ['#fbfdfe', '#f4f8fc', '#e8f1f9', '#fde9ee', '#fff5e6'];
+    const pastelColors = ['#fbfdfe', '#f4f8fc', '#e8f1f9', '#fde9ee', '#fff5e6', '#f3e5f5'];
     colorBtn.addEventListener("click", () => {
       const randomColor = pastelColors[Math.floor(Math.random() * pastelColors.length)];
       document.body.style.backgroundColor = randomColor;
     });
   }
 
-
   // TASK 3
-
   const popupModal = document.getElementById("popup-modal");
   const openPopupBtn = document.getElementById("open-popup-btn");
   const closePopupBtn = document.getElementById("close-popup-btn");
+  const popupSubmitBtn = document.getElementById("popup-submit-btn");
 
   if (openPopupBtn && popupModal) {
     openPopupBtn.addEventListener("click", (e) => {
       e.preventDefault();
+      popupModal.classList.add("open");
       popupModal.style.display = "flex";
     });
 
-    closePopupBtn.addEventListener("click", () => {
+    const closePopup = () => {
+      popupModal.classList.remove("open");
       popupModal.style.display = "none";
-    });
+    };
+
+    if (closePopupBtn) {
+      closePopupBtn.addEventListener("click", closePopup);
+    }
 
     window.addEventListener("click", (e) => {
       if (e.target === popupModal) {
-        popupModal.style.display = "none";
+        closePopup();
       }
     });
+
+    if (popupSubmitBtn) {
+      popupSubmitBtn.addEventListener("click", () => {
+        const emailInput = popupModal.querySelector("input[type='email']");
+        if (emailInput && emailInput.value.trim() !== "") {
+          alert("Promo code successfully sent to " + emailInput.value + "!");
+          emailInput.value = "";
+          closePopup();
+        } else {
+          alert("Please enter a valid email address.");
+        }
+      });
+    }
   }
 
-
   // TASK 2
-
   const accordionHeaders = document.querySelectorAll(".accordion-header");
   accordionHeaders.forEach(header => {
     header.addEventListener("click", () => {
       header.classList.toggle("active");
       const content = header.nextElementSibling;
-      if (content.style.maxHeight) {
-        content.style.maxHeight = null;
-      } else {
-        content.style.maxHeight = content.scrollHeight + "px";
+      
+      if (content) {
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
       }
     });
   });
 
-
   // TASK 1
-
   const orderForm = document.getElementById("contact-form");
   if (orderForm) {
-
     const errorContainer = document.createElement("div");
     errorContainer.id = "form-error-messages";
-    errorContainer.style.color = "#9b3652";
+    errorContainer.style.color = "#c0504d";
     errorContainer.style.marginBottom = "16px";
     errorContainer.style.fontWeight = "600";
     orderForm.prepend(errorContainer);
@@ -89,37 +103,47 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       let errors = [];
 
-      const name = document.getElementById("user-name").value.trim();
-      const email = document.getElementById("user-email").value.trim();
-      const phone = document.getElementById("user-phone").value.trim();
-      const message = document.getElementById("user-message").value.trim();
-      const agree = document.getElementById("agree-contact").checked;
+      const nameInput = document.getElementById("user-name");
+      const emailInput = document.getElementById("user-email");
+      const phoneInput = document.getElementById("user-phone");
+      const messageInput = document.getElementById("user-message");
+      const agreeCheckbox = document.getElementById("agree-contact");
 
-      if (!name) {
-        errors.push("Поле 'Your name' обязательно для заполнения.");
+      [nameInput, emailInput, phoneInput, messageInput].forEach(input => {
+        if (input) input.classList.remove("invalid");
+      });
+
+      if (!nameInput.value.trim()) {
+        errors.push("The 'Your name' field is required.");
+        nameInput.classList.add("invalid");
       }
 
-      if (!email || !email.includes("@") || !email.includes(".")) {
-        errors.push("Введите корректный email-адрес.");
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailInput.value.trim() || !emailRegex.test(emailInput.value.trim())) {
+        errors.push("Please enter a valid email address.");
+        emailInput.classList.add("invalid");
       }
 
-      if (phone && phone.length < 6) {
-        errors.push("Номер телефона слишком короткий.");
+      if (phoneInput.value.trim() && phoneInput.value.trim().length < 6) {
+        errors.push("The phone number must be at least 6 characters.");
+        phoneInput.classList.add("invalid");
       }
 
-      if (!message) {
-        errors.push("Поле 'Special requests' не должно быть пустым.");
+      if (!messageInput.value.trim()) {
+        errors.push("The 'Special requests' field cannot be empty.");
+        messageInput.classList.add("invalid");
       }
 
-      if (!agree) {
-        errors.push("Вы должны согласиться на получение информации о заказе.");
+      if (!agreeCheckbox.checked) {
+        errors.push("You must agree to be contacted about your order.");
       }
 
       if (errors.length > 0) {
+        errorContainer.style.color = "#c0504d";
         errorContainer.innerHTML = errors.join("<br>");
       } else {
         errorContainer.style.color = "#2e7d32";
-        errorContainer.innerHTML = "🎉 Заказ успешно прошел валидацию и отправлен!";
+        errorContainer.innerHTML = "Order successfully validated and submitted!";
         orderForm.reset();
         setTimeout(() => {
           errorContainer.innerHTML = "";

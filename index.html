@@ -7,18 +7,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <title>Sweet Bakery - Home</title>
     <script src="js/main.js" defer></script>
+    <title>Sweet Bakery - Home</title>
 </head>
 <body class="page-layout page-home">
-    <a class="visually-hidden" href="#main-content"></a>
+    <a class="visually-hidden" href="#main-content">Skip to main content</a>
     
     <header class="site-header">
         <div class="header-inner">
             <a href="index.html" class="brand">Sweet<span>Bakery</span></a>
+            
             <div style="display: flex; align-items: center; gap: 12px; font-size: 0.85rem;">
-                <span id="live-clock" style="font-weight: 600; color: var(--pastel-blue-800);"></span>
-                <button id="bg-color-btn" class="btn" style="padding: 6px 12px; font-size: 0.8rem;"> Theme</button>
+              <span id="live-clock" style="font-weight: 600; color: var(--pastel-blue-800);"></span>
+              <button id="bg-color-btn" class="btn" style="padding: 6px 12px; font-size: 0.8rem;">Theme</button>
             </div>
 
             <nav class="site-nav">
@@ -38,6 +39,7 @@
             <li><a href="#hero">Top / Hero</a></li>
             <li><a href="#features">Why Choose Us</a></li>
             <li><a href="#how-it-works">How to Order</a></li>
+            <li><a href="#faq">FAQ (Accordion)</a></li>
             <li><a href="#team-info">Development Team</a></li>
         </ul>
     </aside>
@@ -117,6 +119,27 @@
                     <p>Pick up your cake fresh on the day of your celebration.</p>
                 </li>
             </ol>
+        </section>
+
+        <!-- TASK 2: Аккордеон (FAQ) -->
+        <section id="faq">
+            <h2>Frequently Asked Questions</h2>
+            <p class="section-lead">Click on a question to see the answer.</p>
+            
+            <div class="accordion-header">What are your delivery hours?</div>
+            <div class="accordion-content">
+                <p style="padding: 12px 0;">We deliver fresh cakes daily from 9:00 AM to 8:00 PM across Astana.</p>
+            </div>
+
+            <div class="accordion-header">Can I order a custom design cake?</div>
+            <div class="accordion-content">
+                <p style="padding: 12px 0;">Yes! You can choose custom colors, fillings, and specify your design requirements in our order form.</p>
+            </div>
+
+            <div class="accordion-header">How far in advance should I book?</div>
+            <div class="accordion-content">
+                <p style="padding: 12px 0;">For standard cakes, 1-2 days is enough. For tiered wedding cakes, please book at least 5 days in advance.</p>
+            </div>
         </section>
 
         <section id="team-info">
