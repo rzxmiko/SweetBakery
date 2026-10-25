@@ -1320,3 +1320,102 @@ tbody tr:nth-child(even) {
     font-size: 0.8rem;
     font-weight: 700;
 }
+/* ==========================================================================
+   ASSIGNMENT 5 ADDITIONS: THEME, RATING, SOUND FX & ANIMATIONS
+   ========================================================================== */
+
+/* Dark Mode Theme (Toggle) */
+body.dark-mode {
+    --cream: #1e2630;
+    --pastel-dark: #f0f4f8;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --border: #334155;
+    --border-soft: #24303f;
+    --pastel-blue-50: #24303f;
+    --pastel-blue-100: #334155;
+    background-color: var(--cream);
+    color: var(--text);
+}
+
+body.dark-mode .card,
+body.dark-mode .promo-card,
+body.dark-mode .steps li,
+body.dark-mode .accordion-item,
+body.dark-mode .accordion-content,
+body.dark-mode .popup-box,
+body.dark-mode table {
+    background-color: #24303f;
+    color: var(--text);
+}
+
+body.dark-mode .site-header {
+    background: rgba(30, 38, 48, 0.92);
+}
+
+/* Rating Stars (Part 1.1 Attribute & Class Manipulation) */
+.rating-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 16px 0;
+}
+
+.star {
+    font-size: 1.8rem;
+    color: #cbd5e1;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.2s ease;
+    user-select: none;
+}
+
+.star:hover {
+    transform: scale(1.25);
+}
+
+.star.active {
+    color: #f59e0b;
+}
+
+/* Filter Buttons (Higher-Order Functions & Switch) */
+.filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.filter-btn {
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--pastel-blue-800);
+    color: #fff;
+    border-color: var(--pastel-blue-800);
+}
+
+/* Dynamic Entrance Animation */
+.card-animate {
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

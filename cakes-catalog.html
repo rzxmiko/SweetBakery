@@ -53,37 +53,30 @@
 
         <section id="cake-cards">
             <h2>Popular cake designs</h2>
-            <div class="card-container">
-                <article class="card">
-                    <div class="card-img-wrap">
-                        <img src="images/chocolate-delight.jpg" alt="Chocolate Delight Cake">
-                    </div>
-                    <div class="card-body">
-                        <h3>Chocolate Delight</h3>
-                        <p>Rich chocolate sponge with Belgian dark chocolate ganache.</p>
-                        <a href="order-contact.html" class="btn">Order this cake</a>
-                    </div>
-                </article>
-                <article class="card">
-                    <div class="card-img-wrap">
-                        <img src="images/berry-bliss.jpg" alt="Berry Bliss Cake">
-                    </div>
-                    <div class="card-body">
-                        <h3>Berry Bliss</h3>
-                        <p>Light vanilla sponge layered with fresh seasonal berries and cream.</p>
-                        <a href="order-contact.html" class="btn">Order this cake</a>
-                    </div>
-                </article>
-                <article class="card">
-                    <div class="card-img-wrap">
-                        <img src="images/red-velvet.jpg" alt="Red Velvet Cake">
-                    </div>
-                    <div class="card-body">
-                        <h3>Classic Red Velvet</h3>
-                        <p>Traditional velvet cake with smooth cream cheese frosting.</p>
-                        <a href="order-contact.html" class="btn">Order this cake</a>
-                    </div>
-                </article>
+            <p class="section-lead">Filter our signature cakes or use keyboard arrows (← / →) to switch tabs!</p>
+            
+            <div class="filter-controls" id="cake-filter-buttons">
+                <button class="filter-btn active" data-category="all">All Cakes</button>
+                <button class="filter-btn" data-category="chocolate">Chocolate</button>
+                <button class="filter-btn" data-category="fruit">Fruit &amp; Berry</button>
+                <button class="filter-btn" data-category="classic">Classic</button>
+            </div>
+
+            <!-- Dynamic grid rendered by main.js -->
+            <div class="card-container" id="dynamic-cake-container"></div>
+
+            <!-- Assignment 5: Interactive Rating System (DOM Manipulation & Sound) -->
+            <div style="margin-top: 40px; padding: 24px; background: var(--pastel-blue-50); border-radius: var(--radius-lg); border: 1px solid var(--border-soft);">
+                <h3>Rate your experience with our designs</h3>
+                <p style="margin-bottom: 8px; font-size: 0.9rem; color: var(--text-muted);">Click on a star to set your rating:</p>
+                <div class="rating-container" id="star-rating">
+                    <span class="star" data-value="1">&#9733;</span>
+                    <span class="star" data-value="2">&#9733;</span>
+                    <span class="star" data-value="3">&#9733;</span>
+                    <span class="star" data-value="4">&#9733;</span>
+                    <span class="star" data-value="5">&#9733;</span>
+                </div>
+                <div id="rating-feedback" style="font-weight: 600; color: var(--pastel-blue-800); min-height: 24px;"></div>
             </div>
         </section>
 
