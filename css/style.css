@@ -169,6 +169,15 @@ footer p {
     color: #e2eaf4;
 }
 
+/* Footer in Dark Mode */
+body.dark-mode footer {
+    background-color: #0f172a;
+    border-top: 1px solid #334155;
+}
+
+body.dark-mode footer p {
+    color: #f1f5f9;
+}
 
 /* ==========================================================================
    SECTION 1: SHAMELOVA DILARA (Home & Promotions)
