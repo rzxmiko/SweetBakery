@@ -1,3 +1,9 @@
+try {
+  if (localStorage.getItem("sweetbakery-theme") === "dark") {
+    document.body.classList.add("dark-mode");
+  }
+} catch (e) {  }
+
 document.addEventListener("DOMContentLoaded", () => {
 
   // =========================================================================
@@ -47,10 +53,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================================================================
   const themeBtn = document.getElementById("bg-color-btn");
   if (themeBtn) {
+    if (document.body.classList.contains("dark-mode")) themeBtn.textContent = "Day";
+
     themeBtn.addEventListener("click", () => {
       document.body.classList.toggle("dark-mode");
       const isDark = document.body.classList.contains("dark-mode");
       themeBtn.textContent = isDark ? "Day" : "Night";
+      try { localStorage.setItem("sweetbakery-theme", isDark ? "dark" : "light"); } catch (e) {}
       AudioEngine.pop();
     });
   }
@@ -66,7 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const hours = now.getHours();
     let greeting = "";
 
-    // Switch statement logic
     switch (true) {
       case (hours >= 5 && hours < 12):
         greeting = "Good Morning!";
@@ -140,7 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const dynamicCakeContainer = document.getElementById("dynamic-cake-container");
   const filterButtons = document.querySelectorAll("#cake-filter-buttons .filter-btn");
 
-  // Higher-order function: render cakes using map()
   function displayCakes(cakesList) {
     if (!dynamicCakeContainer) return;
     
@@ -159,7 +166,6 @@ document.addEventListener("DOMContentLoaded", () => {
     `).join("");
   }
 
-  // Filter cakes using Switch Statement and filter()
   function filterCakes(category) {
     let filtered;
     switch (category) {
@@ -199,6 +205,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentFilterIdx = 0;
   window.addEventListener("keydown", (e) => {
     if (filterButtons.length === 0) return;
+
+    if (e.target && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
 
     if (e.key === "ArrowRight") {
       currentFilterIdx = (currentFilterIdx + 1) % filterButtons.length;
@@ -368,11 +376,13 @@ document.addEventListener("DOMContentLoaded", () => {
       if (errors.length > 0) {
         errorContainer.style.color = "#c0504d";
         errorContainer.innerHTML = errors.join("<br>");
+        orderForm.dispatchEvent(new CustomEvent("order:invalid"));
       } else {
         AudioEngine.success();
         errorContainer.style.color = "#2e7d32";
         errorContainer.innerHTML = "Order successfully validated and submitted!";
         orderForm.reset();
+        orderForm.dispatchEvent(new CustomEvent("order:valid"));
         setTimeout(() => {
           errorContainer.innerHTML = "";
         }, 5000);

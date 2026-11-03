@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <script src="js/script.js"></script>
     <script src="js/main.js" defer></script>
     <title>Sweet Bakery - About Us</title>
 </head>
@@ -66,7 +68,7 @@
             <div class="card-container">
                 <article class="card">
                     <div class="card-img-wrap">
-                        <img src="images/berry-bliss.jpg" alt="Cake with fresh berries">
+                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/berry-bliss.jpg" alt="Cake with fresh berries">
                     </div>
                     <div class="card-body">
                         <h3>Natural ingredients</h3>
@@ -76,7 +78,7 @@
                 </article>
                 <article class="card">
                     <div class="card-img-wrap">
-                        <img src="images/cupcakess.jpeg" alt="Freshly baked cupcakes">
+                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/cupcakess.jpeg" alt="Freshly baked cupcakes">
                     </div>
                     <div class="card-body">
                         <h3>Baked every morning</h3>
@@ -86,7 +88,7 @@
                 </article>
                 <article class="card">
                     <div class="card-img-wrap">
-                        <img src="images/birthdaycake.jpg" alt="Custom birthday cake">
+                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/birthdaycake.jpg" alt="Custom birthday cake">
                     </div>
                     <div class="card-body">
                         <h3>Made for your occasion</h3>
@@ -101,6 +103,12 @@
         <section id="faq-section">
             <h2>Frequently Asked Questions</h2>
             <p class="section-lead">Find answers to common questions about our service.</p>
+
+            <div class="search-box">
+                <label for="faq-search" class="visually-hidden">Search the FAQ</label>
+                <input type="search" id="faq-search" placeholder="Search the FAQ (e.g. cake, delivery)..." autocomplete="off">
+                <span id="faq-search-info" class="search-info" aria-live="polite"></span>
+            </div>
             
             <div class="accordion-header">Do you offer gluten-free options?</div>
             <div class="accordion-content">

@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <script src="js/script.js"></script>
     <script src="js/main.js" defer></script>
     <title>Sweet Bakery - Desserts Menu</title>
 </head>
@@ -54,7 +56,7 @@
             <div class="card-container">
                 <article class="card">
                     <div class="card-img-wrap">
-                        <img src="images/cupcakess.jpeg" alt="Freshly baked cupcakes with cream swirls" loading="lazy">
+                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/cupcakess.jpeg" alt="Freshly baked cupcakes with cream swirls">
                     </div>
                     <div class="card-body">
                         <h3>Cupcakes</h3>
@@ -64,7 +66,7 @@
                 </article>
                 <article class="card">
                     <div class="card-img-wrap">
-                        <img src="images/macarons.jpg" alt="Colorful French macarons" loading="lazy">
+                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/macarons.jpg" alt="Colorful French macarons">
                     </div>
                     <div class="card-body">
                         <h3>Macarons</h3>
@@ -74,7 +76,7 @@
                 </article>
                 <article class="card">
                     <div class="card-img-wrap">
-                        <img src="images/croissants.jpg" alt="Golden butter croissants" loading="lazy">
+                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/croissants.jpg" alt="Golden butter croissants">
                     </div>
                     <div class="card-body">
                         <h3>Croissants</h3>
@@ -87,6 +89,11 @@
 
         <section id="menu-table">
             <h2>Prices &amp; ingredients overview</h2>
+            <div class="search-box autocomplete-box">
+                <label for="dessert-search" class="visually-hidden">Search desserts</label>
+                <input type="search" id="dessert-search" placeholder="Search desserts (e.g. macaron)..." autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="dessert-suggestions">
+                <ul id="dessert-suggestions" class="suggestions" role="listbox"></ul>
+            </div>
             <div class="table-wrap">
                 <table>
                     <thead>
