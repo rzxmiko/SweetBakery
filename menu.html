@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu — SweetBakery</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- apply saved theme before the page is shown (no white flash) -->
+    <script>document.documentElement.dataset.theme = JSON.parse(localStorage.getItem("sweetbakery-theme") || '"light"');</script>
+</head>
+<body data-page="menu" data-title="title.menu">
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+
+    <!-- ===================== HEADER ===================== -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark" data-icon="cake"></span>
+                <span class="brand-name">Sweet<span>Bakery</span></span>
+            </a>
+
+            <div class="nav-panel" id="nav-panel">
+                <nav class="main-nav">
+                    <a href="index.html" data-i18n="nav.home">Home</a>
+                    <a href="menu.html" class="active" data-i18n="nav.menu">Menu</a>
+                    <a href="custom-cake.html" data-i18n="nav.custom">Custom cake</a>
+                    <a href="promotions.html" data-i18n="nav.promotions">Offers</a>
+                    <a href="about.html" data-i18n="nav.about">About</a>
+                    <a href="contact.html" data-i18n="nav.contact">Contacts</a>
+                </nav>
+                <div class="prefs">
+                    <label class="pref-select">
+                        <span class="visually-hidden">Language</span>
+                        <select id="lang-select">
+                            <option value="ru">RU</option>
+                            <option value="kk">KZ</option>
+                            <option value="en">EN</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button type="button" class="theme-switch" id="theme-switch" role="switch" aria-checked="false" aria-label="Dark mode">
+                    <span class="theme-switch-thumb">
+                        <span class="icon-sun" data-icon="sun"></span>
+                        <span class="icon-moon" data-icon="moon"></span>
+                    </span>
+                </button>
+                <a class="icon-btn account-link" id="account-link" href="login.html">
+                    <span data-icon="user"></span>
+                    <span class="account-label" id="account-label">Sign in</span>
+                </a>
+                <a class="icon-btn cart-link" href="cart.html" aria-label="Cart">
+                    <span data-icon="bag"></span>
+                    <span class="cart-badge" id="cart-badge" hidden>0</span>
+                </a>
+                <button type="button" class="icon-btn burger" id="burger" aria-label="Menu" aria-expanded="false">
+                    <span class="icon-open" data-icon="menu"></span>
+                    <span class="icon-close" data-icon="close"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="page-hero">
+            <div class="container">
+                <h1 data-i18n="menu.title">Our menu</h1>
+                <p class="lead" data-i18n="menu.lead">Choose desserts, add them to the cart and pick a date at checkout.</p>
+            </div>
+        </section>
+
+        <section class="section section-tight">
+            <div class="container">
+                <!-- Search and sorting (saved in localStorage) -->
+                <div class="toolbar">
+                    <div class="search-field">
+                        <span data-icon="search"></span>
+                        <label for="menu-search" class="visually-hidden">Search</label>
+                        <input type="search" id="menu-search" autocomplete="off" data-i18n-placeholder="menu.searchPh" placeholder="Search: chocolate, croissant…">
+                    </div>
+                    <div class="toolbar-controls">
+                        <label class="select-field">
+                            <span data-i18n="menu.sort">Sort</span>
+                            <select id="menu-sort">
+                                <option value="default" data-i18n="menu.sortDefault">Popular</option>
+                                <option value="cheap" data-i18n="menu.sortCheap">Cheaper first</option>
+                                <option value="expensive" data-i18n="menu.sortExpensive">More expensive first</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Category filter -->
+                <div class="chip-row" id="menu-categories">
+                    <button type="button" class="chip active" data-category="all" data-i18n="cat.all">All</button>
+                    <button type="button" class="chip" data-category="cakes" data-i18n="cat.cakes">Cakes</button>
+                    <button type="button" class="chip" data-category="cupcakes" data-i18n="cat.cupcakes">Cupcakes</button>
+                    <button type="button" class="chip" data-category="macarons" data-i18n="cat.macarons">Macarons</button>
+                    <button type="button" class="chip" data-category="pastries" data-i18n="cat.pastries">Pastries</button>
+                    <button type="button" class="chip" data-category="sets" data-i18n="cat.sets">Sets</button>
+                </div>
+
+                <p class="results-info" id="menu-results"></p>
+
+                <div class="product-grid" id="menu-grid"></div>
+
+                <div class="empty-state" id="menu-empty" hidden>
+                    <span class="empty-icon" data-icon="search"></span>
+                    <h2 data-i18n="menu.emptyTitle">Nothing found</h2>
+                    <p data-i18n="menu.emptyText">Try another word or category.</p>
+                    <button type="button" class="btn btn-ghost" id="menu-reset" data-i18n="menu.reset">Reset filters</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-about">
+                <a href="index.html" class="brand brand-light">
+                    <span class="brand-mark" data-icon="cake"></span>
+                    <span class="brand-name">Sweet<span>Bakery</span></span>
+                </a>
+                <p data-i18n="footer.tagline">A family bakery in Astana. Cakes and desserts baked by hand every morning.</p>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.shop">Shop</h2>
+                <ul>
+                    <li><a href="menu.html" data-i18n="nav.menu">Menu</a></li>
+                    <li><a href="custom-cake.html" data-i18n="nav.custom">Custom cake</a></li>
+                    <li><a href="promotions.html" data-i18n="nav.promotions">Offers</a></li>
+                    <li><a href="cart.html" data-i18n="nav.cart">Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.info">Information</h2>
+                <ul>
+                    <li><a href="about.html" data-i18n="nav.about">About</a></li>
+                    <li><a href="about.html#faq" data-i18n="footer.faq">FAQ</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Contacts</a></li>
+                    <li><a href="profile.html" data-i18n="footer.account">My profile</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.contacts">Contacts</h2>
+                <ul class="footer-contacts">
+                    <li><span data-icon="pin"></span><span data-i18n="contact.addressValue">Astana IT University, EXPO, block C1</span></li>
+                    <li><span data-icon="phone"></span><a href="tel:+77001234567">+7 700 123 45 67</a></li>
+                    <li><span data-icon="clock"></span><span data-i18n="contact.hoursValue">Every day, 09:00–21:00</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© 2026 SweetBakery</p>
+            <p>Created by: Shamelova Dilara, Yessendos Diana, Shyntemir Zhanbota (SE-2506)</p>
+        </div>
+    </footer>
+
+    <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

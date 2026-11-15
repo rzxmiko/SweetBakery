@@ -1,198 +1,273 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home — SweetBakery</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/main.js" defer></script>
-    <title>Sweet Bakery - Home</title>
+    <!-- apply saved theme before the page is shown (no white flash) -->
+    <script>document.documentElement.dataset.theme = JSON.parse(localStorage.getItem("sweetbakery-theme") || '"light"');</script>
 </head>
-<body class="page-layout page-home">
-    <a class="visually-hidden" href="#main-content">Skip to main content</a>
-    
+<body data-page="home" data-title="title.home">
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+
+    <!-- ===================== HEADER ===================== -->
     <header class="site-header">
-        <div class="header-inner">
-            <a href="index.html" class="brand">Sweet<span>Bakery</span></a>
-            
-            <div style="display: flex; align-items: center; gap: 12px; font-size: 0.85rem;">
-              <span id="live-clock" style="font-weight: 600; color: var(--pastel-blue-800);"></span>
-              <button id="bg-color-btn" class="btn" style="padding: 6px 12px; font-size: 0.8rem;">Theme</button>
+        <div class="container header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark" data-icon="cake"></span>
+                <span class="brand-name">Sweet<span>Bakery</span></span>
+            </a>
+
+            <div class="nav-panel" id="nav-panel">
+                <nav class="main-nav">
+                    <a href="index.html" class="active" data-i18n="nav.home">Home</a>
+                    <a href="menu.html" data-i18n="nav.menu">Menu</a>
+                    <a href="custom-cake.html" data-i18n="nav.custom">Custom cake</a>
+                    <a href="promotions.html" data-i18n="nav.promotions">Offers</a>
+                    <a href="about.html" data-i18n="nav.about">About</a>
+                    <a href="contact.html" data-i18n="nav.contact">Contacts</a>
+                </nav>
+                <div class="prefs">
+                    <label class="pref-select">
+                        <span class="visually-hidden">Language</span>
+                        <select id="lang-select">
+                            <option value="ru">RU</option>
+                            <option value="kk">KZ</option>
+                            <option value="en">EN</option>
+                        </select>
+                    </label>
+                </div>
             </div>
 
-            <nav class="site-nav">
-                <a href="index.html" class="active">Home</a>
-                <a href="promotions.html">Promotions</a>
-                <a href="cakes-catalog.html">Cakes Catalog</a>
-                <a href="desserts-menu.html">Desserts Menu</a>
-                <a href="about.html">About Us</a>
-                <a href="order-contact.html">Order &amp; Contact</a>
-            </nav>
+            <div class="header-actions">
+                <button type="button" class="theme-switch" id="theme-switch" role="switch" aria-checked="false" aria-label="Dark mode">
+                    <span class="theme-switch-thumb">
+                        <span class="icon-sun" data-icon="sun"></span>
+                        <span class="icon-moon" data-icon="moon"></span>
+                    </span>
+                </button>
+                <a class="icon-btn account-link" id="account-link" href="login.html">
+                    <span data-icon="user"></span>
+                    <span class="account-label" id="account-label">Sign in</span>
+                </a>
+                <a class="icon-btn cart-link" href="cart.html" aria-label="Cart">
+                    <span data-icon="bag"></span>
+                    <span class="cart-badge" id="cart-badge" hidden>0</span>
+                </a>
+                <button type="button" class="icon-btn burger" id="burger" aria-label="Menu" aria-expanded="false">
+                    <span class="icon-open" data-icon="menu"></span>
+                    <span class="icon-close" data-icon="close"></span>
+                </button>
+            </div>
         </div>
     </header>
 
-    <aside class="page-sidebar">
-        <h3>Quick Navigation</h3>
-        <ul>
-            <li><a href="#hero">Top / Hero</a></li>
-            <li><a href="#features">Why Choose Us</a></li>
-            <li><a href="#stats">Our Numbers</a></li>
-            <li><a href="#how-it-works">How to Order</a></li>
-            <li><a href="#faq">FAQ (Accordion)</a></li>
-            <li><a href="#team-info">Development Team</a></li>
-        </ul>
-    </aside>
-
-    <main id="main-content">
-        <section id="hero">
-            <div class="hero-inner-wrap">
-                <div class="hero-inner">
-                    <h1>Handcrafted cakes for Astana's sweetest moments</h1>
-                    <p>Delicious handcrafted pastries and custom cakes, baked fresh every day and made to order.</p>
+    <main id="main">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <p class="eyebrow"><span data-icon="sparkles"></span><span data-i18n="home.eyebrow">Bakery in Astana · since 2020</span></p>
+                    <h1 data-i18n-html="home.title">Handmade cakes for your <em>sweetest</em> moments</h1>
+                    <p class="lead" data-i18n="home.lead">Cakes, cupcakes, macarons and croissants from natural ingredients. Order online — pick up or get it delivered.</p>
                     <div class="hero-actions">
-                        <a href="cakes-catalog.html" class="btn">Browse the catalog</a>
-                        <a href="order-contact.html" class="btn btn-ghost">Order a custom cake</a>
+                        <a href="menu.html" class="btn btn-primary btn-lg"><span data-i18n="home.ctaMenu">Open the menu</span><span data-icon="arrow"></span></a>
+                        <a href="custom-cake.html" class="btn btn-ghost btn-lg" data-i18n="home.ctaCustom">Design your cake</a>
+                    </div>
+                    <ul class="hero-trust">
+                        <li><span data-icon="clock"></span><span data-i18n="home.trust1">Baked fresh daily</span></li>
+                        <li><span data-icon="truck"></span><span data-i18n="home.trust2">Delivery across Astana</span></li>
+                        <li><span data-icon="leaf"></span><span data-i18n="home.trust3">Natural ingredients</span></li>
+                    </ul>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-img">
+                        <img src="images/hero-cake.jpg" alt="SweetBakery cake">
+                    </div>
+                    <span class="hero-sticker" data-i18n-html="home.sticker">Baked<br>this<br>morning</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section class="section">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="eyebrow" data-i18n="home.catEyebrow">Our menu</p>
+                        <h2 data-i18n="home.catTitle">What would you like today?</h2>
+                    </div>
+                    <a href="menu.html" class="link-arrow"><span data-i18n="home.fullMenu">Full menu</span><span data-icon="arrow"></span></a>
+                </div>
+                <div class="category-grid category-grid-4">
+                    <a class="category-tile" href="menu.html?cat=cakes">
+                        <img src="images/chocolate-delight.jpg" alt="">
+                        <span class="category-info"><span class="category-name" data-i18n="cat.cakes">Cakes</span></span>
+                    </a>
+                    <a class="category-tile" href="menu.html?cat=cupcakes">
+                        <img src="images/cupcakess.jpeg" alt="">
+                        <span class="category-info"><span class="category-name" data-i18n="cat.cupcakes">Cupcakes</span></span>
+                    </a>
+                    <a class="category-tile" href="menu.html?cat=macarons">
+                        <img src="images/macarons.jpg" alt="">
+                        <span class="category-info"><span class="category-name" data-i18n="cat.macarons">Macarons</span></span>
+                    </a>
+                    <a class="category-tile" href="menu.html?cat=pastries">
+                        <img src="images/croissants.jpg" alt="">
+                        <span class="category-info"><span class="category-name" data-i18n="cat.pastries">Pastries</span></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bestsellers: cards are created in main.js -->
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="eyebrow" data-i18n="home.bestEyebrow">Customer favourites</p>
+                        <h2 data-i18n="home.bestTitle">Bestsellers</h2>
                     </div>
                 </div>
-                <div class="hero-img-wrap">
-                    <img src="images/hero-cake.jpg" alt="Signature SweetBakery cake">
-                    <span class="hero-sticker">Baked<br>this<br>morning</span>
+                <div class="product-grid" id="bestsellers"></div>
+            </div>
+        </section>
+
+        <!-- How to order -->
+        <section class="section">
+            <div class="container">
+                <div class="section-head section-head-center">
+                    <div>
+                        <p class="eyebrow" data-i18n="home.howEyebrow">Simple and fast</p>
+                        <h2 data-i18n="home.howTitle">How to order</h2>
+                    </div>
+                </div>
+                <ol class="steps">
+                    <li class="step">
+                        <span class="step-icon" data-icon="bag"></span>
+                        <span class="step-num">01</span>
+                        <h3 data-i18n="home.step1">Choose</h3>
+                        <p data-i18n="home.step1Text">Add desserts from the menu or design your own cake.</p>
+                    </li>
+                    <li class="step">
+                        <span class="step-icon" data-icon="calendar"></span>
+                        <span class="step-num">02</span>
+                        <h3 data-i18n="home.step2">Pick a date</h3>
+                        <p data-i18n="home.step2Text">Choose pickup or courier delivery.</p>
+                    </li>
+                    <li class="step">
+                        <span class="step-icon" data-icon="card"></span>
+                        <span class="step-num">03</span>
+                        <h3 data-i18n="home.step3">Pay</h3>
+                        <p data-i18n="home.step3Text">Kaspi, bank card or cash on receipt.</p>
+                    </li>
+                    <li class="step">
+                        <span class="step-icon" data-icon="gift"></span>
+                        <span class="step-num">04</span>
+                        <h3 data-i18n="home.step4">Enjoy</h3>
+                        <p data-i18n="home.step4Text">Your orders are saved in your profile.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Numbers (animated counters) -->
+        <section class="section section-tight">
+            <div class="container">
+                <ul class="stats">
+                    <li><span class="stat-number" data-target="1000" data-suffix="+">0</span><span class="stat-label" data-i18n="home.stat1">cakes baked</span></li>
+                    <li><span class="stat-number" data-target="500" data-suffix="+">0</span><span class="stat-label" data-i18n="home.stat2">happy customers</span></li>
+                    <li><span class="stat-number" data-target="6" data-suffix="">0</span><span class="stat-label" data-i18n="home.stat3">years of baking</span></li>
+                    <li><span class="stat-number" data-target="100" data-suffix="%">0</span><span class="stat-label" data-i18n="home.stat4">natural ingredients</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Custom cake banner -->
+        <section class="section">
+            <div class="container">
+                <div class="feature-banner">
+                    <div class="feature-banner-img">
+                        <img src="images/gallery-6.jpg" alt="Custom cake">
+                    </div>
+                    <div class="feature-banner-text">
+                        <p class="eyebrow" data-i18n="home.customEyebrow">Cake builder</p>
+                        <h2 data-i18n="home.customTitle">Have a special idea?</h2>
+                        <p data-i18n="home.customText">Choose the size, filling and decoration — the price is calculated at once and the cake goes to your cart.</p>
+                        <a href="custom-cake.html" class="btn btn-primary"><span data-i18n="home.customCta">Build my cake</span><span data-icon="arrow"></span></a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="features">
-            <h2>Why choose us</h2>
-            <ul class="feature-grid">
-                <li>
-                    <div class="card-img-wrap">
-                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/cupcakess.jpeg" alt="Freshly baked cupcakes">
+        <!-- Promo -->
+        <section class="section section-tight">
+            <div class="container">
+                <div class="promo-band">
+                    <span class="promo-band-icon" data-icon="tag"></span>
+                    <div>
+                        <h2 data-i18n="home.promoTitle">−15% on your order</h2>
+                        <p data-i18n-html="home.promoText">Enter the code <b>SWEET15</b> in the cart.</p>
                     </div>
-                    <div class="card-body">
-                        <h3>Baked fresh daily</h3>
-                        <p>Freshly baked goods made with love and quality ingredients, every single morning.</p>
-                        <a href="cakes-catalog.html" class="btn">See the cakes</a>
-                    </div>
-                </li>
-                <li>
-                    <div class="card-img-wrap">
-                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/birthdaycake.jpg" alt="Custom birthday cake">
-                    </div>
-                    <div class="card-body">
-                        <h3>Made to order</h3>
-                        <p>Custom cakes for birthdays, weddings and every occasion in between.</p>
-                        <a href="order-contact.html" class="btn">Order custom</a>
-                    </div>
-                </li>
-                <li>
-                    <div class="card-img-wrap">
-                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/Anna.jpg" alt="Chef Anna">
-                    </div>
-                    <div class="card-body">
-                        <h3>Personal service</h3>
-                        <p>A friendly team that helps you plan the cake that fits your moment.</p>
-                        <a href="about.html" class="btn">Meet the team</a>
-                    </div>
-                </li>
-            </ul>
-        </section>
-
-        <section id="stats">
-            <h2>SweetBakery in numbers</h2>
-            <p class="section-lead">A few numbers we are proud of.</p>
-            <ul class="stats-grid">
-                <li>
-                    <span class="stat-number" data-target="1000" data-suffix="+">0</span>
-                    <span class="stat-label">Cakes baked</span>
-                </li>
-                <li>
-                    <span class="stat-number" data-target="500" data-suffix="+">0</span>
-                    <span class="stat-label">Happy customers</span>
-                </li>
-                <li>
-                    <span class="stat-number" data-target="6" data-suffix="">0</span>
-                    <span class="stat-label">Years of baking</span>
-                </li>
-                <li>
-                    <span class="stat-number" data-target="100" data-suffix="%">0</span>
-                    <span class="stat-label">Natural ingredients</span>
-                </li>
-            </ul>
-        </section>
-
-        <section id="how-it-works">
-            <h2>How to order a cake</h2>
-            <p class="section-lead">Four steps from idea to a cake on your table.</p>
-            <ol class="steps">
-                <li>
-                    <span class="step-num">1</span><h3>Pick a cake</h3>
-                    <p>Look through the catalog and choose a flavor, size and filling.</p>
-                </li>
-                <li>
-                    <span class="step-num">2</span><h3>Send your order</h3>
-                    <p>Fill in the order form with the date and your wishes for the design.</p>
-                </li>
-                <li>
-                    <span class="step-num">3</span><h3>We confirm</h3>
-                    <p>We get back to you to agree on details and the final price.</p>
-                </li>
-                <li>
-                    <span class="step-num">4</span><h3>Enjoy</h3>
-                    <p>Pick up your cake fresh on the day of your celebration.</p>
-                </li>
-            </ol>
-        </section>
-
-        <!-- TASK 2: Аккордеон (FAQ) -->
-        <section id="faq">
-            <h2>Frequently Asked Questions</h2>
-            <p class="section-lead">Click on a question to see the answer.</p>
-
-            <div class="search-box">
-                <label for="faq-search" class="visually-hidden">Search the FAQ</label>
-                <input type="search" id="faq-search" placeholder="Search the FAQ (e.g. cake, delivery)..." autocomplete="off">
-                <span id="faq-search-info" class="search-info" aria-live="polite"></span>
+                    <a href="promotions.html" class="btn btn-light" data-i18n="home.promoCta">All offers</a>
+                </div>
             </div>
-            
-            <div class="accordion-header">What are your delivery hours?</div>
-            <div class="accordion-content">
-                <p style="padding: 12px 0;">We deliver fresh cakes daily from 9:00 AM to 8:00 PM across Astana.</p>
-            </div>
-
-            <div class="accordion-header">Can I order a custom design cake?</div>
-            <div class="accordion-content">
-                <p style="padding: 12px 0;">Yes! You can choose custom colors, fillings, and specify your design requirements in our order form.</p>
-            </div>
-
-            <div class="accordion-header">How far in advance should I book?</div>
-            <div class="accordion-content">
-                <p style="padding: 12px 0;">For standard cakes, 1-2 days is enough. For tiered wedding cakes, please book at least 5 days in advance.</p>
-            </div>
-        </section>
-
-        <section id="team-info">
-            <h2>About the development team</h2>
-            <p>This project was created by our team:</p>
-            <ul class="team-list">
-                <li><strong>Shamelova Dilara</strong> — Home &amp; Promotions</li>
-                <li><strong>Yessendos Diana</strong> — Cakes Catalog &amp; Desserts Menu pages</li>
-                <li><strong>Shyntemir Zhanbota</strong> — About Us &amp; Order and Contact pages</li>
-            </ul>
-        </section>
-
-        <section class="cta-band">
-            <h2>Planning a celebration?</h2>
-            <p>Tell us the date and what you have in mind, and we will bake it.</p>
-            <a href="order-contact.html" class="btn btn-light">Place an order</a>
         </section>
     </main>
 
-    <footer>
-        <p>Created by: Shamelova Dilara, Yessendos Diana, Shyntemir Zhanbota (SE-2506)</p>
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-about">
+                <a href="index.html" class="brand brand-light">
+                    <span class="brand-mark" data-icon="cake"></span>
+                    <span class="brand-name">Sweet<span>Bakery</span></span>
+                </a>
+                <p data-i18n="footer.tagline">A family bakery in Astana. Cakes and desserts baked by hand every morning.</p>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.shop">Shop</h2>
+                <ul>
+                    <li><a href="menu.html" data-i18n="nav.menu">Menu</a></li>
+                    <li><a href="custom-cake.html" data-i18n="nav.custom">Custom cake</a></li>
+                    <li><a href="promotions.html" data-i18n="nav.promotions">Offers</a></li>
+                    <li><a href="cart.html" data-i18n="nav.cart">Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.info">Information</h2>
+                <ul>
+                    <li><a href="about.html" data-i18n="nav.about">About</a></li>
+                    <li><a href="about.html#faq" data-i18n="footer.faq">FAQ</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Contacts</a></li>
+                    <li><a href="profile.html" data-i18n="footer.account">My profile</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.contacts">Contacts</h2>
+                <ul class="footer-contacts">
+                    <li><span data-icon="pin"></span><span data-i18n="contact.addressValue">Astana IT University, EXPO, block C1</span></li>
+                    <li><span data-icon="phone"></span><a href="tel:+77001234567">+7 700 123 45 67</a></li>
+                    <li><span data-icon="clock"></span><span data-i18n="contact.hoursValue">Every day, 09:00–21:00</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© 2026 SweetBakery</p>
+            <p>Created by: Shamelova Dilara, Yessendos Diana, Shyntemir Zhanbota (SE-2506)</p>
+        </div>
     </footer>
+
+    <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

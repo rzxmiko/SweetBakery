@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart — SweetBakery</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- apply saved theme before the page is shown (no white flash) -->
+    <script>document.documentElement.dataset.theme = JSON.parse(localStorage.getItem("sweetbakery-theme") || '"light"');</script>
+</head>
+<body data-page="cart" data-title="title.cart">
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+
+    <!-- ===================== HEADER ===================== -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark" data-icon="cake"></span>
+                <span class="brand-name">Sweet<span>Bakery</span></span>
+            </a>
+
+            <div class="nav-panel" id="nav-panel">
+                <nav class="main-nav">
+                    <a href="index.html" data-i18n="nav.home">Home</a>
+                    <a href="menu.html" data-i18n="nav.menu">Menu</a>
+                    <a href="custom-cake.html" data-i18n="nav.custom">Custom cake</a>
+                    <a href="promotions.html" data-i18n="nav.promotions">Offers</a>
+                    <a href="about.html" data-i18n="nav.about">About</a>
+                    <a href="contact.html" data-i18n="nav.contact">Contacts</a>
+                </nav>
+                <div class="prefs">
+                    <label class="pref-select">
+                        <span class="visually-hidden">Language</span>
+                        <select id="lang-select">
+                            <option value="ru">RU</option>
+                            <option value="kk">KZ</option>
+                            <option value="en">EN</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button type="button" class="theme-switch" id="theme-switch" role="switch" aria-checked="false" aria-label="Dark mode">
+                    <span class="theme-switch-thumb">
+                        <span class="icon-sun" data-icon="sun"></span>
+                        <span class="icon-moon" data-icon="moon"></span>
+                    </span>
+                </button>
+                <a class="icon-btn account-link" id="account-link" href="login.html">
+                    <span data-icon="user"></span>
+                    <span class="account-label" id="account-label">Sign in</span>
+                </a>
+                <a class="icon-btn cart-link" href="cart.html" aria-label="Cart">
+                    <span data-icon="bag"></span>
+                    <span class="cart-badge" id="cart-badge" hidden>0</span>
+                </a>
+                <button type="button" class="icon-btn burger" id="burger" aria-label="Menu" aria-expanded="false">
+                    <span class="icon-open" data-icon="menu"></span>
+                    <span class="icon-close" data-icon="close"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="page-hero page-hero-compact">
+            <div class="container">
+                <h1 data-i18n="cart.title">Cart</h1>
+            </div>
+        </section>
+
+        <section class="section section-tight">
+            <div class="container">
+                <!-- Empty cart -->
+                <div class="empty-state empty-state-lg" id="cart-empty" hidden>
+                    <span class="empty-icon" data-icon="bag"></span>
+                    <h2 data-i18n="cart.emptyTitle">Your cart is empty</h2>
+                    <p data-i18n="cart.emptyText">Choose something sweet in the menu.</p>
+                    <a href="menu.html" class="btn btn-primary" data-i18n="cart.toMenu">Go to the menu</a>
+                </div>
+
+                <!-- Cart + checkout -->
+                <div class="checkout-layout" id="cart-view" hidden>
+                    <div class="checkout-main">
+                        <div class="panel">
+                            <div class="panel-head">
+                                <h2 data-i18n="cart.items">Your order</h2>
+                                <button type="button" class="link-btn link-danger" id="cart-clear"><span data-icon="trash"></span><span data-i18n="cart.clear">Clear</span></button>
+                            </div>
+                            <ul class="cart-list" id="cart-list"></ul>
+                        </div>
+
+                        <form id="checkout-form" class="panel checkout-form" novalidate>
+                            <!-- Contacts -->
+                            <fieldset class="form-section">
+                                <legend><span class="step-badge">1</span><span data-i18n="checkout.contact">Contact details</span></legend>
+                                <div class="form-grid">
+                                    <div class="field">
+                                        <label for="co-name" data-i18n="form.name">Name</label>
+                                        <input type="text" id="co-name" name="name" data-i18n-placeholder="form.namePh" placeholder="Aigerim">
+                                        <p class="field-error"></p>
+                                    </div>
+                                    <div class="field">
+                                        <label for="co-phone" data-i18n="form.phone">Phone</label>
+                                        <div class="input-prefix"><span>+7</span><input type="tel" id="co-phone" name="phone" placeholder="701 234 56 78"></div>
+                                        <p class="field-error"></p>
+                                    </div>
+                                    <div class="field field-full">
+                                        <label for="co-email" data-i18n="form.email">Email</label>
+                                        <input type="text" id="co-email" name="email" placeholder="you@example.com">
+                                        <p class="field-error"></p>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <!-- Delivery -->
+                            <fieldset class="form-section">
+                                <legend><span class="step-badge">2</span><span data-i18n="checkout.delivery">Delivery</span></legend>
+                                <div class="choice-grid">
+                                    <label class="choice-card">
+                                        <input type="radio" name="delivery" value="pickup" checked>
+                                        <span class="choice-body">
+                                            <span class="choice-icon" data-icon="store"></span>
+                                            <span class="choice-title" data-i18n="checkout.pickup">Pickup</span>
+                                            <span class="choice-meta" data-i18n="checkout.free">Free</span>
+                                        </span>
+                                    </label>
+                                    <label class="choice-card">
+                                        <input type="radio" name="delivery" value="courier">
+                                        <span class="choice-body">
+                                            <span class="choice-icon" data-icon="truck"></span>
+                                            <span class="choice-title" data-i18n="checkout.courier">Courier</span>
+                                            <span class="choice-meta" data-i18n="checkout.courierPrice">1 500 ₸, free from 20 000 ₸</span>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="form-grid reveal-block" id="address-block" hidden>
+                                    <div class="field field-full">
+                                        <label for="co-address" data-i18n="checkout.address">Address</label>
+                                        <input type="text" id="co-address" name="address" data-i18n-placeholder="checkout.addressPh" placeholder="Street, house, apartment">
+                                        <p class="field-error"></p>
+                                    </div>
+                                </div>
+                                <div class="form-grid">
+                                    <div class="field">
+                                        <label for="co-date" data-i18n="checkout.date">Date</label>
+                                        <input type="date" id="co-date" name="date">
+                                        <p class="field-hint-text" id="date-hint"></p>
+                                        <p class="field-error"></p>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <!-- Payment -->
+                            <fieldset class="form-section">
+                                <legend><span class="step-badge">3</span><span data-i18n="checkout.payment">Payment method</span></legend>
+                                <div class="choice-grid choice-grid-3">
+                                    <label class="choice-card">
+                                        <input type="radio" name="payment" value="kaspi" checked>
+                                        <span class="choice-body">
+                                            <span class="choice-icon choice-icon-kaspi" data-icon="mobile"></span>
+                                            <span class="choice-title">Kaspi.kz</span>
+                                            <span class="choice-meta" data-i18n="checkout.kaspiMeta">Kaspi Pay</span>
+                                        </span>
+                                    </label>
+                                    <label class="choice-card">
+                                        <input type="radio" name="payment" value="card">
+                                        <span class="choice-body">
+                                            <span class="choice-icon" data-icon="card"></span>
+                                            <span class="choice-title" data-i18n="checkout.card">Bank card</span>
+                                            <span class="choice-meta">Visa / Mastercard</span>
+                                        </span>
+                                    </label>
+                                    <label class="choice-card">
+                                        <input type="radio" name="payment" value="cash">
+                                        <span class="choice-body">
+                                            <span class="choice-icon" data-icon="cash"></span>
+                                            <span class="choice-title" data-i18n="checkout.cash">Cash</span>
+                                            <span class="choice-meta" data-i18n="checkout.cashMeta">On receipt</span>
+                                        </span>
+                                    </label>
+                                </div>
+                                <!-- card fields are shown only for "Bank card" -->
+                                <div class="form-grid reveal-block" id="card-block" hidden>
+                                    <div class="field field-full">
+                                        <label for="co-card" data-i18n="checkout.cardNumber">Card number</label>
+                                        <input type="text" id="co-card" name="card" inputmode="numeric" placeholder="0000 0000 0000 0000">
+                                        <p class="field-error"></p>
+                                    </div>
+                                    <div class="field">
+                                        <label for="co-exp" data-i18n="checkout.cardExp">Expiry (MM/YY)</label>
+                                        <input type="text" id="co-exp" name="exp" inputmode="numeric" placeholder="MM/YY">
+                                        <p class="field-error"></p>
+                                    </div>
+                                    <div class="field">
+                                        <label for="co-cvv">CVV</label>
+                                        <input type="password" id="co-cvv" name="cvv" inputmode="numeric" placeholder="•••">
+                                        <p class="field-error"></p>
+                                    </div>
+                                    <p class="note note-muted field-full"><span data-icon="lock"></span><span data-i18n="checkout.cardDemo">This is a demo, card data is not saved.</span></p>
+                                </div>
+                            </fieldset>
+
+                            <div class="field">
+                                <label class="check">
+                                    <input type="checkbox" id="co-agree" name="agree">
+                                    <span class="check-box" data-icon="check"></span>
+                                    <span data-i18n="checkout.agree">I confirm my order</span>
+                                </label>
+                                <p class="field-error"></p>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Summary -->
+                    <aside class="checkout-aside">
+                        <div class="summary-card">
+                            <h2 class="summary-title" data-i18n="cart.summary">Order summary</h2>
+                            <form id="promo-form" class="promo-form" novalidate>
+                                <div class="field">
+                                    <label for="promo-input" class="visually-hidden">Promo code</label>
+                                    <div class="promo-row">
+                                        <input type="text" id="promo-input" name="promo" data-i18n-placeholder="cart.promoPh" placeholder="Promo code">
+                                        <button type="submit" class="btn btn-ghost btn-sm" data-i18n="promo.apply">Apply</button>
+                                    </div>
+                                    <p class="field-error"></p>
+                                </div>
+                            </form>
+                            <dl class="totals" id="totals"></dl>
+                            <button type="submit" form="checkout-form" class="btn btn-primary btn-block btn-lg" id="place-order" data-i18n="cart.order">Place order</button>
+                        </div>
+                    </aside>
+                </div>
+
+                <!-- Success message -->
+                <div class="success-panel success-panel-lg" id="order-success" hidden>
+                    <span class="success-icon" data-icon="check"></span>
+                    <h2 data-i18n="success.title">Thank you! Your order is accepted</h2>
+                    <p class="success-number" id="success-number"></p>
+                    <p data-i18n="success.text">We will call you to confirm the details.</p>
+                    <div class="hero-actions hero-actions-center">
+                        <a href="profile.html" class="btn btn-primary" data-i18n="success.profile">My orders</a>
+                        <a href="menu.html" class="btn btn-ghost" data-i18n="success.back">Back to the menu</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-about">
+                <a href="index.html" class="brand brand-light">
+                    <span class="brand-mark" data-icon="cake"></span>
+                    <span class="brand-name">Sweet<span>Bakery</span></span>
+                </a>
+                <p data-i18n="footer.tagline">A family bakery in Astana. Cakes and desserts baked by hand every morning.</p>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.shop">Shop</h2>
+                <ul>
+                    <li><a href="menu.html" data-i18n="nav.menu">Menu</a></li>
+                    <li><a href="custom-cake.html" data-i18n="nav.custom">Custom cake</a></li>
+                    <li><a href="promotions.html" data-i18n="nav.promotions">Offers</a></li>
+                    <li><a href="cart.html" data-i18n="nav.cart">Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.info">Information</h2>
+                <ul>
+                    <li><a href="about.html" data-i18n="nav.about">About</a></li>
+                    <li><a href="about.html#faq" data-i18n="footer.faq">FAQ</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Contacts</a></li>
+                    <li><a href="profile.html" data-i18n="footer.account">My profile</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.contacts">Contacts</h2>
+                <ul class="footer-contacts">
+                    <li><span data-icon="pin"></span><span data-i18n="contact.addressValue">Astana IT University, EXPO, block C1</span></li>
+                    <li><span data-icon="phone"></span><a href="tel:+77001234567">+7 700 123 45 67</a></li>
+                    <li><span data-icon="clock"></span><span data-i18n="contact.hoursValue">Every day, 09:00–21:00</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© 2026 SweetBakery</p>
+            <p>Created by: Shamelova Dilara, Yessendos Diana, Shyntemir Zhanbota (SE-2506)</p>
+        </div>
+    </footer>
+
+    <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

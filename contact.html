@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts — SweetBakery</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- apply saved theme before the page is shown (no white flash) -->
+    <script>document.documentElement.dataset.theme = JSON.parse(localStorage.getItem("sweetbakery-theme") || '"light"');</script>
+</head>
+<body data-page="contact" data-title="title.contact">
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+
+    <!-- ===================== HEADER ===================== -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark" data-icon="cake"></span>
+                <span class="brand-name">Sweet<span>Bakery</span></span>
+            </a>
+
+            <div class="nav-panel" id="nav-panel">
+                <nav class="main-nav">
+                    <a href="index.html" data-i18n="nav.home">Home</a>
+                    <a href="menu.html" data-i18n="nav.menu">Menu</a>
+                    <a href="custom-cake.html" data-i18n="nav.custom">Custom cake</a>
+                    <a href="promotions.html" data-i18n="nav.promotions">Offers</a>
+                    <a href="about.html" data-i18n="nav.about">About</a>
+                    <a href="contact.html" class="active" data-i18n="nav.contact">Contacts</a>
+                </nav>
+                <div class="prefs">
+                    <label class="pref-select">
+                        <span class="visually-hidden">Language</span>
+                        <select id="lang-select">
+                            <option value="ru">RU</option>
+                            <option value="kk">KZ</option>
+                            <option value="en">EN</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button type="button" class="theme-switch" id="theme-switch" role="switch" aria-checked="false" aria-label="Dark mode">
+                    <span class="theme-switch-thumb">
+                        <span class="icon-sun" data-icon="sun"></span>
+                        <span class="icon-moon" data-icon="moon"></span>
+                    </span>
+                </button>
+                <a class="icon-btn account-link" id="account-link" href="login.html">
+                    <span data-icon="user"></span>
+                    <span class="account-label" id="account-label">Sign in</span>
+                </a>
+                <a class="icon-btn cart-link" href="cart.html" aria-label="Cart">
+                    <span data-icon="bag"></span>
+                    <span class="cart-badge" id="cart-badge" hidden>0</span>
+                </a>
+                <button type="button" class="icon-btn burger" id="burger" aria-label="Menu" aria-expanded="false">
+                    <span class="icon-open" data-icon="menu"></span>
+                    <span class="icon-close" data-icon="close"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="page-hero">
+            <div class="container">
+                <h1 data-i18n="contact.title">Contacts</h1>
+                <p class="lead" data-i18n="contact.lead">Have a question? Write to us and we will answer within an hour.</p>
+            </div>
+        </section>
+
+        <section class="section section-tight">
+            <div class="container contact-layout">
+                <div class="contact-info">
+                    <div class="info-card">
+                        <span class="info-card-icon" data-icon="pin"></span>
+                        <div>
+                            <h2 class="info-card-title" data-i18n="contact.address">Address</h2>
+                            <p data-i18n="contact.addressValue">Astana IT University, EXPO, block C1</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-card-icon" data-icon="clock"></span>
+                        <div>
+                            <h2 class="info-card-title" data-i18n="contact.hours">Opening hours</h2>
+                            <p data-i18n="contact.hoursValue">Every day, 09:00–21:00</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-card-icon" data-icon="phone"></span>
+                        <div>
+                            <h2 class="info-card-title" data-i18n="contact.phone">Phone</h2>
+                            <p><a href="tel:+77001234567" class="text-link">+7 700 123 45 67</a></p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-card-icon" data-icon="mail"></span>
+                        <div>
+                            <h2 class="info-card-title">Email</h2>
+                            <p><a href="mailto:hello@sweetbakery.kz" class="text-link">hello@sweetbakery.kz</a></p>
+                        </div>
+                    </div>
+                    <div class="map-wrap">
+                        <iframe title="Map" src="https://www.google.com/maps?q=Astana%20IT%20University&amp;z=15&amp;output=embed" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <h2 data-i18n="contact.formTitle">Write to us</h2>
+                    <p class="form-sub" data-i18n="contact.formSub">Orders are made through the cart. This form is for questions.</p>
+                    <form id="contact-form" class="form-grid" novalidate>
+                        <div class="field">
+                            <label for="c-name" data-i18n="form.name">Name</label>
+                            <input type="text" id="c-name" name="name" data-i18n-placeholder="form.namePh" placeholder="Aigerim">
+                            <p class="field-error"></p>
+                        </div>
+                        <div class="field">
+                            <label for="c-phone" data-i18n="form.phone">Phone</label>
+                            <div class="input-prefix"><span>+7</span><input type="tel" id="c-phone" name="phone" placeholder="701 234 56 78"></div>
+                            <p class="field-error"></p>
+                        </div>
+                        <div class="field field-full">
+                            <label for="c-email" data-i18n="form.email">Email</label>
+                            <input type="text" id="c-email" name="email" placeholder="you@example.com">
+                            <p class="field-error"></p>
+                        </div>
+                        <div class="field field-full">
+                            <label for="c-message" data-i18n="contact.message">Message</label>
+                            <textarea id="c-message" name="message" rows="5" data-i18n-placeholder="contact.messagePh" placeholder="Your question…"></textarea>
+                            <p class="field-error"></p>
+                        </div>
+                        <div class="field-full">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" data-i18n="contact.send">Send message</button>
+                        </div>
+                    </form>
+                    <p class="form-message" id="contact-success" hidden></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-about">
+                <a href="index.html" class="brand brand-light">
+                    <span class="brand-mark" data-icon="cake"></span>
+                    <span class="brand-name">Sweet<span>Bakery</span></span>
+                </a>
+                <p data-i18n="footer.tagline">A family bakery in Astana. Cakes and desserts baked by hand every morning.</p>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.shop">Shop</h2>
+                <ul>
+                    <li><a href="menu.html" data-i18n="nav.menu">Menu</a></li>
+                    <li><a href="custom-cake.html" data-i18n="nav.custom">Custom cake</a></li>
+                    <li><a href="promotions.html" data-i18n="nav.promotions">Offers</a></li>
+                    <li><a href="cart.html" data-i18n="nav.cart">Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.info">Information</h2>
+                <ul>
+                    <li><a href="about.html" data-i18n="nav.about">About</a></li>
+                    <li><a href="about.html#faq" data-i18n="footer.faq">FAQ</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Contacts</a></li>
+                    <li><a href="profile.html" data-i18n="footer.account">My profile</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.contacts">Contacts</h2>
+                <ul class="footer-contacts">
+                    <li><span data-icon="pin"></span><span data-i18n="contact.addressValue">Astana IT University, EXPO, block C1</span></li>
+                    <li><span data-icon="phone"></span><a href="tel:+77001234567">+7 700 123 45 67</a></li>
+                    <li><span data-icon="clock"></span><span data-i18n="contact.hoursValue">Every day, 09:00–21:00</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© 2026 SweetBakery</p>
+            <p>Created by: Shamelova Dilara, Yessendos Diana, Shyntemir Zhanbota (SE-2506)</p>
+        </div>
+    </footer>
+
+    <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

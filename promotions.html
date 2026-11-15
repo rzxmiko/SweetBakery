@@ -1,138 +1,233 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promotions — SweetBakery</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/main.js" defer></script>
-    <title>Sweet Bakery - Promotions</title>
+    <!-- apply saved theme before the page is shown (no white flash) -->
+    <script>document.documentElement.dataset.theme = JSON.parse(localStorage.getItem("sweetbakery-theme") || '"light"');</script>
 </head>
-<body class="page-layout page-promos">
-    <a class="visually-hidden" href="#main-content">Skip to main content</a>
+<body data-page="promotions" data-title="title.promotions">
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
 
+    <!-- ===================== HEADER ===================== -->
     <header class="site-header">
-        <div class="header-inner">
-            <a href="index.html" class="brand">Sweet<span>Bakery</span></a>
-            
-            <div style="display: flex; align-items: center; gap: 12px; font-size: 0.85rem;">
-              <span id="live-clock" style="font-weight: 600; color: var(--pastel-blue-800);"></span>
-              <button id="bg-color-btn" class="btn" style="padding: 6px 12px; font-size: 0.8rem;">Theme</button>
+        <div class="container header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark" data-icon="cake"></span>
+                <span class="brand-name">Sweet<span>Bakery</span></span>
+            </a>
+
+            <div class="nav-panel" id="nav-panel">
+                <nav class="main-nav">
+                    <a href="index.html" data-i18n="nav.home">Home</a>
+                    <a href="menu.html" data-i18n="nav.menu">Menu</a>
+                    <a href="custom-cake.html" data-i18n="nav.custom">Custom cake</a>
+                    <a href="promotions.html" class="active" data-i18n="nav.promotions">Offers</a>
+                    <a href="about.html" data-i18n="nav.about">About</a>
+                    <a href="contact.html" data-i18n="nav.contact">Contacts</a>
+                </nav>
+                <div class="prefs">
+                    <label class="pref-select">
+                        <span class="visually-hidden">Language</span>
+                        <select id="lang-select">
+                            <option value="ru">RU</option>
+                            <option value="kk">KZ</option>
+                            <option value="en">EN</option>
+                        </select>
+                    </label>
+                </div>
             </div>
 
-            <nav class="site-nav">
-                <a href="index.html">Home</a>
-                <a href="promotions.html" class="active">Promotions</a>
-                <a href="cakes-catalog.html">Cakes Catalog</a>
-                <a href="desserts-menu.html">Desserts Menu</a>
-                <a href="about.html">About Us</a>
-                <a href="order-contact.html">Order &amp; Contact</a>
-            </nav>
+            <div class="header-actions">
+                <button type="button" class="theme-switch" id="theme-switch" role="switch" aria-checked="false" aria-label="Dark mode">
+                    <span class="theme-switch-thumb">
+                        <span class="icon-sun" data-icon="sun"></span>
+                        <span class="icon-moon" data-icon="moon"></span>
+                    </span>
+                </button>
+                <a class="icon-btn account-link" id="account-link" href="login.html">
+                    <span data-icon="user"></span>
+                    <span class="account-label" id="account-label">Sign in</span>
+                </a>
+                <a class="icon-btn cart-link" href="cart.html" aria-label="Cart">
+                    <span data-icon="bag"></span>
+                    <span class="cart-badge" id="cart-badge" hidden>0</span>
+                </a>
+                <button type="button" class="icon-btn burger" id="burger" aria-label="Menu" aria-expanded="false">
+                    <span class="icon-open" data-icon="menu"></span>
+                    <span class="icon-close" data-icon="close"></span>
+                </button>
+            </div>
         </div>
     </header>
 
-    <aside class="page-sidebar">
-        <h3>Quick Navigation</h3>
-        <ul>
-            <li><a href="#promo-container">Special Offers</a></li>
-            <li><a href="#gift-sets">Gift Sets</a></li>
-            <li><a href="order-contact.html">Claim Promotion</a></li>
-        </ul>
-    </aside>
-
-    <main id="main-content">
+    <main id="main">
         <section class="page-hero">
-            <div class="page-hero-inner">
-                <h1>Special promotions &amp; gift sets</h1>
-                <p>Check out our latest special offers and gift sets for any occasion.</p>
-                
-                <div style="margin-top: 16px;">
-                    <button id="open-popup-btn" class="btn">Get Special Promo Code</button>
+            <div class="container page-hero-split">
+                <div>
+                    <h1 data-i18n="promo.title">Promotions</h1>
+                    <p class="lead" data-i18n="promo.lead">Copy a promo code and enter it in the cart, or press "Apply".</p>
                 </div>
+                <button type="button" class="btn btn-primary btn-lg" id="open-popup-btn"><span data-icon="gift"></span><span data-i18n="promo.getCode">Get a promo code</span></button>
+            </div>
+        </section>
 
-                <div class="promo-code-box">
-                    <span class="promo-code-label">Promo code:</span>
-                    <code class="snippet" id="promo-code-text">SWEET15</code>
-                    <button type="button" class="copy-btn" data-copy-target="#promo-code-text" aria-label="Copy promo code" title="Copy promo code"></button>
+        <!-- Promo codes -->
+        <section class="section section-tight">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="eyebrow" data-i18n="promo.codesEyebrow">Promo codes</p>
+                        <h2 data-i18n="promo.codesTitle">Save on your order</h2>
+                    </div>
+                </div>
+                <div class="coupon-grid">
+                    <article class="coupon">
+                        <div class="coupon-side"><span class="coupon-value">−15%</span></div>
+                        <div class="coupon-body">
+                            <h3 data-i18n="promo.sweet">Welcome discount</h3>
+                            <p data-i18n="promo.sweetText">15% off your whole order.</p>
+                            <div class="coupon-actions">
+                                <span class="coupon-code">SWEET15</span>
+                                <button type="button" class="icon-btn copy-btn" data-copy="SWEET15" aria-label="Copy"><span data-icon="copy"></span></button>
+                                <button type="button" class="btn btn-sm btn-primary apply-btn" data-code="SWEET15" data-i18n="promo.apply">Apply</button>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="coupon">
+                        <div class="coupon-side"><span class="coupon-value">−10%</span></div>
+                        <div class="coupon-body">
+                            <h3 data-i18n="promo.weekend">Weekend treat</h3>
+                            <p data-i18n="promo.weekendText">10% off on Saturday and Sunday.</p>
+                            <div class="coupon-actions">
+                                <span class="coupon-code">WEEKEND10</span>
+                                <button type="button" class="icon-btn copy-btn" data-copy="WEEKEND10" aria-label="Copy"><span data-icon="copy"></span></button>
+                                <button type="button" class="btn btn-sm btn-primary apply-btn" data-code="WEEKEND10" data-i18n="promo.apply">Apply</button>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="coupon">
+                        <div class="coupon-side"><span class="coupon-value">−5%</span></div>
+                        <div class="coupon-body">
+                            <h3 data-i18n="promo.student">For students</h3>
+                            <p data-i18n="promo.studentText">5% off for students every day.</p>
+                            <div class="coupon-actions">
+                                <span class="coupon-code">STUDENT5</span>
+                                <button type="button" class="icon-btn copy-btn" data-copy="STUDENT5" aria-label="Copy"><span data-icon="copy"></span></button>
+                                <button type="button" class="btn btn-sm btn-primary apply-btn" data-code="STUDENT5" data-i18n="promo.apply">Apply</button>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <div id="popup-modal" class="popup-overlay">
-          <div class="popup-box">
-            <span id="close-popup-btn" class="popup-close">&times;</span>
-            <h3>Exclusive Promo!</h3>
-            <p>Enter your email to receive an instant 15% discount coupon for your first order.</p>
-            <input type="email" placeholder="Your email address" style="width:100%; padding:10px; margin:12px 0; border:1px solid var(--border); border-radius:var(--radius-sm);">
-            <button id="popup-submit-btn" class="btn" style="width:100%;">Get Coupon</button>
-          </div>
+        <!-- Sets: cards are created in main.js -->
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="eyebrow" data-i18n="promo.setsEyebrow">Better together</p>
+                        <h2 data-i18n="promo.setsTitle">Special sets</h2>
+                    </div>
+                </div>
+                <div class="product-grid" id="sets-grid"></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="promo-band">
+                    <span class="promo-band-icon" data-icon="gift"></span>
+                    <div>
+                        <h2 data-i18n="promo.giftTitle">Need a gift box?</h2>
+                        <p data-i18n="promo.giftText">Tell us the occasion and budget — we will put together a gift box.</p>
+                    </div>
+                    <a href="contact.html" class="btn btn-light" data-i18n="promo.giftCta">Contact us</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popup: email -> promo code -->
+        <div class="modal" id="popup-modal" hidden>
+            <div class="modal-box">
+                <button type="button" class="icon-btn modal-close" id="close-popup-btn" aria-label="Close"><span data-icon="close"></span></button>
+                <div id="popup-form-step">
+                    <span class="modal-icon" data-icon="gift"></span>
+                    <h2 data-i18n="promo.popupTitle">−15% on your first order</h2>
+                    <p data-i18n="promo.popupText">Enter your email and get a promo code.</p>
+                    <form id="popup-form" novalidate>
+                        <div class="field">
+                            <label for="popup-email" data-i18n="form.email">Email</label>
+                            <input type="text" id="popup-email" name="email" placeholder="you@example.com">
+                            <p class="field-error"></p>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" data-i18n="promo.popupBtn">Get the code</button>
+                    </form>
+                </div>
+                <div id="popup-done-step" hidden>
+                    <span class="modal-icon modal-icon-success" data-icon="check"></span>
+                    <h2 data-i18n="promo.popupDone">Your promo code:</h2>
+                    <div class="code-box"><code>SWEET15</code></div>
+                </div>
+            </div>
         </div>
-
-        <section id="promo-container">
-            <article class="promo-card">
-                <div class="card-img-wrap">
-                    <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/cupcakess.jpeg" alt="Cupcakes Set">
-                    <span class="promo-save">Save $3</span>
-                </div>
-                <div class="card-body">
-                    <h2>Weekend Cupcake Set</h2>
-                    <p>Get 20% off on any box of 6 cupcakes every weekend.</p>
-                    <div class="price-row">
-                        <span class="price">$12</span>
-                        <span class="price-was">$15</span>
-                    </div>
-                    <a href="order-contact.html" class="btn">Order now</a>
-                </div>
-            </article>
-
-            <article class="promo-card">
-                <div class="card-img-wrap">
-                    <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/birthdaycake.jpg" alt="Birthday Cake">
-                    <span class="promo-save">Save $3</span>
-                </div>
-                <div class="card-body">
-                    <h2>Birthday Cake Special</h2>
-                    <p>Order a birthday cake and receive a free set of candles.</p>
-                    <div class="price-row">
-                        <span class="price">$27</span>
-                        <span class="price-was">$30</span>
-                    </div>
-                    <a href="order-contact.html" class="btn">Order now</a>
-                </div>
-            </article>
-
-            <article class="promo-card">
-                <div class="card-img-wrap">
-                    <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/red-velvet.jpg" alt="Red Velvet Cake">
-                    <span class="promo-save">Save $2</span>
-                </div>
-                <div class="card-body">
-                    <h2>Red Velvet Slice Duo</h2>
-                    <p>Two slices of our Classic Red Velvet with cream cheese frosting, packed to go.</p>
-                    <div class="price-row">
-                        <span class="price">$9</span>
-                        <span class="price-was">$11</span>
-                    </div>
-                    <a href="order-contact.html" class="btn">Order now</a>
-                </div>
-            </article>
-        </section>
-
-        <section id="gift-sets" class="gift-banner">
-            <div class="gift-banner-text">
-                <h2>Looking for a gift set?</h2>
-                <p>Tell us the occasion and your budget. We will put together a box of cupcakes, slices or a small cake, wrapped and ready to give.</p>
-            </div>
-            <a href="order-contact.html" class="btn btn-light">Ask for a gift set</a>
-        </section>
     </main>
 
-    <footer>
-        <p>Created by: Shamelova Dilara, Yessendos Diana, Shyntemir Zhanbota (SE-2506)</p>
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-about">
+                <a href="index.html" class="brand brand-light">
+                    <span class="brand-mark" data-icon="cake"></span>
+                    <span class="brand-name">Sweet<span>Bakery</span></span>
+                </a>
+                <p data-i18n="footer.tagline">A family bakery in Astana. Cakes and desserts baked by hand every morning.</p>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.shop">Shop</h2>
+                <ul>
+                    <li><a href="menu.html" data-i18n="nav.menu">Menu</a></li>
+                    <li><a href="custom-cake.html" data-i18n="nav.custom">Custom cake</a></li>
+                    <li><a href="promotions.html" data-i18n="nav.promotions">Offers</a></li>
+                    <li><a href="cart.html" data-i18n="nav.cart">Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.info">Information</h2>
+                <ul>
+                    <li><a href="about.html" data-i18n="nav.about">About</a></li>
+                    <li><a href="about.html#faq" data-i18n="footer.faq">FAQ</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Contacts</a></li>
+                    <li><a href="profile.html" data-i18n="footer.account">My profile</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.contacts">Contacts</h2>
+                <ul class="footer-contacts">
+                    <li><span data-icon="pin"></span><span data-i18n="contact.addressValue">Astana IT University, EXPO, block C1</span></li>
+                    <li><span data-icon="phone"></span><a href="tel:+77001234567">+7 700 123 45 67</a></li>
+                    <li><span data-icon="clock"></span><span data-i18n="contact.hoursValue">Every day, 09:00–21:00</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© 2026 SweetBakery</p>
+            <p>Created by: Shamelova Dilara, Yessendos Diana, Shyntemir Zhanbota (SE-2506)</p>
+        </div>
     </footer>
+
+    <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

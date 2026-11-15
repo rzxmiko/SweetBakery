@@ -1,138 +1,274 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us — SweetBakery</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/main.js" defer></script>
-    <title>Sweet Bakery - About Us</title>
+    <!-- apply saved theme before the page is shown (no white flash) -->
+    <script>document.documentElement.dataset.theme = JSON.parse(localStorage.getItem("sweetbakery-theme") || '"light"');</script>
 </head>
-<body class="page-layout">
-    <a class="visually-hidden" href="#main-content">Skip to main content</a>
+<body data-page="about" data-title="title.about">
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
 
+    <!-- ===================== HEADER ===================== -->
     <header class="site-header">
-        <div class="header-inner">
-            <a href="index.html" class="brand">Sweet<span>Bakery</span></a>
-            
-            <div style="display: flex; align-items: center; gap: 12px; font-size: 0.85rem;">
-              <span id="live-clock" style="font-weight: 600; color: var(--pastel-blue-800);"></span>
-              <button id="bg-color-btn" class="btn" style="padding: 6px 12px; font-size: 0.8rem;">Theme</button>
+        <div class="container header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark" data-icon="cake"></span>
+                <span class="brand-name">Sweet<span>Bakery</span></span>
+            </a>
+
+            <div class="nav-panel" id="nav-panel">
+                <nav class="main-nav">
+                    <a href="index.html" data-i18n="nav.home">Home</a>
+                    <a href="menu.html" data-i18n="nav.menu">Menu</a>
+                    <a href="custom-cake.html" data-i18n="nav.custom">Custom cake</a>
+                    <a href="promotions.html" data-i18n="nav.promotions">Offers</a>
+                    <a href="about.html" class="active" data-i18n="nav.about">About</a>
+                    <a href="contact.html" data-i18n="nav.contact">Contacts</a>
+                </nav>
+                <div class="prefs">
+                    <label class="pref-select">
+                        <span class="visually-hidden">Language</span>
+                        <select id="lang-select">
+                            <option value="ru">RU</option>
+                            <option value="kk">KZ</option>
+                            <option value="en">EN</option>
+                        </select>
+                    </label>
+                </div>
             </div>
 
-            <nav class="site-nav">
-                <a href="index.html">Home</a>
-                <a href="promotions.html">Promotions</a>
-                <a href="cakes-catalog.html">Cakes Catalog</a>
-                <a href="desserts-menu.html">Desserts Menu</a>
-                <a href="about.html" class="active">About Us</a>
-                <a href="order-contact.html">Order &amp; Contact</a>
-            </nav>
+            <div class="header-actions">
+                <button type="button" class="theme-switch" id="theme-switch" role="switch" aria-checked="false" aria-label="Dark mode">
+                    <span class="theme-switch-thumb">
+                        <span class="icon-sun" data-icon="sun"></span>
+                        <span class="icon-moon" data-icon="moon"></span>
+                    </span>
+                </button>
+                <a class="icon-btn account-link" id="account-link" href="login.html">
+                    <span data-icon="user"></span>
+                    <span class="account-label" id="account-label">Sign in</span>
+                </a>
+                <a class="icon-btn cart-link" href="cart.html" aria-label="Cart">
+                    <span data-icon="bag"></span>
+                    <span class="cart-badge" id="cart-badge" hidden>0</span>
+                </a>
+                <button type="button" class="icon-btn burger" id="burger" aria-label="Menu" aria-expanded="false">
+                    <span class="icon-open" data-icon="menu"></span>
+                    <span class="icon-close" data-icon="close"></span>
+                </button>
+            </div>
         </div>
     </header>
 
-    <aside class="page-sidebar">
-        <h3>Quick Navigation</h3>
-        <ul>
-            <li><a href="#pastry-chef">Our Pastry Chef</a></li>
-            <li><a href="#about-values">What We Stand For</a></li>
-            <li><a href="#faq-section">FAQ (Accordion)</a></li>
-            <li><a href="#team-info">Our Team</a></li>
-        </ul>
-    </aside>
-
-    <main id="main-content">
+    <main id="main">
         <section class="page-hero">
-            <div class="page-hero-inner">
-                <h1>About SweetBakery</h1>
-                <p>We have been making fresh signature cakes and desserts using natural ingredients since 2020.</p>
+            <div class="container">
+                <h1 data-i18n="about.title">About SweetBakery</h1>
+                <p class="lead" data-i18n="about.lead">A small family bakery in Astana. We bake cakes and desserts by hand since 2020.</p>
             </div>
         </section>
 
-        <section id="pastry-chef" class="profile-section">
-            <div class="profile-img-wrap">
-                <img src="images/Anna.jpg" alt="Chef Anna">
-            </div>
-            <div>
-                <h2>Our Pastry Chef</h2>
-                <p><strong>Anna Petrova</strong> — Head Pastry Chef with 10 years of experience.</p>
-            </div>
-        </section>
-
-        <section id="about-values">
-            <h2>What we stand for</h2>
-            <div class="card-container">
-                <article class="card">
-                    <div class="card-img-wrap">
-                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/berry-bliss.jpg" alt="Cake with fresh berries">
-                    </div>
-                    <div class="card-body">
-                        <h3>Natural ingredients</h3>
-                        <p>Fresh berries, real butter and Belgian chocolate in every cake we make.</p>
-                        <a href="cakes-catalog.html" class="btn">See the cakes</a>
-                    </div>
-                </article>
-                <article class="card">
-                    <div class="card-img-wrap">
-                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/cupcakess.jpeg" alt="Freshly baked cupcakes">
-                    </div>
-                    <div class="card-body">
-                        <h3>Baked every morning</h3>
-                        <p>Cupcakes, macarons and croissants come out of the oven fresh each day.</p>
-                        <a href="desserts-menu.html" class="btn">View the menu</a>
-                    </div>
-                </article>
-                <article class="card">
-                    <div class="card-img-wrap">
-                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/birthdaycake.jpg" alt="Custom birthday cake">
-                    </div>
-                    <div class="card-body">
-                        <h3>Made for your occasion</h3>
-                        <p>From birthday cakes to tiered wedding cakes, we design around your event.</p>
-                        <a href="order-contact.html" class="btn">Place an order</a>
-                    </div>
-                </article>
+        <!-- Our pastry chef -->
+        <section class="section section-tight">
+            <div class="container story">
+                <div class="story-text">
+                    <p class="eyebrow" data-i18n="about.storyEyebrow">Our story</p>
+                    <h2 data-i18n="about.storyTitle">It started with one birthday cake</h2>
+                    <p data-i18n="about.story1">In 2020 our chef Anna baked a cake for a friend. A week later there were ten orders, and a month later — our first small kitchen.</p>
+                    <p data-i18n="about.story2">Today we bake every morning: cakes, cupcakes, macarons and croissants.</p>
+                </div>
+                <figure class="chef-card">
+                    <img src="images/Anna.jpg" alt="Chef Anna">
+                    <figcaption>
+                        <strong>Anna Petrova</strong>
+                        <span data-i18n="about.chefRole">Head pastry chef · 10 years of experience</span>
+                    </figcaption>
+                </figure>
             </div>
         </section>
 
-        <!-- TASK 2:FAQ -->
-        <section id="faq-section">
-            <h2>Frequently Asked Questions</h2>
-            <p class="section-lead">Find answers to common questions about our service.</p>
-
-            <div class="search-box">
-                <label for="faq-search" class="visually-hidden">Search the FAQ</label>
-                <input type="search" id="faq-search" placeholder="Search the FAQ (e.g. cake, delivery)..." autocomplete="off">
-                <span id="faq-search-info" class="search-info" aria-live="polite"></span>
-            </div>
-            
-            <div class="accordion-header">Do you offer gluten-free options?</div>
-            <div class="accordion-content">
-                <p style="padding: 12px 0;">Yes, we have a selection of gluten-free cupcakes and specialized cakes available upon request.</p>
-            </div>
-
-            <div class="accordion-header">What payment methods do you accept?</div>
-            <div class="accordion-content">
-                <p style="padding: 12px 0;">We accept online bank transfers, mobile payments, and cash upon pickup or courier delivery.</p>
+        <!-- Values -->
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="eyebrow" data-i18n="about.valuesEyebrow">What we stand for</p>
+                        <h2 data-i18n="about.valuesTitle">Our principles</h2>
+                    </div>
+                </div>
+                <div class="value-grid">
+                    <article class="value-card">
+                        <img src="images/berry-bliss.jpg" alt="Cake with berries">
+                        <div class="value-body">
+                            <span class="value-icon" data-icon="leaf"></span>
+                            <h3 data-i18n="about.value1">Natural ingredients</h3>
+                            <p data-i18n="about.value1Text">Fresh berries, real butter and Belgian chocolate.</p>
+                        </div>
+                    </article>
+                    <article class="value-card">
+                        <img src="images/cupcakess.jpeg" alt="Cupcakes">
+                        <div class="value-body">
+                            <span class="value-icon" data-icon="clock"></span>
+                            <h3 data-i18n="about.value2">Baked every morning</h3>
+                            <p data-i18n="about.value2Text">We bake to order, so everything is fresh.</p>
+                        </div>
+                    </article>
+                    <article class="value-card">
+                        <img src="images/birthdaycake.jpg" alt="Birthday cake">
+                        <div class="value-body">
+                            <span class="value-icon" data-icon="sparkles"></span>
+                            <h3 data-i18n="about.value3">Made for your event</h3>
+                            <p data-i18n="about.value3Text">From a birthday cake to a wedding cake.</p>
+                        </div>
+                    </article>
+                </div>
             </div>
         </section>
 
-        <section id="team-info">
-            <h2>About Our Team</h2>
-            <ul class="team-list">
-                <li><strong>Shamelova Dilara</strong> — Home &amp; Promotions</li>
-                <li><strong>Yessendos Diana</strong> — Cakes Catalog &amp; Desserts Menu pages</li>
-                <li><strong>Shyntemir Zhanbota</strong> — About Us &amp; Order and Contact pages</li>
-            </ul>
+        <!-- External API: dessert recipes from TheMealDB -->
+        <section class="section" id="recipes">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="eyebrow" data-i18n="recipes.eyebrow">Bake at home</p>
+                        <h2 data-i18n="recipes.title">Dessert recipes from around the world</h2>
+                        <p class="section-sub" data-i18n="recipes.sub">Recipes are loaded from the free TheMealDB API (in English).</p>
+                    </div>
+                </div>
+                <div class="toolbar toolbar-simple">
+                    <div class="search-field">
+                        <span data-icon="search"></span>
+                        <label for="recipe-search" class="visually-hidden">Search recipes</label>
+                        <input type="search" id="recipe-search" autocomplete="off" data-i18n-placeholder="recipes.searchPh" placeholder="Search: chocolate, pie…">
+                    </div>
+                </div>
+                <p class="results-info" id="recipe-info"></p>
+                <div class="recipe-grid" id="recipe-grid"></div>
+                <div class="empty-state" id="recipe-error" hidden>
+                    <span class="empty-icon" data-icon="alert"></span>
+                    <h3 data-i18n="recipes.errorTitle">Could not load recipes</h3>
+                    <p data-i18n="recipes.errorText">Check your internet connection and try again.</p>
+                    <button type="button" class="btn btn-primary" id="recipe-retry"><span data-icon="refresh"></span><span data-i18n="recipes.retry">Try again</span></button>
+                </div>
+                <div class="center-row">
+                    <button type="button" class="btn btn-ghost" id="recipe-more" hidden data-i18n="recipes.more">Show more</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ (accordion + search) -->
+        <section class="section section-alt" id="faq">
+            <div class="container container-narrow">
+                <div class="section-head section-head-center">
+                    <div>
+                        <p class="eyebrow" data-i18n="faq.eyebrow">Questions</p>
+                        <h2 data-i18n="faq.title">Frequently asked questions</h2>
+                    </div>
+                </div>
+                <div class="search-field search-field-wide">
+                    <span data-icon="search"></span>
+                    <label for="faq-search" class="visually-hidden">Search the FAQ</label>
+                    <input type="search" id="faq-search" autocomplete="off" data-i18n-placeholder="faq.searchPh" placeholder="Search: delivery, payment…">
+                </div>
+                <p class="results-info" id="faq-info"></p>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-trigger"><span class="faq-q" data-i18n="faq.q1">What are your delivery hours?</span><span class="accordion-icon" data-icon="plus"></span></button>
+                        <div class="accordion-panel"><p class="faq-a" data-i18n="faq.a1">We deliver every day from 9:00 to 21:00 across Astana.</p></div>
+                    </div>
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-trigger"><span class="faq-q" data-i18n="faq.q2">How far in advance should I order?</span><span class="accordion-icon" data-icon="plus"></span></button>
+                        <div class="accordion-panel"><p class="faq-a" data-i18n="faq.a2">Desserts from the menu are ready the next day. Custom cakes need 2–4 days.</p></div>
+                    </div>
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-trigger"><span class="faq-q" data-i18n="faq.q3">What payment methods do you accept?</span><span class="accordion-icon" data-icon="plus"></span></button>
+                        <div class="accordion-panel"><p class="faq-a" data-i18n="faq.a3">Kaspi.kz, bank card online, or cash on receipt.</p></div>
+                    </div>
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-trigger"><span class="faq-q" data-i18n="faq.q4">Do you have gluten-free desserts?</span><span class="accordion-icon" data-icon="plus"></span></button>
+                        <div class="accordion-panel"><p class="faq-a" data-i18n="faq.a4">Yes, our macarons are gluten-free.</p></div>
+                    </div>
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-trigger"><span class="faq-q" data-i18n="faq.q5">Do I need an account to order?</span><span class="accordion-icon" data-icon="plus"></span></button>
+                        <div class="accordion-panel"><p class="faq-a" data-i18n="faq.a5">No, but with an account your orders are saved in your profile.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team -->
+        <section class="section">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="eyebrow">SE-2506</p>
+                        <h2 data-i18n="team.title">Our team</h2>
+                    </div>
+                </div>
+                <ul class="team-grid">
+                    <li class="team-card"><span class="team-avatar">SD</span><div><strong>Shamelova Dilara</strong><span data-i18n="team.role1">Home &amp; Promotions</span></div></li>
+                    <li class="team-card"><span class="team-avatar">YD</span><div><strong>Yessendos Diana</strong><span data-i18n="team.role2">Menu &amp; Custom cake</span></div></li>
+                    <li class="team-card"><span class="team-avatar">SZ</span><div><strong>Shyntemir Zhanbota</strong><span data-i18n="team.role3">About, Contacts, Cart &amp; Profile</span></div></li>
+                </ul>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <p>Created by: Shamelova Dilara, Yessendos Diana, Shyntemir Zhanbota (SE-2506)</p>
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-about">
+                <a href="index.html" class="brand brand-light">
+                    <span class="brand-mark" data-icon="cake"></span>
+                    <span class="brand-name">Sweet<span>Bakery</span></span>
+                </a>
+                <p data-i18n="footer.tagline">A family bakery in Astana. Cakes and desserts baked by hand every morning.</p>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.shop">Shop</h2>
+                <ul>
+                    <li><a href="menu.html" data-i18n="nav.menu">Menu</a></li>
+                    <li><a href="custom-cake.html" data-i18n="nav.custom">Custom cake</a></li>
+                    <li><a href="promotions.html" data-i18n="nav.promotions">Offers</a></li>
+                    <li><a href="cart.html" data-i18n="nav.cart">Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.info">Information</h2>
+                <ul>
+                    <li><a href="about.html" data-i18n="nav.about">About</a></li>
+                    <li><a href="about.html#faq" data-i18n="footer.faq">FAQ</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Contacts</a></li>
+                    <li><a href="profile.html" data-i18n="footer.account">My profile</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.contacts">Contacts</h2>
+                <ul class="footer-contacts">
+                    <li><span data-icon="pin"></span><span data-i18n="contact.addressValue">Astana IT University, EXPO, block C1</span></li>
+                    <li><span data-icon="phone"></span><a href="tel:+77001234567">+7 700 123 45 67</a></li>
+                    <li><span data-icon="clock"></span><span data-i18n="contact.hoursValue">Every day, 09:00–21:00</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© 2026 SweetBakery</p>
+            <p>Created by: Shamelova Dilara, Yessendos Diana, Shyntemir Zhanbota (SE-2506)</p>
+        </div>
     </footer>
+
+    <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

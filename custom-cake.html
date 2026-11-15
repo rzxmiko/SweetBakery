@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom cake — SweetBakery</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- apply saved theme before the page is shown (no white flash) -->
+    <script>document.documentElement.dataset.theme = JSON.parse(localStorage.getItem("sweetbakery-theme") || '"light"');</script>
+</head>
+<body data-page="custom" data-title="title.custom">
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+
+    <!-- ===================== HEADER ===================== -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark" data-icon="cake"></span>
+                <span class="brand-name">Sweet<span>Bakery</span></span>
+            </a>
+
+            <div class="nav-panel" id="nav-panel">
+                <nav class="main-nav">
+                    <a href="index.html" data-i18n="nav.home">Home</a>
+                    <a href="menu.html" data-i18n="nav.menu">Menu</a>
+                    <a href="custom-cake.html" class="active" data-i18n="nav.custom">Custom cake</a>
+                    <a href="promotions.html" data-i18n="nav.promotions">Offers</a>
+                    <a href="about.html" data-i18n="nav.about">About</a>
+                    <a href="contact.html" data-i18n="nav.contact">Contacts</a>
+                </nav>
+                <div class="prefs">
+                    <label class="pref-select">
+                        <span class="visually-hidden">Language</span>
+                        <select id="lang-select">
+                            <option value="ru">RU</option>
+                            <option value="kk">KZ</option>
+                            <option value="en">EN</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button type="button" class="theme-switch" id="theme-switch" role="switch" aria-checked="false" aria-label="Dark mode">
+                    <span class="theme-switch-thumb">
+                        <span class="icon-sun" data-icon="sun"></span>
+                        <span class="icon-moon" data-icon="moon"></span>
+                    </span>
+                </button>
+                <a class="icon-btn account-link" id="account-link" href="login.html">
+                    <span data-icon="user"></span>
+                    <span class="account-label" id="account-label">Sign in</span>
+                </a>
+                <a class="icon-btn cart-link" href="cart.html" aria-label="Cart">
+                    <span data-icon="bag"></span>
+                    <span class="cart-badge" id="cart-badge" hidden>0</span>
+                </a>
+                <button type="button" class="icon-btn burger" id="burger" aria-label="Menu" aria-expanded="false">
+                    <span class="icon-open" data-icon="menu"></span>
+                    <span class="icon-close" data-icon="close"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="page-hero">
+            <div class="container">
+                <h1 data-i18n="builder.title">Design your own cake</h1>
+                <p class="lead" data-i18n="builder.lead">Choose the details, see the price at once and add the cake to your cart.</p>
+            </div>
+        </section>
+
+        <section class="section section-tight">
+            <div class="container">
+                <form id="builder-form" class="builder-layout" novalidate>
+                    <div class="builder-steps">
+                        <!-- 1. Occasion -->
+                        <fieldset class="builder-step">
+                            <legend><span class="step-badge">1</span><span data-i18n="builder.occasion">Occasion</span></legend>
+                            <div class="field">
+                                <label for="b-occasion" class="visually-hidden">Occasion</label>
+                                <select id="b-occasion" name="occasion">
+                                    <option value="" data-i18n="builder.choose">Choose an occasion</option>
+                                    <option value="birthday" data-i18n="builder.birthday">Birthday</option>
+                                    <option value="wedding" data-i18n="builder.wedding">Wedding</option>
+                                    <option value="kids" data-i18n="builder.kids">Kids party</option>
+                                    <option value="other" data-i18n="builder.other">Other</option>
+                                </select>
+                                <p class="field-error"></p>
+                            </div>
+                        </fieldset>
+
+                        <!-- 2. Size -->
+                        <fieldset class="builder-step">
+                            <legend><span class="step-badge">2</span><span data-i18n="builder.size">Size</span></legend>
+                            <div class="option-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="size" value="1" data-price="12000" checked>
+                                    <span class="option-body"><span class="option-title" data-i18n="builder.kg1">1 kg</span><span class="option-meta" data-i18n="builder.size1">6–8 servings</span><span class="option-price">12 000 ₸</span></span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="size" value="2" data-price="24000">
+                                    <span class="option-body"><span class="option-title" data-i18n="builder.kg2">2 kg</span><span class="option-meta" data-i18n="builder.size2">14–16 servings</span><span class="option-price">24 000 ₸</span></span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="size" value="3" data-price="36000">
+                                    <span class="option-body"><span class="option-title" data-i18n="builder.kg3">3 kg</span><span class="option-meta" data-i18n="builder.size3">20–25 servings</span><span class="option-price">36 000 ₸</span></span>
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <!-- 3. Filling -->
+                        <fieldset class="builder-step">
+                            <legend><span class="step-badge">3</span><span data-i18n="builder.filling">Filling</span></legend>
+                            <div class="option-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="filling" value="vanilla" data-price="0" checked>
+                                    <span class="option-body"><span class="option-title" data-i18n="builder.vanilla">Vanilla cream</span><span class="option-price" data-i18n="builder.included">included</span></span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="filling" value="chocolate" data-price="0">
+                                    <span class="option-body"><span class="option-title" data-i18n="builder.chocolate">Chocolate</span><span class="option-price" data-i18n="builder.included">included</span></span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="filling" value="raspberry" data-price="2000">
+                                    <span class="option-body"><span class="option-title" data-i18n="builder.raspberry">Raspberry</span><span class="option-price">+2 000 ₸</span></span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="filling" value="mango" data-price="2000">
+                                    <span class="option-body"><span class="option-title" data-i18n="builder.mango">Mango</span><span class="option-price">+2 000 ₸</span></span>
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <!-- 4. Decoration -->
+                        <fieldset class="builder-step">
+                            <legend><span class="step-badge">4</span><span data-i18n="builder.decor">Decoration</span></legend>
+                            <div class="option-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="decor" value="cream" data-price="0" data-days="2" checked>
+                                    <span class="option-body"><span class="option-title" data-i18n="builder.cream">Simple cream</span><span class="option-meta" data-i18n="builder.days2">ready in 2 days</span><span class="option-price" data-i18n="builder.included">included</span></span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="decor" value="berries" data-price="3000" data-days="2">
+                                    <span class="option-body"><span class="option-title" data-i18n="builder.berries">Fresh berries</span><span class="option-meta" data-i18n="builder.days2">ready in 2 days</span><span class="option-price">+3 000 ₸</span></span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="decor" value="fondant" data-price="8000" data-days="4">
+                                    <span class="option-body"><span class="option-title" data-i18n="builder.fondant">Fondant figures</span><span class="option-meta" data-i18n="builder.days4">ready in 4 days</span><span class="option-price">+8 000 ₸</span></span>
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <!-- 5. Inscription -->
+                        <fieldset class="builder-step">
+                            <legend><span class="step-badge">5</span><span data-i18n="builder.personal">Inscription and wishes</span></legend>
+                            <div class="field">
+                                <label for="b-text" data-i18n="builder.inscription">Inscription on the cake (up to 30 characters)</label>
+                                <input type="text" id="b-text" name="inscription" data-i18n-placeholder="builder.inscriptionPh" placeholder="Happy birthday, Aru!">
+                                <p class="field-error"></p>
+                            </div>
+                            <div class="field">
+                                <label for="b-notes" data-i18n="builder.notes">Wishes for the baker</label>
+                                <textarea id="b-notes" name="notes" rows="3" data-i18n-placeholder="builder.notesPh" placeholder="Colours, theme, allergies…"></textarea>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <!-- Summary -->
+                    <aside class="builder-summary">
+                        <div class="summary-card">
+                            <h2 class="summary-title" data-i18n="builder.summary">Your cake</h2>
+                            <dl class="summary-list" id="builder-summary"></dl>
+                            <div class="summary-total">
+                                <span data-i18n="builder.total">Total</span>
+                                <strong id="builder-total">12 000 ₸</strong>
+                            </div>
+                            <p class="summary-note"><span data-icon="calendar"></span><span id="builder-ready"></span></p>
+                            <button type="submit" class="btn btn-primary btn-block btn-lg"><span data-icon="bag"></span><span data-i18n="builder.add">Add to cart</span></button>
+                        </div>
+                    </aside>
+                </form>
+            </div>
+        </section>
+
+        <!-- Gallery -->
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="eyebrow" data-i18n="builder.galleryEyebrow">Inspiration</p>
+                        <h2 data-i18n="builder.galleryTitle">Cakes we have made</h2>
+                    </div>
+                </div>
+                <div class="gallery">
+                    <figure class="gallery-item"><img src="images/gallery-5.jpg" alt="Wedding cake"><figcaption data-i18n="gallery.1">Wedding cake</figcaption></figure>
+                    <figure class="gallery-item"><img src="images/gallery-4.jpg" alt="Birthday cake"><figcaption data-i18n="gallery.2">Birthday cake</figcaption></figure>
+                    <figure class="gallery-item"><img src="images/gallery-6.jpg" alt="Fondant cake"><figcaption data-i18n="gallery.3">Fondant figures</figcaption></figure>
+                    <figure class="gallery-item"><img src="images/gallery-2.jpg" alt="Berry cake"><figcaption data-i18n="gallery.4">Fresh berries</figcaption></figure>
+                    <figure class="gallery-item"><img src="images/gallery-7.jpg" alt="Cream cake"><figcaption data-i18n="gallery.5">Simple cream</figcaption></figure>
+                    <figure class="gallery-item"><img src="images/gallery-8.jpg" alt="Caramel cake"><figcaption data-i18n="gallery.6">Salted caramel</figcaption></figure>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-about">
+                <a href="index.html" class="brand brand-light">
+                    <span class="brand-mark" data-icon="cake"></span>
+                    <span class="brand-name">Sweet<span>Bakery</span></span>
+                </a>
+                <p data-i18n="footer.tagline">A family bakery in Astana. Cakes and desserts baked by hand every morning.</p>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.shop">Shop</h2>
+                <ul>
+                    <li><a href="menu.html" data-i18n="nav.menu">Menu</a></li>
+                    <li><a href="custom-cake.html" data-i18n="nav.custom">Custom cake</a></li>
+                    <li><a href="promotions.html" data-i18n="nav.promotions">Offers</a></li>
+                    <li><a href="cart.html" data-i18n="nav.cart">Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.info">Information</h2>
+                <ul>
+                    <li><a href="about.html" data-i18n="nav.about">About</a></li>
+                    <li><a href="about.html#faq" data-i18n="footer.faq">FAQ</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Contacts</a></li>
+                    <li><a href="profile.html" data-i18n="footer.account">My profile</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h2 class="footer-title" data-i18n="footer.contacts">Contacts</h2>
+                <ul class="footer-contacts">
+                    <li><span data-icon="pin"></span><span data-i18n="contact.addressValue">Astana IT University, EXPO, block C1</span></li>
+                    <li><span data-icon="phone"></span><a href="tel:+77001234567">+7 700 123 45 67</a></li>
+                    <li><span data-icon="clock"></span><span data-i18n="contact.hoursValue">Every day, 09:00–21:00</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© 2026 SweetBakery</p>
+            <p>Created by: Shamelova Dilara, Yessendos Diana, Shyntemir Zhanbota (SE-2506)</p>
+        </div>
+    </footer>
+
+    <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

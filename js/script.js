@@ -1,483 +1,330 @@
-
-
-$(document).ready(function () {
-
-  // =========================================================================
-  // TASK 0. SETUP
-  // =========================================================================
-  console.log("jQuery is ready!");
-
-  function escapeHtml(str) {
-    return String(str)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;");
+function getData(key, defaultValue) {
+  const saved = localStorage.getItem(key);
+  if (saved === null) return defaultValue;
+  try {
+    return JSON.parse(saved);
+  } catch (e) {
+    return defaultValue;
   }
+}
 
-  function escapeRegExp(str) {
-    return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+function saveData(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+function formatPrice(sum) {
+  return sum.toLocaleString("ru-RU") + " ₸";
+}
+
+
+let currentLang = getData("sweetbakery-lang", "ru");
+
+function t(key, params) {
+  let text = translations[currentLang][key] || translations.en[key] || key;
+  if (params) {
+    for (const name in params) {
+      text = text.replace("{" + name + "}", params[name]);
+    }
   }
+  return text;
+}
 
-  // =========================================================================
-  // TASK 7. NOTIFICATION SYSTEM (toast that fades out)
-  // =========================================================================
-  const $toastBox = $('<div id="toast-container" aria-live="polite"></div>').appendTo("body");
+function tr(obj) {
+  return obj[currentLang] || obj.en;
+}
 
-  function showToast(message, type, duration) {
-    type = type || "success";
-    duration = duration || 3000;
+function applyTranslations() {
+  document.documentElement.lang = currentLang;
 
-    const icons = { success: "✔", error: "✖", info: "ℹ" };
-
-    const $toast = $('<div class="toast" role="status"></div>')
-      .addClass("toast-" + type)
-      .append($('<span class="toast-icon"></span>').text(icons[type] || icons.info))
-      .append($('<span class="toast-msg"></span>').text(message))
-      .appendTo($toastBox)
-      .hide();
-
-    $toast.fadeIn(250).delay(duration).fadeOut(400, function () {
-      $(this).remove();
-    });
-
-    $toast.on("click", function () {
-      $(this).stop(true, true).fadeOut(200, function () {
-        $(this).remove();
-      });
-    });
-  }
-
-  $("#star-rating").on("click", ".star", function () {
-    const value = $(this).attr("data-value");
-    showToast("Thanks for rating us " + value + " out of 5!", "success");
+  document.querySelectorAll("[data-i18n]").forEach(function (el) {
+    el.textContent = t(el.dataset.i18n);
+  });
+  document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
+    el.innerHTML = t(el.dataset.i18nHtml);
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
+    el.placeholder = t(el.dataset.i18nPlaceholder);
+  });
+  document.querySelectorAll(".field-error[data-key]").forEach(function (el) {
+    el.textContent = el.dataset.key ? t(el.dataset.key) : "";
   });
 
-  // =========================================================================
-  // TASK 1. REAL-TIME SEARCH AND LIVE FILTER (Cakes Catalog)
-  // =========================================================================
-  const $cakeSearch = $("#cake-search");
+  document.title = t(document.body.dataset.title) + " — SweetBakery";
+}
 
-  function applyCakeSearch() {
-    const query = $cakeSearch.val().trim().toLowerCase();
-    const $cards = $("#dynamic-cake-container .card");
-    const total = $cards.length;
+function changeLanguage(lang) {
+  currentLang = lang;
+  saveData("sweetbakery-lang", lang);
+  applyTranslations();
+  updateAccountLink();
+  document.dispatchEvent(new Event("languageChanged"));
+}
 
-    const $matches = $cards.hide().filter(function () {
-      return $(this).text().toLowerCase().indexOf(query) > -1;
-    }).show();
 
-    $("#no-cakes-msg").prop("hidden", $matches.length > 0 || total === 0);
+function initTheme() {
+  const themeSwitch = document.getElementById("theme-switch");
+  const theme = getData("sweetbakery-theme", "light");
+  document.documentElement.dataset.theme = theme;
+  themeSwitch.setAttribute("aria-checked", theme === "dark");
 
-    if (query === "") {
-      $("#cake-search-info").text("");
-    } else {
-      $("#cake-search-info").text("Showing " + $matches.length + " of " + total + " cakes");
-    }
+  themeSwitch.addEventListener("click", function () {
+    const newTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = newTheme;
+    themeSwitch.setAttribute("aria-checked", newTheme === "dark");
+    saveData("sweetbakery-theme", newTheme);
+  });
+}
+
+
+const icons = {
+  cake: '<path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"/><path d="M2 21h20"/><path d="M7 8v3M12 8v3M17 8v3"/><path d="M7 4h.01M12 4h.01M17 4h.01"/>',
+  bag: '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>',
+  user: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+  search: '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>',
+  sun: '<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>',
+  moon: '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>',
+  menu: '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>',
+  close: '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>',
+  plus: '<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>',
+  minus: '<line x1="5" y1="12" x2="19" y2="12"/>',
+  trash: '<polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>',
+  check: '<polyline points="20 6 9 17 4 12"/>',
+  copy: '<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
+  arrow: '<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>',
+  pin: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
+  phone: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>',
+  mail: '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>',
+  clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+  truck: '<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>',
+  store: '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+  card: '<rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/>',
+  mobile: '<rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>',
+  cash: '<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/>',
+  gift: '<polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>',
+  leaf: '<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>',
+  sparkles: '<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/>',
+  logout: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>',
+  package: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>',
+  refresh: '<polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>',
+  alert: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>',
+  eye: '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>',
+  calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>',
+  tag: '<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>',
+  lock: '<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>'
+};
+
+function icon(name) {
+  return '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + icons[name] + "</svg>";
+}
+
+function renderIcons() {
+  document.querySelectorAll("[data-icon]").forEach(function (el) {
+    el.innerHTML = icon(el.dataset.icon);
+  });
+}
+
+
+function initMobileMenu() {
+  const burger = document.getElementById("burger");
+  burger.addEventListener("click", function () {
+    document.body.classList.toggle("nav-open");
+    burger.setAttribute("aria-expanded", document.body.classList.contains("nav-open"));
+  });
+}
+
+function updateCartCount() {
+  const badge = document.getElementById("cart-badge");
+  const count = getCart().reduce(function (sum, item) { return sum + item.qty; }, 0);
+  badge.textContent = count;
+  badge.hidden = count === 0;
+}
+
+function updateAccountLink() {
+  const link = document.getElementById("account-link");
+  const label = document.getElementById("account-label");
+  const user = getCurrentUser();
+  if (user) {
+    link.href = "profile.html";
+    label.textContent = user.name;
+  } else {
+    link.href = "login.html";
+    label.textContent = t("nav.signIn");
   }
+}
 
-  if ($cakeSearch.length) {
-    $cakeSearch.on("keyup input", applyCakeSearch);
 
-    $("#cake-filter-buttons").on("click", ".filter-btn", applyCakeSearch);
+function getCart() {
+  return getData("sweetbakery-cart", []);
+}
+
+function saveCart(cart) {
+  saveData("sweetbakery-cart", cart);
+  updateCartCount();
+}
+
+function addToCart(id) {
+  const cart = getCart();
+  const item = cart.find(function (i) { return i.id === id; });
+  if (item) {
+    item.qty++;
+  } else {
+    cart.push({ id: id, qty: 1 });
   }
+  saveCart(cart);
 
-  // =========================================================================
-  // TASK 2. AUTOCOMPLETE SEARCH SUGGESTIONS (Desserts Menu)
-  // =========================================================================
-  const $dessertSearch = $("#dessert-search");
-  const $suggestions = $("#dessert-suggestions");
+  const badge = document.getElementById("cart-badge");
+  badge.classList.remove("bump");
+  void badge.offsetWidth;
+  badge.classList.add("bump");
+}
 
-  if ($dessertSearch.length && $suggestions.length) {
-    const dessertItems = $("#menu-table tbody tr").map(function () {
-      const $cells = $(this).find("td");
-      const nameIdx = $cells.length === 4 ? 1 : 0;
-      return {
-        name: $cells.eq(nameIdx).text().trim(),
-        price: $cells.eq($cells.length - 1).text().trim(),
-        $row: $(this)
-      };
-    }).get();
+function addCustomCakeToCart(cake) {
+  const cart = getCart();
+  cart.push({ id: "custom-" + Date.now(), qty: 1, custom: cake });
+  saveCart(cart);
+}
 
-    let activeIdx = -1;
-
-    function closeSuggestions() {
-      $suggestions.hide().empty();
-      $dessertSearch.attr("aria-expanded", "false");
-      activeIdx = -1;
-    }
-
-    function renderSuggestions(query) {
-      const q = query.trim().toLowerCase();
-      if (!q) {
-        closeSuggestions();
-        return;
-      }
-
-      const matches = dessertItems
-        .filter(function (item) { return item.name.toLowerCase().indexOf(q) > -1; })
-        .sort(function (a, b) {
-          return (b.name.toLowerCase().indexOf(q) === 0) - (a.name.toLowerCase().indexOf(q) === 0);
-        })
-        .slice(0, 6);
-
-      $suggestions.empty();
-      activeIdx = -1;
-
-      if (matches.length === 0) {
-        $suggestions.append('<li class="sg-empty">No suggestions found</li>');
-      } else {
-        const re = new RegExp("(" + escapeRegExp(q) + ")", "ig");
-        $.each(matches, function (i, item) {
-          const label = escapeHtml(item.name).replace(re, "<strong>$1</strong>");
-          $('<li class="sg-item" role="option"></li>')
-            .html('<span>' + label + '</span><span class="sg-meta">$' + escapeHtml(item.price) + '</span>')
-            .data("item", item)
-            .appendTo($suggestions);
-        });
-      }
-
-      $suggestions.slideDown(120);
-      $dessertSearch.attr("aria-expanded", "true");
-    }
-
-    function chooseSuggestion(item) {
-      $dessertSearch.val(item.name);
-      closeSuggestions();
-
-      $(".row-found").removeClass("row-found");
-      item.$row.addClass("row-found");
-      window.scrollTo({ top: item.$row.offset().top - 140, behavior: "smooth" });
-      setTimeout(function () { item.$row.removeClass("row-found"); }, 2400);
-
-      showToast(item.name + " — $" + item.price, "info");
-    }
-
-    function moveActive(step) {
-      const $items = $suggestions.children(".sg-item");
-      if (!$items.length) return;
-      activeIdx = (activeIdx + step + $items.length) % $items.length;
-      $items.removeClass("active").eq(activeIdx).addClass("active");
-    }
-
-    $dessertSearch.on("input", function () {
-      renderSuggestions($(this).val());
-    });
-
-    $dessertSearch.on("keydown", function (e) {
-      switch (e.key) {
-        case "ArrowDown":
-          e.preventDefault();
-          moveActive(1);
-          break;
-        case "ArrowUp":
-          e.preventDefault();
-          moveActive(-1);
-          break;
-        case "Enter": {
-          const $items = $suggestions.children(".sg-item");
-          const $target = activeIdx > -1 ? $items.eq(activeIdx) : $items.first();
-          if ($target.length) {
-            e.preventDefault();
-            chooseSuggestion($target.data("item"));
-          }
-          break;
-        }
-        case "Escape":
-          closeSuggestions();
-          break;
-      }
-    });
-
-    $suggestions.on("mousedown", ".sg-item", function (e) {
-      e.preventDefault();
-      chooseSuggestion($(this).data("item"));
-    });
-
-    $suggestions.on("mouseenter", ".sg-item", function () {
-      $(this).addClass("active").siblings().removeClass("active");
-      activeIdx = $(this).index();
-    });
-
-    $(document).on("click", function (e) {
-      if (!$(e.target).closest(".autocomplete-box").length) closeSuggestions();
-    });
+function getItemInfo(item) {
+  if (item.custom) {
+    return {
+      name: t("custom.itemName", { kg: item.custom.kg }),
+      price: item.custom.price,
+      image: "images/gallery-6.jpg",
+      details: item.custom.details
+    };
   }
+  const product = products.find(function (p) { return p.id === item.id; });
+  return {
+    name: tr(product.name),
+    price: product.price,
+    image: product.image,
+    details: t("cat." + product.category)
+  };
+}
 
-  // =========================================================================
-  // TASK 3. SEARCH HIGHLIGHTING (FAQ on Home and About pages)
-  // Matching words are wrapped in <mark>, and matching answers are opened.
-  // =========================================================================
-  const $faqSearch = $("#faq-search");
 
-  if ($faqSearch.length) {
-    const $faqTargets = $(".accordion-header, .accordion-content p");
+function getUsers() {
+  return getData("sweetbakery-users", []);
+}
 
-    $faqTargets.each(function () {
-      $(this).data("origText", $(this).text());
-    });
+function getCurrentUser() {
+  const email = getData("sweetbakery-currentUser", null);
+  return getUsers().find(function (u) { return u.email === email; }) || null;
+}
 
-    function highlightText(text, re) {
-      let out = "";
-      let last = 0;
-      let count = 0;
-      let m;
-      re.lastIndex = 0;
-      while ((m = re.exec(text)) !== null) {
-        out += escapeHtml(text.slice(last, m.index)) +
-          '<mark class="search-hit">' + escapeHtml(m[0]) + "</mark>";
-        last = m.index + m[0].length;
-        count++;
-        if (m[0].length === 0) re.lastIndex++;
-      }
-      out += escapeHtml(text.slice(last));
-      return { html: out, count: count };
-    }
+function logOut() {
+  localStorage.removeItem("sweetbakery-currentUser");
+}
 
-    function runFaqHighlight() {
-      const query = $faqSearch.val().trim();
 
-      $faqTargets.each(function () {
-        $(this).text($(this).data("origText"));
-      });
-      $(".accordion-header").each(function () {
-        const $header = $(this);
-        if ($header.data("openedBySearch")) {
-          $header.removeClass("active").removeData("openedBySearch");
-          $header.next(".accordion-content").css("max-height", "");
-        }
-      });
+const emailRegex = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
+const phoneRegex = /^7\d{9}$/;            
+const nameRegex = /^[A-Za-zА-Яа-яЁёӘәҒғҚқҢңӨөҰұҮүҺһІі\s-]{2,40}$/;
 
-      if (!query) {
-        $("#faq-search-info").text("").removeClass("no-results");
-        return;
-      }
+function isValidPhone(value) {
+  return phoneRegex.test(value.replace(/\D/g, ""));
+}
 
-      const re = new RegExp(escapeRegExp(query), "gi");
-      let total = 0;
+function checkPasswordRules(password) {
+  return {
+    length: password.length >= 8,
+    upper: /[A-ZА-ЯЁ]/.test(password),
+    lower: /[a-zа-яё]/.test(password),
+    digit: /\d/.test(password)
+  };
+}
 
-      $(".accordion-header").each(function () {
-        const $header = $(this);
-        const $content = $header.next(".accordion-content");
-        let itemHits = 0;
+function isStrongPassword(password) {
+  const rules = checkPasswordRules(password);
+  return rules.length && rules.upper && rules.lower && rules.digit;
+}
 
-        $header.add($content.find("p")).each(function () {
-          const result = highlightText($(this).data("origText"), re);
-          if (result.count > 0) {
-            $(this).html(result.html);
-            itemHits += result.count;
-          }
-        });
+function showError(input, errorKey) {
+  const errorBox = input.closest(".field").querySelector(".field-error");
+  errorBox.dataset.key = errorKey;
+  errorBox.textContent = errorKey ? t(errorKey) : "";
+  input.classList.toggle("is-invalid", errorKey !== "");
+  return errorKey === "";
+}
 
-        total += itemHits;
+function clearErrors(form) {
+  form.querySelectorAll(".field-error").forEach(function (box) {
+    box.dataset.key = "";
+    box.textContent = "";
+  });
+  form.querySelectorAll(".is-invalid").forEach(function (input) {
+    input.classList.remove("is-invalid");
+  });
+}
 
-        if (itemHits > 0 && !$header.hasClass("active")) {
-          $header.addClass("active").data("openedBySearch", true);
-          $content.css("max-height", $content[0].scrollHeight + "px");
-        }
-      });
+function checkRequired(value) {
+  return value.trim() === "" ? "err.required" : "";
+}
+function checkName(value) {
+  if (value.trim() === "") return "err.required";
+  return nameRegex.test(value.trim()) ? "" : "err.name";
+}
+function checkEmail(value) {
+  if (value.trim() === "") return "err.required";
+  return emailRegex.test(value.trim()) ? "" : "err.email";
+}
+function checkPhone(value) {
+  if (value.trim() === "") return "err.required";
+  return isValidPhone(value) ? "" : "err.phone";
+}
+function checkPassword(value) {
+  if (value === "") return "err.required";
+  return isStrongPassword(value) ? "" : "err.password";
+}
 
-      const $info = $("#faq-search-info");
-      if (total === 0) {
-        $info.text("No matches found").addClass("no-results");
-      } else {
-        $info.text(total + (total === 1 ? " match found" : " matches found")).removeClass("no-results");
-      }
-    }
+function phoneMask(input) {
+  input.addEventListener("input", function () {
+    const d = input.value.replace(/\D/g, "").slice(0, 10);
+    input.value = [d.slice(0, 3), d.slice(3, 6), d.slice(6, 8), d.slice(8, 10)].filter(Boolean).join(" ");
+  });
+}
 
-    $faqSearch.on("keyup input", runFaqHighlight);
-  }
+function shakeForm(form) {
+  form.classList.remove("shake");
+  void form.offsetWidth;
+  form.classList.add("shake");
+}
 
-  // =========================================================================
-  // TASK 4. COLORFUL AND STYLIZED SCROLL PROGRESS BAR
-  // =========================================================================
-  const $progress = $(
-    '<div id="scroll-progress" aria-hidden="true">' +
-      '<div class="scroll-progress-bar"></div>' +
-      '<span class="scroll-progress-label">0%</span>' +
-    "</div>"
-  ).prependTo("body");
 
-  const $progressBar = $progress.find(".scroll-progress-bar");
-  const $progressLabel = $progress.find(".scroll-progress-label");
+function showToast(message, type) {
+  const box = document.getElementById("toast-stack");
+  const toast = document.createElement("div");
+  toast.className = "toast toast-" + (type || "success");
+  toast.innerHTML = '<span class="toast-icon">' + icon(type === "error" ? "alert" : "check") + "</span>" +
+                    '<span class="toast-msg"></span>';
+  toast.querySelector(".toast-msg").textContent = message;
+  box.appendChild(toast);
 
-  function updateScrollProgress() {
-    const scrollable = $(document).height() - $(window).height();
-    const percent = scrollable > 0 ? ($(window).scrollTop() / scrollable) * 100 : 0;
-    const rounded = Math.min(100, Math.max(0, Math.round(percent)));
+  setTimeout(function () { toast.classList.add("show"); }, 10);
+  setTimeout(function () {
+    toast.classList.remove("show");
+    setTimeout(function () { toast.remove(); }, 300);
+  }, 3000);
+}
 
-    $progressBar.css("width", percent + "%");
-    $progressLabel.text(rounded + "%").toggleClass("visible", rounded > 0);
-  }
 
-  $(window).on("scroll resize", updateScrollProgress);
-  updateScrollProgress();
+document.addEventListener("DOMContentLoaded", function () {
+  renderIcons();
+  applyTranslations();
+  initTheme();
+  initMobileMenu();
+  updateCartCount();
+  updateAccountLink();
 
-  // =========================================================================
-  // TASK 5. ANIMATED NUMBER COUNTER (Home page stats)
-  // Starts once, when the numbers scroll into view.
-  // =========================================================================
-  const $counters = $(".stat-number");
-
-  function animateCounter($el) {
-    const target = Number($el.attr("data-target")) || 0;
-    const suffix = $el.attr("data-suffix") || "";
-
-    $({ value: 0 }).animate({ value: target }, {
-      duration: 2200,
-      easing: "swing",
-      step: function (now) {
-        $el.text(Math.floor(now).toLocaleString("en-US") + suffix);
-      },
-      complete: function () {
-        $el.text(target.toLocaleString("en-US") + suffix);
-      }
-    });
-  }
-
-  function checkCounters() {
-    if (!$counters.length) return;
-    const viewportBottom = $(window).scrollTop() + $(window).height();
-
-    $counters.each(function () {
-      const $el = $(this);
-      if ($el.data("counted")) return;
-      if ($el.offset().top < viewportBottom - 60) {
-        $el.data("counted", true);
-        animateCounter($el);
-      }
-    });
-  }
-
-  if ($counters.length) {
-    $(window).on("scroll resize", checkCounters);
-    checkCounters();
-  }
-
-  // =========================================================================
-  // TASK 6. LOADING SPINNER ON SUBMIT (Order form)
-  // main.js validates the form and fires "order:valid" / "order:invalid".
-  // =========================================================================
-  const $orderForm = $("#contact-form");
-
-  if ($orderForm.length) {
-    $orderForm.on("order:valid", function () {
-      const $btn = $(this).find(".submit-btn");
-      if ($btn.prop("disabled")) return;        
-
-      const originalText = $btn.text();
-
-      $btn
-        .prop("disabled", true)               
-        .attr("aria-busy", "true")
-        .html('<span class="btn-spinner" aria-hidden="true"></span>Please wait…');
-
-      setTimeout(function () {
-        $btn
-          .prop("disabled", false)
-          .removeAttr("aria-busy")
-          .text(originalText);
-
-        showToast("Your order was submitted successfully!", "success");
-      }, 2000);
-    });
-
-    $orderForm.on("order:invalid", function () {
-      showToast("Please check the highlighted fields.", "error");
-    });
-  }
-
-  // =========================================================================
-  // TASK 8. "COPIED TO CLIPBOARD" BUTTON (Promo code and address)
-  // =========================================================================
-  const ICON_COPY =
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
-    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-    '<rect x="9" y="9" width="13" height="13" rx="2"></rect>' +
-    '<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
-
-  const ICON_CHECK =
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" ' +
-    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-    '<polyline points="20 6 9 17 4 12"></polyline></svg>';
-
-  $(".copy-btn").html(ICON_COPY);
-
-  function copyText(text) {
-    if (navigator.clipboard && window.isSecureContext) {
-      return navigator.clipboard.writeText(text);
-    }
-    return new Promise(function (resolve, reject) {
-      const $ta = $("<textarea readonly></textarea>")
-        .val(text)
-        .css({ position: "fixed", top: 0, left: 0, opacity: 0 })
-        .appendTo("body");
-      $ta[0].select();
-      let ok = false;
-      try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
-      $ta.remove();
-      ok ? resolve() : reject();
-    });
-  }
-
-  function markCopied($btn) {
-    clearTimeout($btn.data("timer"));
-    $btn.find(".copy-tooltip").remove();
-
-    $btn.addClass("copied").html(ICON_CHECK);
-    $('<span class="copy-tooltip" role="status">Copied to clipboard!</span>')
-      .appendTo($btn)
-      .hide()
-      .fadeIn(150);
-
-    showToast("Copied to clipboard!", "success");
-
-    $btn.data("timer", setTimeout(function () {
-      $btn.removeClass("copied").html(ICON_COPY);
-    }, 2000));
-  }
-
-  $(document).on("click", ".copy-btn", function () {
-    const $btn = $(this);
-    const text = $($btn.attr("data-copy-target")).text().trim();
-
-    copyText(text).then(
-      function () { markCopied($btn); },
-      function () { showToast("Could not copy. Please copy it manually.", "error"); }
-    );
+  const langSelect = document.getElementById("lang-select");
+  langSelect.value = currentLang;
+  langSelect.addEventListener("change", function () {
+    changeLanguage(langSelect.value);
   });
 
-  $(".snippet").on("copy", function () {
-    const $btn = $('.copy-btn[data-copy-target="#' + this.id + '"]');
-    if ($btn.length) markCopied($btn);
-  });
-
-  // =========================================================================
-  // TASK 9. IMAGE LAZY LOADING
-  // =========================================================================
-  const $lazyImages = $("img.lazy");
-
-  function lazyLoadImages() {
-    const threshold = $(window).scrollTop() + $(window).height() + 200;
-
-    $lazyImages.each(function () {
-      const $img = $(this);
-      const realSrc = $img.attr("data-src");
-      if (!realSrc) return;                      
-
-      if ($img.offset().top < threshold) {
-        $img
-          .one("load error", function () { $img.addClass("loaded"); })
-          .attr("src", realSrc)
-          .removeAttr("data-src");
-      }
+  document.querySelectorAll("img").forEach(function (img) {
+    img.addEventListener("error", function () {
+      img.style.visibility = "hidden";
     });
-  }
-
-  if ($lazyImages.length) {
-    $(window).on("scroll resize load", lazyLoadImages);
-    lazyLoadImages();
-  }
-
+  });
 });
