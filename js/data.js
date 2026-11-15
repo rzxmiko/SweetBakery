@@ -45,6 +45,7 @@ const products = [
     }
   },
 
+  // ----- Cupcakes -----
   {
     id: "caramel-cupcake", category: "cupcakes", price: 1200, image: "images/cupcakess.jpeg", bestseller: true,
     name: { en: "Caramel Cupcake", ru: "Карамельный капкейк", kk: "Карамель капкейгі" },
@@ -64,6 +65,7 @@ const products = [
     }
   },
 
+  // ----- Macarons -----
   {
     id: "pistachio-macaron", category: "macarons", price: 800, image: "images/macarons.jpg", bestseller: false,
     name: { en: "Pistachio Macaron", ru: "Фисташковый макарон", kk: "Пісте макароны" },
@@ -83,6 +85,7 @@ const products = [
     }
   },
 
+  // ----- Pastries -----
   {
     id: "butter-croissant", category: "pastries", price: 950, image: "images/croissants.jpg", bestseller: true,
     name: { en: "Butter Croissant", ru: "Сливочный круассан", kk: "Сары майлы круассан" },
@@ -102,6 +105,7 @@ const products = [
     }
   },
 
+  // ----- Sets (also shown on the Promotions page) -----
   {
     id: "cupcake-box", category: "sets", price: 6000, oldPrice: 7500, image: "images/cupcakess.jpeg", bestseller: false,
     name: { en: "Weekend Cupcake Box", ru: "Бокс капкейков", kk: "Капкейк бокс" },
@@ -131,11 +135,12 @@ const products = [
   }
 ];
 
+// Promo codes that work in the cart
 const promoCodes = {
-  SWEET15: 15,    
-  WEEKEND10: 10,  
-  STUDENT5: 5    
+  SWEET15: 15,    // 15% off
+  WEEKEND10: 10,  // 10% off
+  STUDENT5: 5     // 5% off
 };
 
-const DELIVERY_PRICE = 1500;    
-const FREE_DELIVERY_FROM = 20000; 
+const DELIVERY_PRICE = 1500;     // courier delivery in ₸
+const FREE_DELIVERY_FROM = 20000; // free delivery from this sum

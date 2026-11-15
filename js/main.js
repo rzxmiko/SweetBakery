@@ -1,7 +1,24 @@
+// =========================================================================
+// main.js — logic of each page
+// Every part checks if its element exists, so one file works on all pages.
+//
+//  1. Product cards + "Add to cart"          (Home, Menu, Promotions)
+//  2. Menu: search, category filter, sort    (saved in localStorage)
+//  3. Custom cake builder
+//  4. Promotions: popup, copy and apply promo codes
+//  5. About: FAQ accordion with search
+//  6. About: External API — dessert recipes (fetch + async/await)
+//  7. Contact form validation
+//  8. Cart and checkout (delivery, payment method)
+//  9. Sign Up / Log In
+// 10. Profile page
+// 11. Animated counters (Home)
+// =========================================================================
+
 document.addEventListener("DOMContentLoaded", function () {
 
   // =======================================================================
-  // PRODUCT CARDS
+  // 1. PRODUCT CARDS
   // =======================================================================
   function createProductCard(product) {
     let badges = "";
@@ -33,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
       </article>`;
   }
 
+  // one click handler for all "Add" buttons on the page
   document.addEventListener("click", function (event) {
     const button = event.target.closest(".btn-add");
     if (!button) return;
@@ -45,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(function () { button.classList.remove("added"); }, 1000);
   });
 
+  // Home: bestsellers
   const bestsellersBox = document.getElementById("bestsellers");
   function showBestsellers() {
     const best = products.filter(function (p) { return p.bestseller; });
@@ -52,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   if (bestsellersBox) showBestsellers();
 
+  // Promotions: sets
   const setsBox = document.getElementById("sets-grid");
   function showSets() {
     const sets = products.filter(function (p) { return p.category === "sets"; });
@@ -61,18 +81,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =======================================================================
-  // MENU: search + category + sort (saved in localStorage)
+  // 2. MENU: search + category + sort (saved in localStorage)
   // =======================================================================
   const menuGrid = document.getElementById("menu-grid");
   const menuSearch = document.getElementById("menu-search");
   const menuSort = document.getElementById("menu-sort");
   const categoryButtons = document.querySelectorAll("#menu-categories .chip");
 
+  // last filter is saved, so it stays after reload
   let menuFilter = getData("sweetbakery-menu-filter", { category: "all", search: "", sort: "default" });
 
   function showMenu() {
     const search = menuFilter.search.trim().toLowerCase();
 
+    // filter by category and by search text (name in any language)
     let list = products.filter(function (p) {
       const categoryOk = menuFilter.category === "all" || p.category === menuFilter.category;
       const text = (p.name.en + " " + p.name.ru + " " + p.name.kk + " " + tr(p.desc)).toLowerCase();
@@ -101,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (menuGrid) {
+    // category from the Home page link: menu.html?cat=cakes
     const urlCategory = new URLSearchParams(window.location.search).get("cat");
     if (urlCategory) menuFilter.category = urlCategory;
 
@@ -133,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =======================================================================
-  // CUSTOM CAKE BUILDER
+  // 3. CUSTOM CAKE BUILDER
   // =======================================================================
   const builderForm = document.getElementById("builder-form");
 
@@ -141,6 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return builderForm.querySelector('input[name="' + name + '"]:checked');
   }
 
+  // text of the chosen option card, e.g. "Raspberry"
   function getOptionTitle(input) {
     return input.closest(".option-card").querySelector(".option-title").textContent;
   }
@@ -165,6 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("builder-total").textContent = formatPrice(total);
 
+    // earliest date = today + days needed for the decoration
     const ready = new Date();
     ready.setDate(ready.getDate() + Number(decor.dataset.days));
     document.getElementById("builder-ready").textContent = t("builder.ready", { date: ready.toLocaleDateString("ru-RU") });
@@ -203,7 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =======================================================================
-  // PROMOTIONS
+  // 4. PROMOTIONS: popup, copy, apply
   // =======================================================================
   const popup = document.getElementById("popup-modal");
   if (popup) {
@@ -231,6 +256,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("popup-done-step").hidden = false;
     });
 
+    // copy promo code
     document.querySelectorAll(".copy-btn").forEach(function (btn) {
       btn.addEventListener("click", function () {
         navigator.clipboard.writeText(btn.dataset.copy);
@@ -240,6 +266,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
+    // apply promo code -> saved for the cart
     document.querySelectorAll(".apply-btn").forEach(function (btn) {
       btn.addEventListener("click", function () {
         saveData("sweetbakery-promo", btn.dataset.code);
@@ -250,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =======================================================================
-  // FAQ ACCORDION + SEARCH WITH HIGHLIGHT
+  // 5. FAQ ACCORDION + SEARCH WITH HIGHLIGHT
   // =======================================================================
   const faqItems = document.querySelectorAll(".accordion-item");
 
@@ -274,6 +301,7 @@ document.addEventListener("DOMContentLoaded", function () {
     faqItems.forEach(function (item) {
       const question = item.querySelector(".faq-q");
       const answer = item.querySelector(".faq-a");
+      // put the original text back (removes old <mark>)
       question.textContent = t(question.dataset.i18n);
       answer.textContent = t(answer.dataset.i18n);
 
@@ -297,6 +325,7 @@ document.addEventListener("DOMContentLoaded", function () {
     info.textContent = query === "" ? "" : t("faq.found", { n: found });
   }
 
+  // wrap the found text in <mark>
   function highlight(element, query) {
     const text = element.textContent;
     const index = text.toLowerCase().indexOf(query);
@@ -312,7 +341,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =======================================================================
-  // EXTERNAL API — dessert recipes from TheMealDB
+  // 6. EXTERNAL API — dessert recipes from TheMealDB
+  //    https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert
   // =======================================================================
   const recipeGrid = document.getElementById("recipe-grid");
   const recipeSearch = document.getElementById("recipe-search");
@@ -323,6 +353,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let recipesShown = 8;
 
   async function loadRecipes() {
+    // loading state
     recipeError.hidden = true;
     recipeGrid.hidden = false;
     recipeInfo.textContent = t("recipes.loading");
@@ -337,6 +368,7 @@ document.addEventListener("DOMContentLoaded", function () {
       allRecipes = data.meals || [];
       showRecipes();
     } catch (error) {
+      // error state
       console.error("Could not load recipes:", error);
       recipeGrid.innerHTML = "";
       recipeGrid.hidden = true;
@@ -367,6 +399,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (recipeGrid) {
+    // last search is saved in localStorage
     recipeSearch.value = getData("sweetbakery-recipe-search", "");
 
     recipeSearch.addEventListener("input", function () {
@@ -385,7 +418,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =======================================================================
-  // CONTACT FORM
+  // 7. CONTACT FORM
   // =======================================================================
   const contactForm = document.getElementById("contact-form");
   if (contactForm) {
@@ -409,6 +442,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
+      // save message in localStorage
       const messages = getData("sweetbakery-messages", []);
       messages.push({ name: cName.value, email: cEmail.value, phone: cPhone.value, message: cMessage.value, date: new Date().toISOString() });
       saveData("sweetbakery-messages", messages);
@@ -423,15 +457,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =======================================================================
-  // CART AND CHECKOUT
+  // 8. CART AND CHECKOUT
   // =======================================================================
   const cartList = document.getElementById("cart-list");
 
+  // WEEKEND10 works only on Saturday (6) and Sunday (0)
+  function isWeekend() {
+    const day = new Date().getDay();
+    return day === 0 || day === 6;
+  }
+
   function getDiscountPercent() {
     const code = getData("sweetbakery-promo", "");
+    if (code === "WEEKEND10" && !isWeekend()) return 0;
     return promoCodes[code] || 0;
   }
 
+  // custom cakes need more days, other items — 1 day
   function getMinDays() {
     let days = 1;
     getCart().forEach(function (item) {
@@ -446,7 +488,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("cart-view").hidden = cart.length === 0;
     if (cart.length === 0) return;
 
-  
+    // cart items
     cartList.innerHTML = cart.map(function (item) {
       const info = getItemInfo(item);
       return `
@@ -467,6 +509,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </li>`;
     }).join("");
 
+    // totals
     let subtotal = 0;
     cart.forEach(function (item) { subtotal += getItemInfo(item).price * item.qty; });
 
@@ -484,6 +527,7 @@ document.addEventListener("DOMContentLoaded", function () {
     html += '<div class="is-total"><dt>' + t("cart.total") + "</dt><dd>" + formatPrice(total) + "</dd></div>";
     document.getElementById("totals").innerHTML = html;
 
+    // date hint
     const minDate = new Date();
     minDate.setDate(minDate.getDate() + getMinDays());
     document.getElementById("date-hint").textContent = t("checkout.dateHint", { date: minDate.toLocaleDateString("ru-RU") });
@@ -496,6 +540,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const promoForm = document.getElementById("promo-form");
     const promoInput = document.getElementById("promo-input");
 
+    // + / - / remove buttons
     cartList.addEventListener("click", function (event) {
       const button = event.target.closest("button");
       if (!button) return;
@@ -516,12 +561,14 @@ document.addEventListener("DOMContentLoaded", function () {
       showCart();
     });
 
+    // promo code
     promoForm.addEventListener("submit", function (event) {
       event.preventDefault();
       const code = promoInput.value.trim().toUpperCase();
       let error = "";
       if (code === "") error = "err.required";
       else if (!promoCodes[code]) error = "promo.wrong";
+      else if (code === "WEEKEND10" && !isWeekend()) error = "promo.weekendOnly";
       if (!showError(promoInput, error)) return;
 
       saveData("sweetbakery-promo", code);
@@ -530,6 +577,7 @@ document.addEventListener("DOMContentLoaded", function () {
       showCart();
     });
 
+    // show address only for courier, card fields only for card
     checkoutForm.addEventListener("change", function () {
       const delivery = checkoutForm.querySelector('input[name="delivery"]:checked').value;
       const payment = checkoutForm.querySelector('input[name="payment"]:checked').value;
@@ -538,6 +586,7 @@ document.addEventListener("DOMContentLoaded", function () {
       showCart();
     });
 
+    // fill in data of the logged-in user
     const user = getCurrentUser();
     if (user) {
       document.getElementById("co-name").value = user.name;
@@ -546,6 +595,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     phoneMask(document.getElementById("co-phone"));
 
+    // place order
     checkoutForm.addEventListener("submit", function (event) {
       event.preventDefault();
       const name = document.getElementById("co-name");
@@ -570,6 +620,7 @@ document.addEventListener("DOMContentLoaded", function () {
         showError(address, "");
       }
 
+      // date must not be earlier than the minimum
       let dateError = "";
       const minDate = new Date();
       minDate.setHours(0, 0, 0, 0);
@@ -593,6 +644,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
+      // save the order
       const orderButton = document.getElementById("place-order");
       orderButton.classList.add("loading");
       orderButton.disabled = true;
@@ -633,7 +685,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =======================================================================
-  // SIGN UP / LOG IN
+  // 9. SIGN UP / LOG IN
   // =======================================================================
   const loginForm = document.getElementById("login-form");
   if (loginForm) {
@@ -641,10 +693,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const tabLogin = document.getElementById("tab-login");
     const tabSignup = document.getElementById("tab-signup");
 
+    // already logged in -> go to profile
     if (getCurrentUser()) {
       window.location.href = "profile.html";
     }
 
+    // where to go after login (cart or profile)
     const next = new URLSearchParams(window.location.search).get("next") === "cart" ? "cart.html" : "profile.html";
 
     function showTab(name) {
@@ -658,6 +712,7 @@ document.addEventListener("DOMContentLoaded", function () {
     tabSignup.addEventListener("click", function () { showTab("signup"); });
     if (new URLSearchParams(window.location.search).get("mode") === "signup") showTab("signup");
 
+    // show / hide password
     document.querySelectorAll(".pw-toggle").forEach(function (btn) {
       btn.addEventListener("click", function () {
         const input = document.getElementById(btn.dataset.target);
@@ -666,6 +721,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
+    // password rules checklist (updates while typing)
     const sPassword = document.getElementById("s-password");
     sPassword.addEventListener("input", function () {
       const rules = checkPasswordRules(sPassword.value);
@@ -727,7 +783,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-
+      // save new user in localStorage
       const users = getUsers();
       users.push({
         name: name.value.trim(),
@@ -744,7 +800,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =======================================================================
-  // PROFILE PAGE
+  // 10. PROFILE PAGE
   // =======================================================================
   const profileName = document.getElementById("profile-name");
 
@@ -757,6 +813,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("detail-email").textContent = user.email;
     document.getElementById("detail-phone").textContent = "+7 " + user.phone;
 
+    // orders of this user
     const orders = getData("sweetbakery-orders", []).filter(function (o) { return o.email === user.email; });
     const ordersBox = document.getElementById("orders-list");
 
@@ -785,6 +842,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (profileName) {
+    // not logged in -> go to login page
     if (!getCurrentUser()) {
       window.location.href = "login.html";
       return;
@@ -798,6 +856,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
+  // =======================================================================
+  // 11. ANIMATED COUNTERS (start when visible)
+  // =======================================================================
   const counters = document.querySelectorAll(".stat-number");
 
   function startCounter(el) {
@@ -827,6 +888,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
+  // =======================================================================
+  // When the language changes, draw dynamic parts again
+  // =======================================================================
   document.addEventListener("languageChanged", function () {
     if (bestsellersBox) showBestsellers();
     if (setsBox) showSets();

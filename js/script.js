@@ -1,3 +1,4 @@
+// ---------- 1. localStorage helpers ----------
 function getData(key, defaultValue) {
   const saved = localStorage.getItem(key);
   if (saved === null) return defaultValue;
@@ -17,6 +18,7 @@ function formatPrice(sum) {
 }
 
 
+// ---------- 2. Translations ----------
 let currentLang = getData("sweetbakery-lang", "ru");
 
 function t(key, params) {
@@ -61,6 +63,7 @@ function changeLanguage(lang) {
 }
 
 
+// ---------- 3. Light / dark theme (saved in localStorage) ----------
 function initTheme() {
   const themeSwitch = document.getElementById("theme-switch");
   const theme = getData("sweetbakery-theme", "light");
@@ -76,6 +79,7 @@ function initTheme() {
 }
 
 
+// ---------- 4. Icons (simple SVG, put into <span data-icon="name">) ----------
 const icons = {
   cake: '<path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"/><path d="M2 21h20"/><path d="M7 8v3M12 8v3M17 8v3"/><path d="M7 4h.01M12 4h.01M17 4h.01"/>',
   bag: '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>',
@@ -124,6 +128,7 @@ function renderIcons() {
 }
 
 
+// ---------- 5. Header ----------
 function initMobileMenu() {
   const burger = document.getElementById("burger");
   burger.addEventListener("click", function () {
@@ -139,6 +144,7 @@ function updateCartCount() {
   badge.hidden = count === 0;
 }
 
+// "Sign in" or user name in the header
 function updateAccountLink() {
   const link = document.getElementById("account-link");
   const label = document.getElementById("account-label");
@@ -153,6 +159,7 @@ function updateAccountLink() {
 }
 
 
+// ---------- 6. Cart (array of { id, qty } in localStorage) ----------
 function getCart() {
   return getData("sweetbakery-cart", []);
 }
@@ -172,18 +179,21 @@ function addToCart(id) {
   }
   saveCart(cart);
 
+  // bump animation on the badge
   const badge = document.getElementById("cart-badge");
   badge.classList.remove("bump");
   void badge.offsetWidth;
   badge.classList.add("bump");
 }
 
+// custom cakes from the builder are saved with their own price
 function addCustomCakeToCart(cake) {
   const cart = getCart();
   cart.push({ id: "custom-" + Date.now(), qty: 1, custom: cake });
   saveCart(cart);
 }
 
+// returns { name, price, image, details } for one cart item
 function getItemInfo(item) {
   if (item.custom) {
     return {
@@ -203,6 +213,7 @@ function getItemInfo(item) {
 }
 
 
+// ---------- 7. Users: Sign Up / Log In simulation ----------
 function getUsers() {
   return getData("sweetbakery-users", []);
 }
@@ -217,14 +228,16 @@ function logOut() {
 }
 
 
+// ---------- 8. Form validation helpers ----------
 const emailRegex = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
-const phoneRegex = /^7\d{9}$/;            
+const phoneRegex = /^7\d{9}$/;            // 10 digits after +7, e.g. 701 234 56 78
 const nameRegex = /^[A-Za-zА-Яа-яЁёӘәҒғҚқҢңӨөҰұҮүҺһІі\s-]{2,40}$/;
 
 function isValidPhone(value) {
   return phoneRegex.test(value.replace(/\D/g, ""));
 }
 
+// password: 8+ characters, uppercase, lowercase and a digit
 function checkPasswordRules(password) {
   return {
     length: password.length >= 8,
@@ -239,6 +252,7 @@ function isStrongPassword(password) {
   return rules.length && rules.upper && rules.lower && rules.digit;
 }
 
+// show / hide error under a field. errorKey = translation key or "" (no error)
 function showError(input, errorKey) {
   const errorBox = input.closest(".field").querySelector(".field-error");
   errorBox.dataset.key = errorKey;
@@ -257,6 +271,7 @@ function clearErrors(form) {
   });
 }
 
+// ready checks that return an error key or ""
 function checkRequired(value) {
   return value.trim() === "" ? "err.required" : "";
 }
@@ -277,6 +292,7 @@ function checkPassword(value) {
   return isStrongPassword(value) ? "" : "err.password";
 }
 
+// formats phone while typing: 7011234567 -> 701 123 45 67
 function phoneMask(input) {
   input.addEventListener("input", function () {
     const d = input.value.replace(/\D/g, "").slice(0, 10);
@@ -284,6 +300,7 @@ function phoneMask(input) {
   });
 }
 
+// shake the form when there are errors
 function shakeForm(form) {
   form.classList.remove("shake");
   void form.offsetWidth;
@@ -291,6 +308,7 @@ function shakeForm(form) {
 }
 
 
+// ---------- 9. Toast notifications ----------
 function showToast(message, type) {
   const box = document.getElementById("toast-stack");
   const toast = document.createElement("div");
@@ -308,6 +326,7 @@ function showToast(message, type) {
 }
 
 
+// ---------- Start ----------
 document.addEventListener("DOMContentLoaded", function () {
   renderIcons();
   applyTranslations();

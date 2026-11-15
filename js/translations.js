@@ -1,3 +1,8 @@
+// =========================================================================
+// translations.js — all texts of the site in 3 languages
+// en = English, ru = Русский, kk = Қазақша
+// =========================================================================
+
 const translations = {
   en: {
     "skip": "Skip to content",
@@ -88,6 +93,7 @@ const translations = {
     "promo.student": "For students", "promo.studentText": "5% off for students every day.",
     "promo.apply": "Apply", "promo.applied": "Promo code {code} is applied",
     "promo.wrong": "This promo code does not exist.",
+    "promo.weekendOnly": "This code works only on Saturday and Sunday.",
     "promo.setsEyebrow": "Better together", "promo.setsTitle": "Special sets",
     "promo.giftTitle": "Need a gift box?", "promo.giftText": "Tell us the occasion and budget — we will put together a gift box.",
     "promo.giftCta": "Contact us",
@@ -244,6 +250,7 @@ const translations = {
     "promo.student": "Для студентов", "promo.studentText": "5% для студентов каждый день.",
     "promo.apply": "Применить", "promo.applied": "Промокод {code} применён",
     "promo.wrong": "Такого промокода нет.",
+    "promo.weekendOnly": "Этот код действует только в субботу и воскресенье.",
     "promo.setsEyebrow": "Вместе выгоднее", "promo.setsTitle": "Выгодные наборы",
     "promo.giftTitle": "Нужен подарочный набор?", "promo.giftText": "Расскажите о поводе и бюджете — мы соберём подарочную коробку.",
     "promo.giftCta": "Написать нам",
@@ -400,6 +407,7 @@ const translations = {
     "promo.student": "Студенттерге", "promo.studentText": "Студенттерге күн сайын 5%.",
     "promo.apply": "Қолдану", "promo.applied": "{code} промокоды қолданылды",
     "promo.wrong": "Мұндай промокод жоқ.",
+    "promo.weekendOnly": "Бұл код тек сенбі мен жексенбіде жарамды.",
     "promo.setsEyebrow": "Бірге тиімдірек", "promo.setsTitle": "Тиімді жиынтықтар",
     "promo.giftTitle": "Сыйлық қорапшасы керек пе?", "promo.giftText": "Себебі мен бюджетін айтыңыз — сыйлық қорапшасын жинаймыз.",
     "promo.giftCta": "Бізге жазу",
